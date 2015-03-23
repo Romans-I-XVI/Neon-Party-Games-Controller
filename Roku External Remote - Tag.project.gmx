@@ -28,32 +28,59 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_button_select_roku</sprite>
+    <sprite>sprites\spr_button_select_color</sprite>
     <sprite>sprites\spr_button_play</sprite>
     <sprite>sprites\spr_button_obstacle_1</sprite>
     <sprite>sprites\spr_button_obstacle_2</sprite>
     <sprite>sprites\spr_button_roku_select</sprite>
-    <sprite>sprites\spr_neon_ring</sprite>
+    <sprite>sprites\spr_neon_ring_aqua</sprite>
+    <sprite>sprites\spr_neon_ring_blue</sprite>
+    <sprite>sprites\spr_neon_ring_green</sprite>
+    <sprite>sprites\spr_neon_ring_orange</sprite>
+    <sprite>sprites\spr_neon_ring_pink</sprite>
+    <sprite>sprites\spr_neon_ring_purple</sprite>
+    <sprite>sprites\spr_neon_ring_red</sprite>
+    <sprite>sprites\spr_neon_ring_silver</sprite>
+    <sprite>sprites\spr_neon_ring_yellow</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\font_ariel</font>
+  </fonts>
   <objects name="objects">
     <objects name="Control Objects">
       <object>objects\obj_control_play</object>
       <object>objects\obj_control_main</object>
+      <object>objects\obj_control_color_select</object>
       <object>objects\obj_control_roku_select</object>
     </objects>
     <objects name="Buttons">
+      <objects name="Color Select Buttons">
+        <object>objects\obj_button_select_red</object>
+        <object>objects\obj_button_select_blue</object>
+        <object>objects\obj_button_select_yellow</object>
+        <object>objects\obj_button_select_green</object>
+        <object>objects\obj_button_select_orange</object>
+        <object>objects\obj_button_select_purple</object>
+        <object>objects\obj_button_select_aqua</object>
+        <object>objects\obj_button_select_pink</object>
+        <object>objects\obj_button_select_silver</object>
+      </objects>
       <object>objects\obj_button_obstacle_1</object>
       <object>objects\obj_button_obstacle_2</object>
       <object>objects\obj_button_play</object>
-      <object>objects\obj_button_select_screen</object>
+      <object>objects\obj_button_roku_select_screen</object>
+      <object>objects\obj_button_color_select_screen</object>
       <object>objects\obj_button_roku_select</object>
     </objects>
     <object>objects\obj_player</object>
+    <object>objects\obj_player_fake</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_main</room>
     <room>rooms\room_play</room>
+    <room>rooms\room_select_color</room>
     <room>rooms\room_select_roku</room>
   </rooms>
   <help>
