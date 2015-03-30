@@ -41,7 +41,7 @@
           <externalName>RokuScan</externalName>
           <kind>11</kind>
           <help>RokuScan();</help>
-          <returnType>1</returnType>
+          <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
         </function>

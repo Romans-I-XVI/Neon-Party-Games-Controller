@@ -17,7 +17,8 @@ import com.yoyogames.runner.RunnerJNILib;
 
 public class GenericTest
 {
-        public static String RokuScan() throws Exception {
+	private static final int EVENT_OTHER_SOCIAL = 70;
+        public void RokuScan() throws Exception {
             /* create byte arrays to hold our send and response data */
             byte[] sendData = new byte[1024];
             byte[] receiveData = new byte[1024];
@@ -43,7 +44,10 @@ public class GenericTest
 			response = response.split(":")[0];
 
             /* print the response */
-            return response;
+			int dsMapIndex = RunnerJNILib.jCreateDsMap(null, null, null);
+			RunnerJNILib.DsMapAddString( dsMapIndex, "ip", response );
+			RunnerJNILib.CreateAsynEventWithDSMap(dsMapIndex, EVENT_OTHER_SOCIAL);
+            /*return response;*/
         }
 } // End of class
 

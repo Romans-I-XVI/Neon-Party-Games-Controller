@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>30</string>
+            <string>1</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -53,6 +53,9 @@
 str_dots = ""
 dot_count = 0
 step = 0
+Roku_IPs = ds_map_create(); 
+ds_map_clear(Roku_IPs);
+column = 0
 </string>
           </argument>
         </arguments>
@@ -75,32 +78,71 @@ step = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Roku_IPs = ds_list_create(); 
-
-ds_list_clear(Roku_IPs);
-ds_list_add(Roku_IPs,RokuScan());
-for (j = 0; j &lt; 10; j += 1) {
-    ip = RokuScan();
-    add_to_list = true;
-    for (n=0; n&lt;ds_list_size(Roku_IPs); n+=1;)
+            <string>RokuScan();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>30</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="70">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var ip = async_load[? "ip"];
+if ip != ""
     {
-        if (ip == string(ds_list_find_value(Roku_IPs,n)))
-            {
-            add_to_list = false
-            }
-    }
-    if add_to_list 
-        {
-        ds_list_add(Roku_IPs,ip);
+    column = ds_map_size(Roku_IPs)
+    row = 0
+    if (column &gt; 3) {
+        row = 1  
         }
-}
-for (i=0; i&lt;ds_list_size(Roku_IPs); i+=1;)
-{
-    button = instance_create( 100, i*120+30, obj_button_roku_select);
-    button.ip = string(ds_list_find_value(Roku_IPs,i));
-}
-loading = false
-
+    if column &lt;= 7 { 
+            
+        if !ds_map_exists(Roku_IPs, ip)
+            {
+            ds_map_add(Roku_IPs,ip,ip);
+            button = instance_create((column - row * 4)*320+80+150, row*220+220, obj_button_roku_select);
+            button.ip = ip
+            }
+        }
+    }
 </string>
           </argument>
         </arguments>
@@ -125,21 +167,45 @@ loading = false
             <kind>1</kind>
             <string>draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-if loading {
-    draw_text_transformed(room_width / 2, room_height / 2, "Loading...", 4, 4, 0);
-}
-draw_text(800,200,global.roku_ip)
+draw_text_transformed(room_width / 2, room_height - 30, "Continuously Scanning For Rokus...", 1, 1, 0);
+draw_text(room_width/2,80,"Selected Roku IP: "+global.roku_ip)
 for (i = 0; i &lt; instance_number(obj_button_roku_select); i += 1)
    {
    instance = instance_find(obj_button_roku_select,i)
-   draw_text(instance.x + 120, instance.y + 45, instance.ip)
+   draw_text(instance.x, instance.y, instance.ip)
    }
+if instance_number(obj_button_manual_ip) &gt; 0 {
+    draw_text(obj_button_manual_ip.x,obj_button_manual_ip.y-20, "Manual")
+    //draw_text(obj_button_manual_ip.x,obj_button_manual_ip.y, "Enter")
+    draw_text(obj_button_manual_ip.x,obj_button_manual_ip.y+20, "IP Address")
+    }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="9" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>immersion_play_effect(2);
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>224</id>

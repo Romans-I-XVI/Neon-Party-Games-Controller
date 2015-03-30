@@ -43,7 +43,9 @@
     <sprite>sprites\spr_neon_ring_silver</sprite>
     <sprite>sprites\spr_neon_ring_yellow</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background_neon</background>
+  </backgrounds>
   <paths name="paths"/>
   <fonts name="fonts">
     <font>fonts\font_ariel</font>
@@ -73,6 +75,7 @@
       <object>objects\obj_button_roku_select_screen</object>
       <object>objects\obj_button_color_select_screen</object>
       <object>objects\obj_button_roku_select</object>
+      <object>objects\obj_button_manual_ip</object>
     </objects>
     <object>objects\obj_player</object>
     <object>objects\obj_player_fake</object>

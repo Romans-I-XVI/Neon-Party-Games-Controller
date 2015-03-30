@@ -52,6 +52,10 @@
           <argument>
             <kind>1</kind>
             <string>instance_create(room_width/2,100,obj_player_fake)
+with obj_player_fake {
+    image_xscale = 2
+    image_yscale = 2
+    }
 </string>
           </argument>
         </arguments>
@@ -121,8 +125,9 @@
             <string>randomize(); 
 ini_open("savedata.ini");
     global.color = ini_read_real("data", "color", 0);
-    global.roku_ip = ini_read_string("data", "ip", "192.168.0.51"); 
+    global.roku_ip = ini_read_string("data", "ip", "0.0.0.0"); 
 ini_close(); 
+
 global.color_sprite[0] = spr_neon_ring_red
 global.color_sprite[1] = spr_neon_ring_blue
 global.color_sprite[2] = spr_neon_ring_yellow

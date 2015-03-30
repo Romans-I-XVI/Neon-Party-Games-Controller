@@ -60,11 +60,11 @@ y = global.last_y
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>1.5</string>
+            <string>2</string>
           </argument>
           <argument>
             <kind>0</kind>
-            <string>1.5</string>
+            <string>2</string>
           </argument>
           <argument>
             <kind>0</kind>
@@ -110,16 +110,32 @@ if global.os_was_paused &amp;&amp; !os_is_paused() {
 global.os_was_paused = os_is_paused();
 
 if pressed {
-    x = mouse_x
-    y = mouse_y
+    if mouse_x &gt;= 80+60 and mouse_x &lt;= 1360-60 {
+        x = mouse_x
+        }
+    if mouse_x &lt; 80+60 {
+        x = 80+60
+        }
+    if mouse_x &gt; 1360-60 {
+        x = 1360-60
+        }
+    if mouse_y &gt;= 72+60 and mouse_y &lt;= 792-60 {
+        y = mouse_y
+        }
+    if mouse_y &lt; 72+60 {
+        y = 72+60
+        }
+    if mouse_y &gt; 792-60 {
+        y = 792-60
+        }
 }
 if paused = false {
 //http_post_string("http://"+global.roku_ip+":8060/input?id="+string(global.id)+"&amp;x="+string(x)+"&amp;y="+string(y),"");
 buff = buffer_create(256, buffer_grow, 1);
 buffer_seek(buff, buffer_seek_start, 0);
 buffer_write(buff, buffer_u16, global.id);
-buffer_write(buff, buffer_u16, x);
-buffer_write(buff, buffer_u16, y);
+buffer_write(buff, buffer_u16, (x-80));
+buffer_write(buff, buffer_u16, (y-72));
 buffer_write(buff, buffer_u8, global.color);
 buffer_write(buff, buffer_bool, false);
 network_send_udp(sock, global.roku_ip, 54321, buff, buffer_tell(buff));

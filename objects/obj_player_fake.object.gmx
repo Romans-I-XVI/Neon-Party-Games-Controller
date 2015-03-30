@@ -26,14 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>sprite_index = global.color_sprite[global.color]
-if room = room_select_color {
-    image_xscale = 2
-    image_yscale = 2
-    }
-if room = room_main {
-    image_xscale = 1.5
-    image_yscale = 1.5
-    }
 </string>
           </argument>
         </arguments>
