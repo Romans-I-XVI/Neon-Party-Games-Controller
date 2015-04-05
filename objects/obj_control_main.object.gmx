@@ -160,7 +160,6 @@ global.color_sprite[6] = spr_neon_ring_aqua
 global.color_sprite[7] = spr_neon_ring_pink
 global.color_sprite[8] = spr_neon_ring_silver
 global.id = irandom(32000);
-global.os_was_paused = 0;
 global.last_x = room_width/2
 global.last_y = room_height/2
 </string>
@@ -185,7 +184,7 @@ global.last_y = room_height/2
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(room_width/2, 40, "Selected Roku IP: "+global.roku_ip)
+            <string>draw_text(room_width/2, 50, "Selected Roku IP: "+global.roku_ip)
 </string>
           </argument>
         </arguments>
