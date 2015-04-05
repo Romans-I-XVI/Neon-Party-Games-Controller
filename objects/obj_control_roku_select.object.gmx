@@ -169,7 +169,17 @@ if ip != ""
             <string>draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 //draw_text_transformed(room_width / 2, room_height - 30, "Continuously Scanning For Rokus...", 1, 1, 0);
-draw_text(room_width/2,50,"Selected Roku IP: "+global.roku_ip)
+if global.roku_ip == "" {
+    draw_text(room_width/2, 50, "Please select your Roku")
+    }
+else {
+    if global.roku_name == "" {
+        draw_text(room_width/2, 50, global.roku_ip)
+        }
+    else {
+        draw_text(room_width/2, 50, global.roku_name + " - " + global.roku_ip)
+        }
+    }
 for (i = 0; i &lt; instance_number(obj_button_roku_select); i += 1)
    {
    instance = instance_find(obj_button_roku_select,i)

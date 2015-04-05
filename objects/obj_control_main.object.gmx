@@ -49,8 +49,41 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_halign(fa_center);
+            <string>get = -1
+found_roku = false
+draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if found_roku = false {
+    global.roku_name = ""
+    global.roku_ip = ""
+    ini_open("savedata.ini");
+        ini_write_string("data", "ip", global.roku_ip); 
+        ini_write_string("data", "name", global.roku_name); 
+    ini_close(); 
+
+    }
 </string>
           </argument>
         </arguments>
@@ -83,7 +116,60 @@ with obj_player_fake {
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if ds_map_find_value(async_load, "id") == get
+    {
+    if ds_map_find_value(async_load, "status") == 0
+       {
+       found_roku = true
+       }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>30</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>524</id>
@@ -147,7 +233,8 @@ with obj_player_fake {
             <string>randomize(); 
 ini_open("savedata.ini");
     global.color = ini_read_real("data", "color", 0);
-    global.roku_ip = ini_read_string("data", "ip", "0.0.0.0"); 
+    global.roku_ip = ini_read_string("data", "ip", ""); 
+    global.roku_name = ini_read_string("data", "name", ""); 
 ini_close(); 
 
 global.color_sprite[0] = spr_neon_ring_red
@@ -162,6 +249,7 @@ global.color_sprite[8] = spr_neon_ring_silver
 global.id = irandom(32000);
 global.last_x = room_width/2
 global.last_y = room_height/2
+get = http_get("http://"+global.roku_ip+":8060");
 </string>
           </argument>
         </arguments>
@@ -184,7 +272,17 @@ global.last_y = room_height/2
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(room_width/2, 50, "Selected Roku IP: "+global.roku_ip)
+            <string>if global.roku_ip == "" {
+    draw_text(room_width/2, 50, "Please select your Roku")
+    }
+else {
+    if global.roku_name == "" {
+        draw_text(room_width/2, 50, global.roku_ip)
+        }
+    else {
+        draw_text(room_width/2, 50, global.roku_name + " - " + global.roku_ip)
+        }
+    }
 </string>
           </argument>
         </arguments>
