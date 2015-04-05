@@ -11,30 +11,6 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>301</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_alarm</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>1</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -57,6 +33,30 @@ Roku_IPs = ds_map_create();
 ds_map_clear(Roku_IPs);
 column = 0
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>1</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
@@ -130,16 +130,17 @@ if ip != ""
     {
     column = ds_map_size(Roku_IPs)
     row = 0
-    if (column &gt; 3) {
+    if (column &gt; 2) {
         row = 1  
         }
-    if column &lt;= 7 { 
+    if column &lt;= 5 { 
             
         if !ds_map_exists(Roku_IPs, ip)
             {
             ds_map_add(Roku_IPs,ip,ip);
-            button = instance_create((column - row * 4)*320+80+150, row*220+220, obj_button_roku_select);
-            button.ip = ip
+            button = instance_create((column - row * 3)*450+120+150, row*240+210, obj_button_roku_select);
+            button.ip_hold = ip
+            button.get = http_get("http://"+ip+":8060"); 
             }
         }
     }
@@ -167,18 +168,37 @@ if ip != ""
             <kind>1</kind>
             <string>draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_text_transformed(room_width / 2, room_height - 30, "Continuously Scanning For Rokus...", 1, 1, 0);
-draw_text(room_width/2,80,"Selected Roku IP: "+global.roku_ip)
+//draw_text_transformed(room_width / 2, room_height - 30, "Continuously Scanning For Rokus...", 1, 1, 0);
+draw_text(room_width/2,40,"Selected Roku IP: "+global.roku_ip)
 for (i = 0; i &lt; instance_number(obj_button_roku_select); i += 1)
    {
    instance = instance_find(obj_button_roku_select,i)
-   draw_text(instance.x, instance.y, instance.ip)
+   draw_text(instance.x, instance.y-22, instance.name)
+   draw_text(instance.x, instance.y+22, instance.ip)
    }
 if instance_number(obj_button_manual_ip) &gt; 0 {
-    draw_text(obj_button_manual_ip.x,obj_button_manual_ip.y-20, "Manual")
-    //draw_text(obj_button_manual_ip.x,obj_button_manual_ip.y, "Enter")
-    draw_text(obj_button_manual_ip.x,obj_button_manual_ip.y+20, "IP Address")
+    draw_text(obj_button_manual_ip.x,obj_button_manual_ip.y-22, "Connect")
+    draw_text(obj_button_manual_ip.x,obj_button_manual_ip.y+22, "Manually")
     }
+    
+//ip = string(irandom(254))+"."+string(irandom(254))+"."+string(irandom(254))+"."+string(irandom(254))
+//if ip != ""
+//    {
+//    column = ds_map_size(Roku_IPs)
+//    row = 0
+//    if (column &gt; 2) {
+//        row = 1  
+//        }
+//    if column &lt;= 5 { 
+//            
+//        if !ds_map_exists(Roku_IPs, ip)
+//            {
+//            ds_map_add(Roku_IPs,ip,ip);
+//            button = instance_create((column - row * 3)*450+120+150, row*240+210, obj_button_roku_select);
+//            button.ip = ip
+//            }
+//        }
+//    }
 </string>
           </argument>
         </arguments>

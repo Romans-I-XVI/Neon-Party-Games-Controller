@@ -51,14 +51,14 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="obj_player_fake" x="720" y="160" name="inst_9BE70274" locked="0" code="" scaleX="2.5" scaleY="2.5" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player_fake" x="720" y="180" name="inst_9BE70274" locked="0" code="" scaleX="2.5" scaleY="2.5" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_select_red" x="240" y="416" name="inst_45D1A8EE" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_blue" x="464" y="416" name="inst_5207921A" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_yellow" x="720" y="416" name="inst_4667F336" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_green" x="960" y="416" name="inst_C880DD2F" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_select_blue" x="720" y="416" name="inst_5207921A" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_select_yellow" x="960" y="416" name="inst_4667F336" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_select_green" x="464" y="416" name="inst_C880DD2F" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_select_orange" x="1200" y="416" name="inst_69B8CE0A" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_purple" x="240" y="672" name="inst_821766DC" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_aqua" x="464" y="672" name="inst_A2B74D5C" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_select_purple" x="464" y="672" name="inst_821766DC" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_select_aqua" x="240" y="672" name="inst_A2B74D5C" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_select_pink" x="720" y="672" name="inst_2ADF0AA5" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="obj_button_select_silver" x="960" y="672" name="inst_7A6C492D" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="obj_control_color_select" x="0" y="0" name="inst_3AD3100A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
