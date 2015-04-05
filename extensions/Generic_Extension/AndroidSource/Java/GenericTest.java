@@ -19,35 +19,49 @@ public class GenericTest
 {
 	private static final int EVENT_OTHER_SOCIAL = 70;
         public void RokuScan() throws Exception {
-            /* create byte arrays to hold our send and response data */
-            byte[] sendData = new byte[1024];
-            byte[] receiveData = new byte[1024];
+			Runnable networking = new Runnable() {
+				public void run() {
+					try {
+						/* create byte arrays to hold our send and response data */
+						byte[] sendData = new byte[1024];
+						byte[] receiveData = new byte[1024];
 
-            /* our M-SEARCH data as a byte array */
-            String MSEARCH = "M-SEARCH * HTTP/1.1\nHost: 239.255.255.250:1900\nMan: \"ssdp:discover\"\nST: roku:ecp\n"; 
-            sendData = MSEARCH.getBytes();
+						/* our M-SEARCH data as a byte array */
+						String MSEARCH = "M-SEARCH * HTTP/1.1\nHost: 239.255.255.250:1900\nMan: \"ssdp:discover\"\nST: roku:ecp\n"; 
+						sendData = MSEARCH.getBytes();
 
-            /* create a packet from our data destined for 239.255.255.250:1900 */
-            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, InetAddress.getByName("239.255.255.250"), 1900);
+						/* create a packet from our data destined for 239.255.255.250:1900 */
+						DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, InetAddress.getByName("239.255.255.250"), 1900);
 
-            /* send packet to the socket we're creating */
-            DatagramSocket clientSocket = new DatagramSocket();
-            clientSocket.send(sendPacket);
+						/* send packet to the socket we're creating */
+						DatagramSocket clientSocket = new DatagramSocket();
+						clientSocket.send(sendPacket);
 
-            /* recieve response and store in our receivePacket */
-            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-            clientSocket.receive(receivePacket);
+						/* recieve response and store in our receivePacket */
+						DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+						clientSocket.receive(receivePacket);
 
-            /* get the response as a string */
-            String response = new String(receivePacket.getData());
-			response = response.split("http://")[1];
-			response = response.split(":")[0];
+						/* get the response as a string */
+						String response = new String(receivePacket.getData());
+						response = response.split("http://")[1];
+						response = response.split(":")[0];
 
-            /* print the response */
-			int dsMapIndex = RunnerJNILib.jCreateDsMap(null, null, null);
-			RunnerJNILib.DsMapAddString( dsMapIndex, "ip", response );
-			RunnerJNILib.CreateAsynEventWithDSMap(dsMapIndex, EVENT_OTHER_SOCIAL);
-            /*return response;*/
+						/* print the response */
+						int dsMapIndex = RunnerJNILib.jCreateDsMap(null, null, null);
+						RunnerJNILib.DsMapAddString( dsMapIndex, "ip", response );
+						RunnerJNILib.CreateAsynEventWithDSMap(dsMapIndex, EVENT_OTHER_SOCIAL);
+						/*return response;*/
+						clientSocket.close();
+					}
+					catch (java.net.SocketException ex) {
+						}
+					catch (IOException ioe) {
+						}
+					finally {
+						}
         }
+     };
+    new Thread(networking).start();
+    }
 } // End of class
 
