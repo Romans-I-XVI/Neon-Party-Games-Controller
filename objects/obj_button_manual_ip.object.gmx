@@ -81,8 +81,10 @@ if i_d == msg
       if ds_map_find_value(async_load, "result") != ""
          {
          global.roku_ip = ds_map_find_value(async_load, "result");
+         global.roku_name = ""
          ini_open("savedata.ini");
              ini_write_string("data", "ip", global.roku_ip); 
+             ini_write_string("data", "name", global.roku_name); 
          ini_close(); 
 
          }
