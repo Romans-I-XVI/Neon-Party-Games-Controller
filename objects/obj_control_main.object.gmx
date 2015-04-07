@@ -77,7 +77,7 @@ draw_set_valign(fa_middle);
             <kind>1</kind>
             <string>if found_roku = false {
     global.roku_name = ""
-    global.roku_ip = ""
+    global.roku_ip = "0.0.0.0"
     ini_open("savedata.ini");
         ini_write_string("data", "ip", global.roku_ip); 
         ini_write_string("data", "name", global.roku_name); 
@@ -233,7 +233,7 @@ with obj_player_fake {
             <string>randomize(); 
 ini_open("savedata.ini");
     global.color = ini_read_real("data", "color", 0);
-    global.roku_ip = ini_read_string("data", "ip", ""); 
+    global.roku_ip = ini_read_string("data", "ip", "0.0.0.0"); 
     global.roku_name = ini_read_string("data", "name", ""); 
 ini_close(); 
 
@@ -272,7 +272,7 @@ get = http_get("http://"+global.roku_ip+":8060");
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.roku_ip == "" {
+            <string>if global.roku_ip == "0.0.0.0" {
     draw_text(room_width/2, 50, "Please select your Roku")
     }
 else {

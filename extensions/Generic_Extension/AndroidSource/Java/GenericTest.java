@@ -40,17 +40,21 @@ public class GenericTest
 						/* recieve response and store in our receivePacket */
 						DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 						clientSocket.receive(receivePacket);
-
+			
 						/* get the response as a string */
+						boolean moveahead = false;
 						String response = new String(receivePacket.getData());
-						response = response.split("http://")[1];
-						response = response.split(":")[0];
+						moveahead = response.contains("roku");
+						if (moveahead) {
+							response = response.split("http://")[1];
+							response = response.split(":")[0];
 
-						/* print the response */
-						int dsMapIndex = RunnerJNILib.jCreateDsMap(null, null, null);
-						RunnerJNILib.DsMapAddString( dsMapIndex, "ip", response );
-						RunnerJNILib.CreateAsynEventWithDSMap(dsMapIndex, EVENT_OTHER_SOCIAL);
-						/*return response;*/
+							/* print the response */
+							int dsMapIndex = RunnerJNILib.jCreateDsMap(null, null, null);
+							RunnerJNILib.DsMapAddString( dsMapIndex, "ip", response );
+							RunnerJNILib.CreateAsynEventWithDSMap(dsMapIndex, EVENT_OTHER_SOCIAL);
+							/*return response;*/
+							};
 						clientSocket.close();
 					}
 					catch (java.net.SocketException ex) {
