@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>sprite_index = global.color_sprite[global.color]
+move_towards_speed = 1
 paused = false
 sock = network_create_socket(network_socket_udp);
 pressed = false
@@ -109,26 +110,14 @@ y = global.last_y
 //    }
 //global.os_was_paused = os_is_paused();
 
-if pressed {
-    if mouse_x &gt;= 80+40 and mouse_x &lt;= 1360-40 {
-        x = mouse_x
+if not mouse_check_button(mb_left) {
+    if move_towards_speed != 0 or hspeed != 0 or vspeed != 0 {
+        move_towards_speed = 0
+        hspeed = 0
+        vspeed = 0
         }
-    if mouse_x &lt; 80+40 {
-        x = 80+40
-        }
-    if mouse_x &gt; 1360-40 {
-        x = 1360-40
-        }
-    if mouse_y &gt;= 72+40 and mouse_y &lt;= 792-40 {
-        y = mouse_y
-        }
-    if mouse_y &lt; 72+40 {
-        y = 72+40
-        }
-    if mouse_y &gt; 792-40 {
-        y = 792-40
-        }
-}
+    }
+
 if paused = false {
 buff = buffer_create(256, buffer_grow, 1);
 buffer_seek(buff, buffer_seek_start, 0);
@@ -173,12 +162,13 @@ buffer_delete(buff);
           <argument>
             <kind>1</kind>
             <string>pressed = false
+move_towards_speed = 0
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="0">
+    <event eventtype="6" enumb="50">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -195,9 +185,39 @@ buffer_delete(buff);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if position_meeting(mouse_x, mouse_y, obj_player) {
+            <string>if position_meeting(mouse_x, mouse_y, obj_player) and not pressed {
     pressed = true
     }
+
+if pressed {
+    if move_towards_speed != 0 or hspeed != 0 or vspeed != 0 {
+        move_towards_speed = 0
+        hspeed = 0
+        vspeed = 0
+        }
+    if mouse_x &gt;= 80+40 and mouse_x &lt;= 1360-40 {
+        x = mouse_x
+        }
+    if mouse_x &lt; 80+40 {
+        x = 80+40
+        }
+    if mouse_x &gt; 1360-40 {
+        x = 1360-40
+        }
+    if mouse_y &gt;= 72+40 and mouse_y &lt;= 792-40 {
+        y = mouse_y
+        }
+    if mouse_y &lt; 72+40 {
+        y = 72+40
+        }
+    if mouse_y &gt; 792-40 {
+        y = 792-40
+        }
+}
+else {
+    move_towards_speed += 5
+    move_towards_point(mouse_x,mouse_y,move_towards_speed)
+}
 </string>
           </argument>
         </arguments>
