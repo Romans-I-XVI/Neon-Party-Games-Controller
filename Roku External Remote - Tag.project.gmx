@@ -77,6 +77,7 @@
       <object>objects\obj_button_color_select_screen</object>
       <object>objects\obj_button_roku_select</object>
       <object>objects\obj_button_manual_ip</object>
+      <object>objects\obj_button_set_name</object>
     </objects>
     <object>objects\obj_player</object>
     <object>objects\obj_player_fake</object>

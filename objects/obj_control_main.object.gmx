@@ -233,6 +233,7 @@ with obj_player_fake {
             <string>randomize(); 
 ini_open("savedata.ini");
     global.color = ini_read_real("data", "color", 0);
+    global.name = ini_read_string("data", "player_name", "");
     global.roku_ip = ini_read_string("data", "ip", "0.0.0.0"); 
     global.roku_name = ini_read_string("data", "name", ""); 
 ini_close(); 
