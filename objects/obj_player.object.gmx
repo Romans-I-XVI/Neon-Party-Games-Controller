@@ -28,6 +28,7 @@
             <string>sprite_index = global.color_sprite[global.color]
 move_towards_speed = 1
 paused = false
+host = network_create_server(network_socket_udp, 54321, 10)
 sock = network_create_socket(network_socket_udp);
 pressed = false
 previous_x = x
@@ -119,17 +120,24 @@ if not mouse_check_button(mb_left) {
     }
 
 if paused = false {
-buff = buffer_create(256, buffer_grow, 1);
-buffer_seek(buff, buffer_seek_start, 0);
-buffer_write(buff, buffer_u16, global.id);
-buffer_write(buff, buffer_u16, (x-80));
-buffer_write(buff, buffer_u16, (y-72));
-buffer_write(buff, buffer_u8, global.color);
-buffer_write(buff, buffer_bool, false);
-buffer_write(buff, buffer_u8, string_length(global.name));
-buffer_write(buff, buffer_string, global.name);
-network_send_udp(sock, global.roku_ip, 54321, buff, buffer_tell(buff));
-buffer_delete(buff);
+    buff = buffer_create(256, buffer_grow, 1);
+    buffer_seek(buff, buffer_seek_start, 0);
+    buffer_write(buff, buffer_u16, global.id);
+    buffer_write(buff, buffer_u16, (x-80));
+    buffer_write(buff, buffer_u16, (y-72));
+    buffer_write(buff, buffer_u8, global.color);
+    buffer_write(buff, buffer_bool, false);
+    buffer_write(buff, buffer_u8, string_length(global.name));
+    buffer_write(buff, buffer_text, global.name);
+    for (i = 0; i &lt; 25-string_length(global.name); i += 1) {
+        buffer_write(buff, buffer_u8, 0);
+        }
+    buffer_write(buff, buffer_u8, global.device_ip[0]);
+    buffer_write(buff, buffer_u8, global.device_ip[1]);
+    buffer_write(buff, buffer_u8, global.device_ip[2]);
+    buffer_write(buff, buffer_u8, global.device_ip[3]);
+    network_send_udp(sock, global.roku_ip, 54321, buff, buffer_tell(buff));
+    buffer_delete(buff);
 }
 
 //if x &gt; 1100 or x &lt; 100 {
@@ -220,6 +228,49 @@ else {
     move_towards_speed += 20
     move_towards_point(mouse_x,mouse_y,move_towards_speed)
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="68">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var buff = ds_map_find_value(async_load, "buffer");
+identifier = buffer_read(buff, buffer_u8);
+value_1 = buffer_read(buff, buffer_u8);
+
+if identifier == 0 {
+    volume = value_1/100
+    if volume &gt; 1 {
+        volume = 1
+        }
+    snd = audio_play_sound(snd_hit_1, 0, false);
+    audio_sound_gain(snd, volume, 0);
+    if volume &lt;= 0.33
+        immersion_play_effect(47);
+    else if volume &lt;= 0.66
+        immersion_play_effect(46);
+    else
+        immersion_play_effect(45);
+    }
+    
+//show_message("identifier was " + string(test1));
+//show_message("impact force was " + string(test2));
 </string>
           </argument>
         </arguments>
