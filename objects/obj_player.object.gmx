@@ -120,7 +120,7 @@ if not mouse_check_button(mb_left) {
     }
 
 if paused = false {
-    buff = buffer_create(256, buffer_grow, 1);
+    buff = buffer_create(50, buffer_grow, 1);
     buffer_seek(buff, buffer_seek_start, 0);
     buffer_write(buff, buffer_u16, global.id);
     buffer_write(buff, buffer_u16, (x-80));
@@ -253,24 +253,47 @@ else {
             <string>var buff = ds_map_find_value(async_load, "buffer");
 identifier = buffer_read(buff, buffer_u8);
 value_1 = buffer_read(buff, buffer_u8);
+value_2 = buffer_read(buff, buffer_u8);
+
+// --indentifier key--
+// 0 = Collision with another player
+// 1 = Won the game
+// 2 = Collision with shape in Geometry
+// 3 = Collision with puck in hockey
+// 
+
 
 if identifier == 0 {
-    volume = value_1/100
+    volume = value_1/100;
     if volume &gt; 1 {
         volume = 1
         }
     snd = audio_play_sound(snd_hit_1, 0, false);
     audio_sound_gain(snd, volume, 0);
-    if volume &lt;= 0.33
-        immersion_play_effect(47);
-    else if volume &lt;= 0.66
-        immersion_play_effect(46);
+    if volume &lt;= 0.45
+        immersion_play_effect(global.haptic_test[0]);
+//        immersion_play_effect(98);
+    else if volume &lt;= 0.9
+        immersion_play_effect(global.haptic_test[1]);
+//        immersion_play_effect(97);
     else
-        immersion_play_effect(45);
+        immersion_play_effect(global.haptic_test[2]);
+//        immersion_play_effect(96);
+    }
+else if identifier == 1 {
+    audio_play_sound(snd_yahoo_1, 0, false);
+    }
+else if identifier == 2 {
+    audio_play_sound(snd_poof_1, 0, false);
+    immersion_play_effect(global.haptic_test[3]);
+//    immersion_play_effect(98);
     }
     
-//show_message("identifier was " + string(test1));
-//show_message("impact force was " + string(test2));
+    
+// The following is a testing area
+if identifier == 100 {
+    global.haptic_test[value_1] = value_2
+    }
 </string>
           </argument>
         </arguments>

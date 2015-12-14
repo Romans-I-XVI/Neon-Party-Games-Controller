@@ -27,6 +27,8 @@
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_hit_1</sound>
+    <sound>sound\snd_yahoo_1</sound>
+    <sound>sound\snd_poof_1</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_button_select_roku</sprite>

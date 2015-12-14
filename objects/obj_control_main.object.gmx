@@ -252,6 +252,12 @@ global.last_x = room_width/2
 global.last_y = room_height/2
 get = http_get("http://"+global.roku_ip+":8060");
 
+//The following is a testing area
+global.haptic_test[0] = 98
+global.haptic_test[1] = 97
+global.haptic_test[2] = 96
+global.haptic_test[3] = 98
+
 </string>
           </argument>
         </arguments>
