@@ -106,10 +106,10 @@ draw_set_valign(fa_middle);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(room_width/2,180,obj_player_fake)
+            <string>instance_create(room_width/2,182,obj_player_fake)
 with obj_player_fake {
-    image_xscale = 2.5
-    image_yscale = 2.5
+    image_xscale = 2
+    image_yscale = 2
     }
 </string>
           </argument>
@@ -233,24 +233,42 @@ with obj_player_fake {
             <string>randomize(); 
 ini_open("savedata.ini");
     global.color = ini_read_real("data", "color", 0);
+    global.character = ini_read_real("data", "character", 0);
     global.name = ini_read_string("data", "player_name", "");
     global.roku_ip = ini_read_string("data", "ip", "0.0.0.0"); 
-    global.roku_name = ini_read_string("data", "name", ""); 
+    global.roku_name = ini_read_string("data", "name", "Mr. Null"); 
 ini_close(); 
 
-global.color_sprite[0] = spr_neon_ring_red
-global.color_sprite[1] = spr_neon_ring_blue
-global.color_sprite[2] = spr_neon_ring_yellow
-global.color_sprite[3] = spr_neon_ring_green
-global.color_sprite[4] = spr_neon_ring_orange
-global.color_sprite[5] = spr_neon_ring_purple
-global.color_sprite[6] = spr_neon_ring_aqua
-global.color_sprite[7] = spr_neon_ring_pink
-global.color_sprite[8] = spr_neon_ring_silver
 global.id = irandom(32000);
 global.last_x = room_width/2
 global.last_y = room_height/2
 get = http_get("http://"+global.roku_ip+":8060");
+
+global.array_character_buttons[0] = obj_button_select_character_0
+global.array_character_buttons[1] = obj_button_select_character_1
+global.array_character_buttons[2] = obj_button_select_character_2
+global.array_character_buttons[3] = obj_button_select_character_3
+global.array_character_buttons[4] = obj_button_select_character_4
+global.array_character_buttons[5] = obj_button_select_character_5
+global.array_character_buttons[6] = obj_button_select_character_6
+global.array_character_buttons[7] = obj_button_select_character_7
+global.array_character_buttons[8] = obj_button_select_character_8
+global.array_character_buttons[9] = obj_button_select_character_9
+global.array_character_buttons[10] = obj_button_select_character_10
+global.array_character_buttons[11] = obj_button_select_character_11
+
+global.array_character_sprites[0] = spr_character_0
+global.array_character_sprites[1] = spr_character_1
+global.array_character_sprites[2] = spr_character_2
+global.array_character_sprites[3] = spr_character_3
+global.array_character_sprites[4] = spr_character_4
+global.array_character_sprites[5] = spr_character_5
+global.array_character_sprites[6] = spr_character_6
+global.array_character_sprites[7] = spr_character_7
+global.array_character_sprites[8] = spr_character_8
+global.array_character_sprites[9] = spr_character_9
+global.array_character_sprites[10] = spr_character_10
+global.array_character_sprites[11] = spr_character_11
 
 //The following is a testing area
 global.haptic_test[0] = 98
@@ -319,6 +337,7 @@ else {
         draw_text(room_width/2, 50, global.roku_name + " - " + global.roku_ip)
         }
     }
+draw_text(room_width/2, 320, global.name)
 </string>
           </argument>
         </arguments>
