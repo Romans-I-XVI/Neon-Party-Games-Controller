@@ -26,8 +26,7 @@
     <extension index="0">extensions\Generic_Extension</extension>
   </NewExtensions>
   <sounds name="sound">
-    <sound>sound\snd_hit_1</sound>
-    <sound>sound\snd_hit_2</sound>
+    <sound>sound\snd_hit</sound>
     <sound>sound\snd_win</sound>
     <sound>sound\snd_lose</sound>
     <sound>sound\snd_transition_1</sound>
@@ -130,7 +129,7 @@
       <object>objects\obj_color_orange</object>
       <object>objects\obj_color_purple</object>
     </objects>
-    <object>objects\obj_player</object>
+    <object>objects\</object>
     <object>objects\obj_player_fake</object>
     <object>objects\obj_control_get_ip</object>
   </objects>

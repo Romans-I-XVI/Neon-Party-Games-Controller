@@ -265,6 +265,10 @@ haptic_feedback_value = buffer_read(buff, buffer_u8);
 // 2 = Collision with shape in Geometry
 // 3 = Collision with puck in hockey
 // 
+//show_message(category)
+//show_message(identifier)
+//show_message(value)
+//show_message(haptic_feedback_value)
 
 if category == 0 
 {
@@ -275,7 +279,7 @@ if category == 0
         {
             volume = 1
         }
-        snd = audio_play_sound(snd_hit_1, 0, false);
+        snd = audio_play_sound(snd_hit, 0, false);
         audio_sound_gain(snd, volume, 0);
         if volume &lt;= 0.45
             immersion_play_effect(global.haptic_test[0]);
