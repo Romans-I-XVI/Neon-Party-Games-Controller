@@ -254,9 +254,10 @@ else {
           <argument>
             <kind>1</kind>
             <string>var buff = ds_map_find_value(async_load, "buffer");
+category = buffer_read(buff, buffer_u8);
 identifier = buffer_read(buff, buffer_u8);
-value_1 = buffer_read(buff, buffer_u8);
-value_2 = buffer_read(buff, buffer_u8);
+value = buffer_read(buff, buffer_u8);
+haptic_feedback_value = buffer_read(buff, buffer_u8);
 
 // --indentifier key--
 // 0 = Collision with another player
@@ -265,37 +266,59 @@ value_2 = buffer_read(buff, buffer_u8);
 // 3 = Collision with puck in hockey
 // 
 
-
-if identifier == 0 {
-    volume = value_1/100;
-    if volume &gt; 1 {
-        volume = 1
+if category == 0 
+{
+    if identifier == 0 
+    {
+        volume = value/100;
+        if volume &gt; 1 
+        {
+            volume = 1
         }
-    snd = audio_play_sound(snd_hit_1, 0, false);
-    audio_sound_gain(snd, volume, 0);
-    if volume &lt;= 0.45
-        immersion_play_effect(global.haptic_test[0]);
-//        immersion_play_effect(98);
-    else if volume &lt;= 0.9
-        immersion_play_effect(global.haptic_test[1]);
-//        immersion_play_effect(97);
-    else
-        immersion_play_effect(global.haptic_test[2]);
-//        immersion_play_effect(96);
+        snd = audio_play_sound(snd_hit_1, 0, false);
+        audio_sound_gain(snd, volume, 0);
+        if volume &lt;= 0.45
+            immersion_play_effect(global.haptic_test[0]);
+    //        immersion_play_effect(98);
+        else if volume &lt;= 0.9
+            immersion_play_effect(global.haptic_test[1]);
+    //        immersion_play_effect(97);
+        else
+            immersion_play_effect(global.haptic_test[2]);
+    //        immersion_play_effect(96);
     }
-else if identifier == 1 {
-    audio_play_sound(snd_yahoo_1, 0, false);
+    else if identifier == 1
+    {
+        audio_play_sound(snd_win, 0, false);
     }
-else if identifier == 2 {
-    audio_play_sound(snd_poof_1, 0, false);
-    immersion_play_effect(global.haptic_test[3]);
-//    immersion_play_effect(98);
+    else if identifier == 2 
+    {
+        audio_play_sound(snd_lose, 0, false);
     }
+    else if identifier == 3 
+    {
+        audio_play_sound(snd_transition_1, 0, false);
+    }
+    else if identifier == 4 
+    {
+        audio_play_sound(snd_transition_2, 0, false);
+    }
+    else if identifier == 100
+    {
+        immersion_play_effect(haptic_feedback_value);
+    }
+}
+else
+{
+    audio_play_sound(global.feedback_data[category, identifier], 0, false);
+    if haptic_feedback_value != 101
+        immersion_play_effect(haptic_feedback_value);
+}
     
     
 // The following is a testing area
-if identifier == 100 {
-    global.haptic_test[value_1] = value_2
+if category == 100 {
+    global.haptic_test[identifier] = value
     }
 </string>
           </argument>

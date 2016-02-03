@@ -276,6 +276,92 @@ global.haptic_test[1] = 97
 global.haptic_test[2] = 96
 global.haptic_test[3] = 98
 
+// -----This is the big list of feedback information (both audio and haptic)------ //
+
+
+// -- 1. Geometry--
+
+//Collide with shape
+global.feedback_data[1, 0] = snd_geometry_poof
+
+
+// -- 2. Tag --
+
+// Now it
+global.feedback_data[2, 0] = snd_tag_it
+
+// No longer it
+global.feedback_data[2, 1] = snd_tag_not_it
+
+// Persistant it
+global.feedback_data[2, 2] = snd_tag_persistant_it
+
+
+// -- 3. Hockey --
+
+
+
+// -- 4. Squared --
+
+// Death
+global.feedback_data[4, 0] = snd_squared_death
+
+
+// -- 5. Sumo --
+
+// Out of arena
+global.feedback_data[5, 0] = snd_sumo_out_of_arena
+
+// Out of arena - last life
+global.feedback_data[5, 1] = snd_sumo_out_of_arena
+
+
+// -- 6. Cell --
+
+// Absorb mini
+global.feedback_data[6, 0] = snd_cell_absorb_mini
+
+// Booster Grow
+global.feedback_data[6, 1] = snd_cell_booster_grow
+
+// Booster Shrink
+global.feedback_data[6, 2] = snd_cell_booster_shrink
+
+// Booster Shrink Other Player
+global.feedback_data[6, 3] = snd_cell_booster_shrink_attack
+
+// Booster Magnet Up
+global.feedback_data[6, 4] = snd_cell_booster_magnet_up
+
+// Booster Magnet Down
+global.feedback_data[6, 5] = snd_cell_booster_magnet_down
+
+// Booster Speed Up
+global.feedback_data[6, 6] = snd_cell_booster_speed_up
+
+// Booster Speed Down 
+global.feedback_data[6, 7] = snd_cell_booster_speed_down
+
+// Death
+global.feedback_data[6, 8] = snd_cell_death
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </string>
           </argument>
         </arguments>
