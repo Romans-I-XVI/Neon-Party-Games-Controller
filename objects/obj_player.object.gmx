@@ -274,12 +274,12 @@ if category == 0
 {
     if identifier == 0 
     {
-        volume = value/100;
+        volume = (value-20)/100;
         if volume &gt; 1 
         {
             volume = 1
         }
-        snd = audio_play_sound(snd_hit, 0, false);
+        snd = audio_play_sound(snd_hit_custom, 0, false);
         audio_sound_gain(snd, volume, 0);
         if volume &lt;= 0.45
             immersion_play_effect(global.haptic_test[0]);

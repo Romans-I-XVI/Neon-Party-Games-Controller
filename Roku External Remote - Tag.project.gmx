@@ -26,29 +26,28 @@
     <extension index="0">extensions\Generic_Extension</extension>
   </NewExtensions>
   <sounds name="sound">
-    <sound>sound\snd_hit</sound>
+    <sound>sound\snd_hit_custom</sound>
     <sound>sound\snd_win</sound>
     <sound>sound\snd_lose</sound>
     <sound>sound\snd_transition_1</sound>
-    <sound>sound\snd_transition_2</sound>
     <sounds name="Cell">
       <sound>sound\snd_cell_booster_grow</sound>
       <sound>sound\snd_cell_booster_magnet_up</sound>
       <sound>sound\snd_cell_booster_magnet_down</sound>
       <sound>sound\snd_cell_booster_shrink_attack</sound>
       <sound>sound\snd_cell_booster_shrink</sound>
+      <sound>sound\snd_cell_booster_speed_up</sound>
       <sound>sound\snd_cell_booster_speed_down</sound>
       <sound>sound\snd_cell_death</sound>
-      <sound>sound\snd_cell_booster_speed_up</sound>
       <sound>sound\snd_cell_absorb_mini</sound>
     </sounds>
     <sounds name="Geometry">
+      <sound>sound\snd_geometry_negative_poof</sound>
       <sound>sound\snd_geometry_poof</sound>
     </sounds>
     <sounds name="Tag">
       <sound>sound\snd_tag_not_it</sound>
       <sound>sound\snd_tag_it</sound>
-      <sound>sound\snd_tag_persistant_it</sound>
     </sounds>
     <sounds name="Sumo">
       <sound>sound\snd_sumo_out_of_arena</sound>

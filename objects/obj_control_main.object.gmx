@@ -281,8 +281,11 @@ global.haptic_test[3] = 98
 
 // -- 1. Geometry--
 
-//Collide with shape
+//Collide with good shape
 global.feedback_data[1, 0] = snd_geometry_poof
+
+//Collide with bad shape
+global.feedback_data[1, 1] = snd_geometry_negative_poof
 
 
 // -- 2. Tag --
@@ -292,9 +295,6 @@ global.feedback_data[2, 0] = snd_tag_it
 
 // No longer it
 global.feedback_data[2, 1] = snd_tag_not_it
-
-// Persistant it
-global.feedback_data[2, 2] = snd_tag_persistant_it
 
 
 // -- 3. Hockey --
