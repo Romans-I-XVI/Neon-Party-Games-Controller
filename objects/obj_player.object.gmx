@@ -282,14 +282,11 @@ if category == 0
         snd = audio_play_sound(snd_hit_custom, 0, false);
         audio_sound_gain(snd, volume, 0);
         if volume &lt;= 0.45
-            immersion_play_effect(global.haptic_test[0]);
-    //        immersion_play_effect(98);
+            immersion_play_effect(101);
         else if volume &lt;= 0.9
-            immersion_play_effect(global.haptic_test[1]);
-    //        immersion_play_effect(97);
+            immersion_play_effect(100);
         else
-            immersion_play_effect(global.haptic_test[2]);
-    //        immersion_play_effect(96);
+            immersion_play_effect(99);
     }
     else if identifier == 1
     {
@@ -315,7 +312,7 @@ if category == 0
 else
 {
     audio_play_sound(global.feedback_data[category, identifier], 0, false);
-    if haptic_feedback_value != 101
+    if haptic_feedback_value != 200
         immersion_play_effect(haptic_feedback_value);
 }
     

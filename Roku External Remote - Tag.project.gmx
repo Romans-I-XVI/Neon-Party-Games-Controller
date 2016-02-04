@@ -55,6 +55,11 @@
     <sounds name="Squared">
       <sound>sound\snd_squared_death</sound>
     </sounds>
+    <sounds name="Puck">
+      <sound>sound\snd_puck_hit</sound>
+      <sound>sound\snd_puck_team_score</sound>
+      <sound>sound\snd_puck_other_team_score</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_button_select_roku</sprite>

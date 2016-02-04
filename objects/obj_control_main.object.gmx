@@ -297,7 +297,16 @@ global.feedback_data[2, 0] = snd_tag_it
 global.feedback_data[2, 1] = snd_tag_not_it
 
 
-// -- 3. Hockey --
+// -- 3. Puck --
+
+// Hit Puck
+global.feedback_data[3, 0] = snd_puck_hit
+
+// Team Score
+global.feedback_data[3, 1] = snd_puck_team_score
+
+// Other Team Score
+global.feedback_data[3, 2] = snd_puck_other_team_score
 
 
 
