@@ -281,9 +281,9 @@ if category == 0
         }
         snd = audio_play_sound(snd_hit_custom, 0, false);
         audio_sound_gain(snd, volume, 0);
-        if volume &lt;= 0.45
+        if volume &lt;= 0.2
             immersion_play_effect(101);
-        else if volume &lt;= 0.9
+        else if volume &lt;= 0.75
             immersion_play_effect(100);
         else
             immersion_play_effect(99);
@@ -291,18 +291,16 @@ if category == 0
     else if identifier == 1
     {
         audio_play_sound(snd_win, 0, false);
+        immersion_play_effect(54);
     }
     else if identifier == 2 
     {
         audio_play_sound(snd_lose, 0, false);
+        immersion_play_effect(27);
     }
     else if identifier == 3 
     {
         audio_play_sound(snd_transition_1, 0, false);
-    }
-    else if identifier == 4 
-    {
-        audio_play_sound(snd_transition_2, 0, false);
     }
     else if identifier == 100
     {
