@@ -53,6 +53,7 @@
 found_roku = false
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
+
 </string>
           </argument>
         </arguments>
@@ -106,7 +107,12 @@ draw_set_valign(fa_middle);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(room_width/2,182,obj_player_fake)
+            <string>
+// Create main objects
+instance_create(global.gui_center_x, 520, obj_button_color_select_screen)
+instance_create(global.gui_center_x-440*global.aspect_difference, 520, obj_button_roku_select_screen)
+instance_create(global.gui_center_x+440*global.aspect_difference, 520, obj_button_play)
+instance_create(global.gui_center_x,182,obj_player_fake)
 with obj_player_fake {
     image_xscale = 2
     image_yscale = 2
@@ -231,6 +237,10 @@ with obj_player_fake {
           <argument>
             <kind>1</kind>
             <string>randomize(); 
+base_w = 1280;
+base_h = 720;
+aspect = display_get_width() / display_get_height();
+display_set_gui_size(base_h * aspect, base_h);
 ini_open("savedata.ini");
     global.color = ini_read_real("data", "color", 0);
     global.character = ini_read_real("data", "character", 0);
@@ -242,6 +252,13 @@ ini_close();
 global.id = irandom(32000);
 global.last_x = room_width/2
 global.last_y = room_height/2
+global.dpi_x = display_get_dpi_x()
+global.dpi_y = display_get_dpi_y()
+global.gui_width = display_get_gui_width()
+global.gui_height = display_get_gui_height()
+global.gui_center_x = global.gui_width/2
+global.gui_center_y = global.gui_height/2
+global.aspect_difference = aspect/1.777777777
 get = http_get("http://"+global.roku_ip+":8060");
 
 global.array_character_buttons[0] = obj_button_select_character_0

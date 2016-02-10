@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="2" name="datafiles">
     <datafile>
       <name>roku_ecp_req.txt.txt</name>
       <exists>-1</exists>
@@ -20,6 +20,23 @@
         </Config>
       </ConfigOptions>
       <filename>roku_ecp_req.txt.txt</filename>
+    </datafile>
+    <datafile>
+      <name>Neon-Party-Games-Remote.apk</name>
+      <exists>-1</exists>
+      <size>9976127</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Neon-Party-Games-Remote.apk</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -136,6 +153,7 @@
     <object>objects\obj_player</object>
     <object>objects\obj_player_fake</object>
     <object>objects\obj_control_get_ip</object>
+    <object>objects\obj_trackpad</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_main</room>
