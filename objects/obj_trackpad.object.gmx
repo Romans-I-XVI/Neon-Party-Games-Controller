@@ -26,6 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>debug = true
+in_move_mode = false
+trackpad_pressed = false
+move_trackpad_pressed = false
+move_trackpad_offset_x = 0
+move_trackpad_offset_y = 0
 //Initial trackpad size is based off of a 4" screen
 trackpad_size_multiplier = 4/(display_get_width()/global.dpi_x)
 trackpad_width = 460*trackpad_size_multiplier
@@ -34,6 +39,8 @@ x = global.gui_width - trackpad_width - 80*trackpad_size_multiplier
 y = global.gui_height - trackpad_height - 80*trackpad_size_multiplier
 
 //Change the player size on the trackpad
+obj_player.x = x+trackpad_width/2
+obj_player.y = y+trackpad_height/2
 obj_player.image_xscale *= trackpad_size_multiplier
 obj_player.image_yscale *= trackpad_size_multiplier
 </string>
@@ -74,6 +81,87 @@ if y &lt; 80*trackpad_size_multiplier
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if move_trackpad_pressed {
+    in_move_mode = false
+    move_trackpad_pressed = false
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if in_move_mode {
+    if mouse_x &gt;= x and mouse_x &lt;= x+trackpad_width and mouse_y &gt;= y and mouse_y &lt;= y+trackpad_height {
+        move_trackpad_pressed = true
+        move_trackpad_offset_x = mouse_x - x
+        move_trackpad_offset_y = mouse_y - y
+        }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="50">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if move_trackpad_pressed {
+    x = mouse_x - move_trackpad_offset_x
+    y = mouse_y - move_trackpad_offset_y
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="72">
       <action>
         <libid>1</libid>
@@ -101,6 +189,13 @@ if debug {
 }
 
 draw_rectangle(self.x, self.y, self.x+trackpad_width, self.y+trackpad_height, false)
+
+if in_move_mode {
+    draw_rectangle_colour(self.x, self.y, self.x+trackpad_width, self.y+trackpad_height, c_gray, c_gray, c_gray, c_gray, false)
+    }
+else {
+    draw_rectangle_colour(self.x, self.y, self.x+trackpad_width, self.y+trackpad_height, c_white, c_white, c_white, c_white, false)
+    }
 draw_set_halign(fa_center)
 </string>
           </argument>

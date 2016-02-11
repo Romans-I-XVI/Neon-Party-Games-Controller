@@ -365,13 +365,9 @@ draw_set_valign(fa_middle);
 
 // Create main objects
 instance_create(global.gui_center_x, 520, obj_button_color_select_screen)
-instance_create(global.gui_center_x-440*global.aspect_difference, 520, obj_button_roku_select_screen)
-instance_create(global.gui_center_x+440*global.aspect_difference, 520, obj_button_play)
+instance_create(global.gui_center_x-420*global.aspect_difference, 520, obj_button_roku_select_screen)
+instance_create(global.gui_center_x+420*global.aspect_difference, 520, obj_button_play)
 instance_create(global.gui_center_x,182,obj_player_fake)
-with obj_player_fake {
-    image_xscale = 2
-    image_yscale = 2
-    }
     
 if global.device_ip[0] = 0 and global.device_ip[1] = 0 and global.device_ip[2] = 0 and global.device_ip[3] = 0 {
     instance_create(0, 0, obj_control_get_ip)
@@ -460,17 +456,17 @@ if global.device_ip[0] = 0 and global.device_ip[1] = 0 and global.device_ip[2] =
           <argument>
             <kind>1</kind>
             <string>if global.roku_ip == "0.0.0.0" {
-    draw_text(room_width/2, 50, "Please select your Roku")
+    draw_text_transformed(room_width/2, 50, "Please select your Roku", global.aspect_difference, global.aspect_difference, 0)
     }
 else {
     if global.roku_name == "" {
-        draw_text(room_width/2, 50, global.roku_ip)
+        draw_text_transformed(room_width/2, 185-130*global.aspect_difference, global.roku_ip, global.aspect_difference, global.aspect_difference, 0)
         }
     else {
-        draw_text(room_width/2, 50, global.roku_name + " - " + global.roku_ip)
+        draw_text_transformed(room_width/2, 185-130*global.aspect_difference, global.roku_name + " - " + global.roku_ip, global.aspect_difference, global.aspect_difference, 0)
         }
     }
-draw_text(room_width/2, 320, global.name)
+draw_text_transformed(room_width/2, 185+130*global.aspect_difference, global.name, global.aspect_difference, global.aspect_difference, 0)
 </string>
           </argument>
         </arguments>

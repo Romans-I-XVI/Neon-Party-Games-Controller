@@ -28,6 +28,10 @@
             <string>sprite_index = global.array_character_sprites[global.character]
 image_speed = 0;
 image_index = global.color;
+image_xscale = 1.75
+image_yscale = 1.75
+image_xscale *= global.aspect_difference;
+image_yscale *= global.aspect_difference;
 </string>
           </argument>
         </arguments>

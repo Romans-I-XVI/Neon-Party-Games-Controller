@@ -105,6 +105,9 @@
     <sprite>sprites\spr_character_pupils</sprite>
     <sprite>sprites\spr_increase_trackpad</sprite>
     <sprite>sprites\spr_reduce_trackpad</sprite>
+    <sprite>sprites\spr_back</sprite>
+    <sprite>sprites\spr_move_trackpad</sprite>
+    <sprite>sprites\spr_reset_trackpad</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background_neon</background>
@@ -158,6 +161,9 @@
     <object>objects\obj_trackpad</object>
     <object>objects\obj_increase_trackpad</object>
     <object>objects\obj_reduce_trackpad</object>
+    <object>objects\obj_move_trackpad</object>
+    <object>objects\obj_reset_trackpad</object>
+    <object>objects\obj_back</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_gamestart</room>

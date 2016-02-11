@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>ip = ""
+image_xscale *= global.aspect_difference;
+image_yscale *= global.aspect_difference;
 </string>
           </argument>
         </arguments>
@@ -90,6 +92,7 @@ if i_d == msg
                  ini_write_string("data", "ip", global.roku_ip); 
                  ini_write_string("data", "name", global.roku_name); 
              ini_close(); 
+             room_goto(room_main);
              }
          else {
             show_message(" - " + result + " - is not a valid IP address")

@@ -8,7 +8,7 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="6" enumb="4">
+    <event eventtype="6" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_trackpad.trackpad_width -= 10
+            <string>obj_trackpad.trackpad_width -= 1
 obj_trackpad.trackpad_height = obj_trackpad.trackpad_width/1.77777777777
 </string>
           </argument>

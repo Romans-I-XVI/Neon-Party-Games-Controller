@@ -10,7 +10,27 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code></code>
+  <code>instance_create(64, 64, obj_back)
+instance_create(global.gui_center_x, 182, obj_player_fake)
+instance_create(global.gui_center_x-(93+186*2)*global.aspect_difference, 440, obj_button_select_character_0)
+instance_create(global.gui_center_x-(93+186*1)*global.aspect_difference, 440, obj_button_select_character_1)
+instance_create(global.gui_center_x-(93+186*0)*global.aspect_difference, 440, obj_button_select_character_2)
+instance_create(global.gui_center_x+(93+186*0)*global.aspect_difference, 440, obj_button_select_character_3)
+instance_create(global.gui_center_x+(93+186*1)*global.aspect_difference, 440, obj_button_select_character_4)
+instance_create(global.gui_center_x+(93+186*2)*global.aspect_difference, 440, obj_button_select_character_5)
+instance_create(global.gui_center_x-(93+186*2)*global.aspect_difference, 440+186, obj_button_select_character_6)
+instance_create(global.gui_center_x-(93+186*1)*global.aspect_difference, 440+186, obj_button_select_character_7)
+instance_create(global.gui_center_x-(93+186*0)*global.aspect_difference, 440+186, obj_button_select_character_8)
+instance_create(global.gui_center_x+(93+186*0)*global.aspect_difference, 440+186, obj_button_select_character_9)
+instance_create(global.gui_center_x+(93+186*1)*global.aspect_difference, 440+186, obj_button_select_character_10)
+instance_create(global.gui_center_x+(93+186*2)*global.aspect_difference, 440+186, obj_button_select_character_11)
+instance_create(global.gui_center_x+(240+128*0)*global.aspect_difference, 128, obj_color_red)
+instance_create(global.gui_center_x+(240+128*1)*global.aspect_difference, 128, obj_color_green)
+instance_create(global.gui_center_x+(240+128*2)*global.aspect_difference, 128, obj_color_aqua)
+instance_create(global.gui_center_x+(240+128*0)*global.aspect_difference, 128+128, obj_color_yellow)
+instance_create(global.gui_center_x+(240+128*1)*global.aspect_difference, 128+128, obj_color_orange)
+instance_create(global.gui_center_x+(240+128*2)*global.aspect_difference, 128+128, obj_color_purple)
+instance_create(global.gui_center_x-400*global.aspect_difference, 192, obj_button_set_name)</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -51,27 +71,7 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="obj_player_fake" x="720" y="182" name="inst_9BE70274" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_0" x="160" y="448" name="inst_45D1A8EE" locked="0" code="" scaleX="1.29999995231628" scaleY="1.29999995231628" colour="4294967295" rotation="0"/>
     <instance objName="obj_control_color_select" x="0" y="0" name="inst_3AD3100A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_set_name" x="272" y="192" name="inst_59059296" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_color_red" x="992" y="128" name="inst_B2CAE8CA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_color_green" x="1120" y="128" name="inst_8CDE99ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_color_aqua" x="1248" y="128" name="inst_B527B9B2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_color_yellow" x="992" y="240" name="inst_F0245903" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_color_orange" x="1120" y="240" name="inst_A0F6461D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_color_purple" x="1248" y="240" name="inst_F5975C9F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_1" x="384" y="448" name="inst_E61F05EE" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_2" x="608" y="448" name="inst_CF784FFF" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_3" x="832" y="448" name="inst_D12CC9A6" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_4" x="1056" y="448" name="inst_0D31749E" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_5" x="1280" y="448" name="inst_416A2B06" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_6" x="160" y="672" name="inst_EE73ED5E" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_7" x="384" y="672" name="inst_9D99407F" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_8" x="608" y="672" name="inst_88C11D0D" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_9" x="832" y="672" name="inst_D44C75FB" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_10" x="1056" y="672" name="inst_F1E78BB6" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_select_character_11" x="1280" y="672" name="inst_E9C6EB24" locked="0" code="" scaleX="1.5" scaleY="1.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

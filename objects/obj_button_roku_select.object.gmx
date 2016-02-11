@@ -110,6 +110,7 @@ ini_open("savedata.ini");
     ini_write_string("data", "ip", global.roku_ip); 
     ini_write_string("data", "name", global.roku_name); 
 ini_close(); 
+room_goto(room_main);
 
 </string>
           </argument>

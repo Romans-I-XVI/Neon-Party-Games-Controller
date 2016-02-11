@@ -113,6 +113,19 @@ y = global.last_y
 //    }
 //global.os_was_paused = os_is_paused();
 
+//Keep player in trackpad area
+if obj_player.x &lt; obj_trackpad.x
+        obj_player.x += 2
+        
+if obj_player.y &lt; obj_trackpad.y 
+        obj_player.y += 2
+        
+if obj_player.x &gt; obj_trackpad.x+obj_trackpad.trackpad_width
+        obj_player.x -= 2
+        
+if obj_player.y &gt; obj_trackpad.y+obj_trackpad.trackpad_height
+        obj_player.y -= 2
+
 if not mouse_check_button(mb_left) {
     if move_towards_speed != 0 or hspeed != 0 or vspeed != 0 {
         move_towards_speed = 0
@@ -176,6 +189,7 @@ if paused = false {
             <kind>1</kind>
             <string>pressed = false
 move_towards_speed = 0
+obj_trackpad.trackpad_pressed = false
 </string>
           </argument>
         </arguments>
@@ -198,42 +212,71 @@ move_towards_speed = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if position_meeting(mouse_x, mouse_y, obj_player) and not pressed {
-    pressed = true
+            <string>if mouse_x &gt;= obj_trackpad.x and mouse_x &lt;= obj_trackpad.x+obj_trackpad.trackpad_width and mouse_y &gt;= obj_trackpad.y and mouse_y &lt;= obj_trackpad.y+obj_trackpad.trackpad_height
+    obj_trackpad.trackpad_pressed = true
+           
+if obj_trackpad.trackpad_pressed {
+    if position_meeting(mouse_x, mouse_y, obj_player) and not pressed {
+        pressed = true
+        }
+    if obj_player.x &lt; obj_trackpad.x or obj_player.y &lt; obj_trackpad.y or obj_player.x &gt; obj_trackpad.x+obj_trackpad.trackpad_width or obj_player.y &gt; obj_trackpad.y+obj_trackpad.trackpad_height {
+        pressed = true
+        }
+        
+    if pressed {
+        if move_towards_speed != 0 or hspeed != 0 or vspeed != 0 {
+            move_towards_speed = 0
+            hspeed = 0
+            vspeed = 0
+            }
+        if mouse_x &gt;= obj_trackpad.x and mouse_x &lt;= obj_trackpad.x+obj_trackpad.trackpad_width {
+            x = mouse_x
+            }
+        if mouse_x &lt; obj_trackpad.x {
+            x = obj_trackpad.x
+            }
+        if mouse_x &gt; obj_trackpad.x+obj_trackpad.trackpad_width {
+            x = obj_trackpad.x+obj_trackpad.trackpad_width
+            }
+        if mouse_y &gt;= obj_trackpad.y and mouse_y &lt;= obj_trackpad.y+obj_trackpad.trackpad_height {
+            y = mouse_y
+            }
+        if mouse_y &lt; obj_trackpad.y {
+            y = obj_trackpad.y
+            }
+        if mouse_y &gt; obj_trackpad.y+obj_trackpad.trackpad_height {
+            y = obj_trackpad.y+obj_trackpad.trackpad_height
+            }
     }
-if obj_player.x &lt; obj_trackpad.x or obj_player.y &lt; obj_trackpad.y or obj_player.x &gt; obj_trackpad.x+obj_trackpad.trackpad_width or obj_player.y &gt; obj_trackpad.y+obj_trackpad.trackpad_height {
-    pressed = true
+    else {
+        move_towards_speed += 20
+        move_towards_point(mouse_x,mouse_y,move_towards_speed)
     }
-
-if pressed {
-    if move_towards_speed != 0 or hspeed != 0 or vspeed != 0 {
-        move_towards_speed = 0
-        hspeed = 0
-        vspeed = 0
-        }
-    if mouse_x &gt;= obj_trackpad.x and mouse_x &lt;= obj_trackpad.x+obj_trackpad.trackpad_width {
-        x = mouse_x
-        }
-    if mouse_x &lt; obj_trackpad.x {
-        x = obj_trackpad.x
-        }
-    if mouse_x &gt; obj_trackpad.x+obj_trackpad.trackpad_width {
-        x = obj_trackpad.x+obj_trackpad.trackpad_width
-        }
-    if mouse_y &gt;= obj_trackpad.y and mouse_y &lt;= obj_trackpad.y+obj_trackpad.trackpad_height {
-        y = mouse_y
-        }
-    if mouse_y &lt; obj_trackpad.y {
-        y = obj_trackpad.y
-        }
-    if mouse_y &gt; obj_trackpad.y+obj_trackpad.trackpad_height {
-        y = obj_trackpad.y+obj_trackpad.trackpad_height
-        }
 }
-else {
-    move_towards_speed += 20
-    move_towards_point(mouse_x,mouse_y,move_towards_speed)
-}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if obj_trackpad.in_move_mode = false
+    obj_trackpad.trackpad_pressed = true
 </string>
           </argument>
         </arguments>
