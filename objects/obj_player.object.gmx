@@ -310,18 +310,19 @@ if category == 0
         immersion_play_effect(haptic_feedback_value);
     }
 }
-else
+else if category &lt;= 6 and haptic_feedback_value &lt;= 123
 {
+    if array_height_2d(global.feedback_data) &gt;= category+1 and array_length_2d(global.feedback_data, category) &gt;= identifier+1
     audio_play_sound(global.feedback_data[category, identifier], 0, false);
-    if haptic_feedback_value != 200
+    if haptic_feedback_value &lt;= 123
         immersion_play_effect(haptic_feedback_value);
 }
     
     
 // The following is a testing area
-if category == 100 {
-    global.haptic_test[identifier] = value
-    }
+//if category == 100 {
+//    global.haptic_test[identifier] = value
+//    }
 </string>
           </argument>
         </arguments>

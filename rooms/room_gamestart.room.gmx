@@ -10,8 +10,37 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>instance_create(global.gui_center_x-100, 120, obj_increase_trackpad)
-instance_create(global.gui_center_x+100, 120, obj_reduce_trackpad)</code>
+  <code>randomize(); 
+global.ran_game_start_code = false
+
+base_w = 1280;
+base_h = 720;
+aspect = display_get_width() / display_get_height();
+display_set_gui_size(base_h * aspect, base_h);
+
+global.dpi_x = display_get_dpi_x()
+global.dpi_y = display_get_dpi_y()
+global.gui_width = display_get_gui_width()
+global.gui_height = display_get_gui_height()
+global.gui_center_x = global.gui_width/2
+global.gui_center_y = global.gui_height/2
+global.aspect_difference = aspect/1.777777777
+
+if global.aspect_difference &gt; 1 {
+    global.aspect_difference = 1
+    }
+    
+// Set the room sizes
+room_set_width(room_main, global.gui_width)
+room_set_height(room_main, global.gui_height)
+room_set_width(room_play, global.gui_width)
+room_set_height(room_play, global.gui_height)
+room_set_width(room_select_color, global.gui_width)
+room_set_height(room_select_color, global.gui_height)
+room_set_width(room_select_roku, global.gui_width)
+room_set_height(room_select_roku, global.gui_height)
+
+room_goto(room_main)</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -32,7 +61,7 @@ instance_create(global.gui_center_x+100, 120, obj_reduce_trackpad)</code>
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="-1" foreground="0" name="" x="0" y="0" htiled="0" vtiled="0" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
@@ -51,11 +80,7 @@ instance_create(global.gui_center_x+100, 120, obj_reduce_trackpad)</code>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
-  <instances>
-    <instance objName="obj_player" x="320" y="224" name="inst_5EA4AC02" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_control_play" x="0" y="0" name="inst_25B00C55" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_trackpad" x="576" y="352" name="inst_BB9AFDCA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-  </instances>
+  <instances/>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

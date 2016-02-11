@@ -11,13 +11,33 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>301</id>
+        <id>605</id>
         <kind>0</kind>
-        <userelative>-1</userelative>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Section for gamestart code</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>1</exetype>
-        <functionname>action_set_alarm</functionname>
+        <functionname>action_if_variable</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
@@ -25,7 +45,11 @@
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>1</string>
+            <string>global.ran_game_start_code</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -35,123 +59,18 @@
       </action>
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>422</id>
+        <kind>1</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
         <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>get = -1
-found_roku = false
-draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
-
-</string>
-          </argument>
-        </arguments>
       </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if found_roku = false {
-    global.roku_name = ""
-    global.roku_ip = "0.0.0.0"
-    ini_open("savedata.ini");
-        ini_write_string("data", "ip", global.roku_ip); 
-        ini_write_string("data", "name", global.roku_name); 
-    ini_close(); 
-
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>
-// Create main objects
-instance_create(global.gui_center_x, 520, obj_button_color_select_screen)
-instance_create(global.gui_center_x-440*global.aspect_difference, 520, obj_button_roku_select_screen)
-instance_create(global.gui_center_x+440*global.aspect_difference, 520, obj_button_play)
-instance_create(global.gui_center_x,182,obj_player_fake)
-with obj_player_fake {
-    image_xscale = 2
-    image_yscale = 2
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="62">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if ds_map_find_value(async_load, "id") == get
-    {
-    if ds_map_find_value(async_load, "status") == 0
-       {
-       found_roku = true
-       }
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="2">
       <action>
         <libid>1</libid>
         <id>301</id>
@@ -236,12 +155,7 @@ with obj_player_fake {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>randomize(); 
-base_w = 1280;
-base_h = 720;
-aspect = display_get_width() / display_get_height();
-display_set_gui_size(base_h * aspect, base_h);
-ini_open("savedata.ini");
+            <string>ini_open("savedata.ini");
     global.color = ini_read_real("data", "color", 0);
     global.character = ini_read_real("data", "character", 0);
     global.name = ini_read_string("data", "player_name", "");
@@ -252,13 +166,11 @@ ini_close();
 global.id = irandom(32000);
 global.last_x = room_width/2
 global.last_y = room_height/2
-global.dpi_x = display_get_dpi_x()
-global.dpi_y = display_get_dpi_y()
-global.gui_width = display_get_gui_width()
-global.gui_height = display_get_gui_height()
-global.gui_center_x = global.gui_width/2
-global.gui_center_y = global.gui_height/2
-global.aspect_difference = aspect/1.777777777
+global.device_ip[0] = 0
+global.device_ip[1] = 0
+global.device_ip[2] = 0
+global.device_ip[3] = 0
+    
 get = http_get("http://"+global.roku_ip+":8060");
 
 global.array_character_buttons[0] = obj_button_select_character_0
@@ -394,29 +306,138 @@ global.feedback_data[6, 8] = snd_cell_death
       </action>
       <action>
         <libid>1</libid>
-        <id>201</id>
-        <kind>0</kind>
+        <id>611</id>
+        <kind>6</kind>
         <userelative>-1</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_create_object</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>10</kind>
-            <object>obj_control_get_ip</object>
+            <kind>1</kind>
+            <string>global.ran_game_start_code</string>
           </argument>
           <argument>
             <kind>0</kind>
-            <string>0</string>
+            <string>true</string>
           </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
           <argument>
-            <kind>0</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>get = -1
+found_roku = false
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+
+// Create main objects
+instance_create(global.gui_center_x, 520, obj_button_color_select_screen)
+instance_create(global.gui_center_x-440*global.aspect_difference, 520, obj_button_roku_select_screen)
+instance_create(global.gui_center_x+440*global.aspect_difference, 520, obj_button_play)
+instance_create(global.gui_center_x,182,obj_player_fake)
+with obj_player_fake {
+    image_xscale = 2
+    image_yscale = 2
+    }
+    
+if global.device_ip[0] = 0 and global.device_ip[1] = 0 and global.device_ip[2] = 0 and global.device_ip[3] = 0 {
+    instance_create(0, 0, obj_control_get_ip)
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if found_roku = false {
+    global.roku_name = ""
+    global.roku_ip = "0.0.0.0"
+    ini_open("savedata.ini");
+        ini_write_string("data", "ip", global.roku_ip); 
+        ini_write_string("data", "name", global.roku_name); 
+    ini_close(); 
+
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if ds_map_find_value(async_load, "id") == get
+    {
+    if ds_map_find_value(async_load, "status") == 0
+       {
+       found_roku = true
+       }
+    }
+</string>
           </argument>
         </arguments>
       </action>

@@ -103,6 +103,8 @@
     <sprite>sprites\spr_character_10</sprite>
     <sprite>sprites\spr_character_11</sprite>
     <sprite>sprites\spr_character_pupils</sprite>
+    <sprite>sprites\spr_increase_trackpad</sprite>
+    <sprite>sprites\spr_reduce_trackpad</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background_neon</background>
@@ -121,6 +123,7 @@
       <object>objects\obj_control_main</object>
       <object>objects\obj_control_color_select</object>
       <object>objects\obj_control_roku_select</object>
+      <object>objects\obj_control_get_ip</object>
     </objects>
     <objects name="Buttons">
       <objects name="Character Select Buttons">
@@ -152,10 +155,12 @@
     </objects>
     <object>objects\obj_player</object>
     <object>objects\obj_player_fake</object>
-    <object>objects\obj_control_get_ip</object>
     <object>objects\obj_trackpad</object>
+    <object>objects\obj_increase_trackpad</object>
+    <object>objects\obj_reduce_trackpad</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_gamestart</room>
     <room>rooms\room_main</room>
     <room>rooms\room_play</room>
     <room>rooms\room_select_color</room>

@@ -26,11 +26,49 @@
           <argument>
             <kind>1</kind>
             <string>debug = true
-trackpad_size_multiplier = (display_get_width()/global.dpi_x)/4.571428571428571
-trackpad_width = 400*trackpad_size_multiplier
+//Initial trackpad size is based off of a 4" screen
+trackpad_size_multiplier = 4/(display_get_width()/global.dpi_x)
+trackpad_width = 460*trackpad_size_multiplier
 trackpad_height = trackpad_width/1.77777777777
-self.x = global.gui_width - trackpad_width - 80*trackpad_size_multiplier
-self.y = global.gui_height - trackpad_height - 80*trackpad_size_multiplier
+x = global.gui_width - trackpad_width - 80*trackpad_size_multiplier
+y = global.gui_height - trackpad_height - 80*trackpad_size_multiplier
+
+//Change the player size on the trackpad
+obj_player.image_xscale *= trackpad_size_multiplier
+obj_player.image_yscale *= trackpad_size_multiplier
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if x &gt; global.gui_width - trackpad_width - 80*trackpad_size_multiplier
+    x = global.gui_width - trackpad_width - 80*trackpad_size_multiplier
+
+if x &lt; 80*trackpad_size_multiplier
+    x = 80*trackpad_size_multiplier
+    
+if y &gt; global.gui_height - trackpad_height - 80*trackpad_size_multiplier
+    y = global.gui_height - trackpad_height - 80*trackpad_size_multiplier
+
+if y &lt; 80*trackpad_size_multiplier
+    y = 80*trackpad_size_multiplier
 </string>
           </argument>
         </arguments>
@@ -53,14 +91,17 @@ self.y = global.gui_height - trackpad_height - 80*trackpad_size_multiplier
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if debug {
-    draw_text(200, 100, "DPI x = "+string(global.dpi_x))
-    draw_text(200, 200, "DPI y = "+string(global.dpi_y))
-    draw_text(200, 300, "Resolution = "+string(global.gui_width)+"x"+string(global.gui_height))
-    draw_text(200, 400, string(display_get_width())+" "+string(display_get_height()))
+            <string>draw_set_halign(fa_left)
+if debug {
+    draw_text(100, 100, "DPI x = "+string(global.dpi_x))
+    draw_text(100, 150, "DPI y = "+string(global.dpi_y))
+    draw_text(100, 200, "Trackpad Multiplier = "+string(trackpad_size_multiplier))
+    draw_text(100, 300, "Resolution = "+string(display_get_gui_width())+"x"+string(display_get_gui_height()))
+    draw_text(100, 400, string(display_get_width())+" "+string(display_get_height()))
 }
 
 draw_rectangle(self.x, self.y, self.x+trackpad_width, self.y+trackpad_height, false)
+draw_set_halign(fa_center)
 </string>
           </argument>
         </arguments>
