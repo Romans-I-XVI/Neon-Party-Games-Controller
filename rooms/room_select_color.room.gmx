@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>instance_create(64, 64, obj_back)
+  <code>instance_create(0, 0, obj_back)
 instance_create(global.gui_center_x, 182, obj_player_fake)
 instance_create(global.gui_center_x-(93+186*2)*global.aspect_difference, 440, obj_button_select_character_0)
 instance_create(global.gui_center_x-(93+186*1)*global.aspect_difference, 440, obj_button_select_character_1)
@@ -30,7 +30,7 @@ instance_create(global.gui_center_x+(240+128*2)*global.aspect_difference, 128, o
 instance_create(global.gui_center_x+(240+128*0)*global.aspect_difference, 128+128, obj_color_yellow)
 instance_create(global.gui_center_x+(240+128*1)*global.aspect_difference, 128+128, obj_color_orange)
 instance_create(global.gui_center_x+(240+128*2)*global.aspect_difference, 128+128, obj_color_purple)
-instance_create(global.gui_center_x-400*global.aspect_difference, 192, obj_button_set_name)</code>
+instance_create(global.gui_center_x-365*global.aspect_difference, 192, obj_button_set_name)</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

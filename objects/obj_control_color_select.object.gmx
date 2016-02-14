@@ -76,10 +76,6 @@
             <kind>1</kind>
             <string>draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-if instance_number(obj_button_set_name) &gt; 0 {
-    draw_text(obj_button_set_name.x,obj_button_set_name.y-22, "Set")
-    draw_text(obj_button_set_name.x,obj_button_set_name.y+22, "Name")
-    }
 draw_text_transformed(room_width/2, 185+130*global.aspect_difference, global.name, global.aspect_difference, global.aspect_difference, 0)
 </string>
           </argument>

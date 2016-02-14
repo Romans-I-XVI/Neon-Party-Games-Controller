@@ -105,9 +105,14 @@
     <sprite>sprites\spr_character_pupils</sprite>
     <sprite>sprites\spr_increase_trackpad</sprite>
     <sprite>sprites\spr_reduce_trackpad</sprite>
-    <sprite>sprites\spr_back</sprite>
     <sprite>sprites\spr_move_trackpad</sprite>
     <sprite>sprites\spr_reset_trackpad</sprite>
+    <sprite>sprites\spr_back_aqua</sprite>
+    <sprite>sprites\spr_back_green</sprite>
+    <sprite>sprites\spr_back_red</sprite>
+    <sprite>sprites\spr_back_silver</sprite>
+    <sprite>sprites\spr_trackpad</sprite>
+    <sprite>sprites\spr_cursor</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background_neon</background>

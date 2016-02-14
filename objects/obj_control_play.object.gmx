@@ -49,18 +49,18 @@
           <argument>
             <kind>1</kind>
             <string>if obj_trackpad.y &lt; 160 {
-    obj_increase_trackpad.y = global.gui_height - 120
-    obj_reduce_trackpad.y = global.gui_height - 120
-    obj_move_trackpad.y = global.gui_height - 120
-    obj_reset_trackpad.y = global.gui_height - 120
-    obj_back.y = global.gui_height - 64
+    obj_increase_trackpad.y = global.gui_height - 75
+    obj_reduce_trackpad.y = global.gui_height - 75
+    obj_move_trackpad.y = global.gui_height - 75
+    obj_reset_trackpad.y = global.gui_height - 75
+    obj_back.y = global.gui_height - 100
     }
 else {
-    obj_increase_trackpad.y = 120
-    obj_reduce_trackpad.y = 120
-    obj_move_trackpad.y = 120
-    obj_reset_trackpad.y = 120
-    obj_back.y = 64
+    obj_increase_trackpad.y = 75
+    obj_reduce_trackpad.y = 75
+    obj_move_trackpad.y = 75
+    obj_reset_trackpad.y = 75
+    obj_back.y = 0
     }
 </string>
           </argument>

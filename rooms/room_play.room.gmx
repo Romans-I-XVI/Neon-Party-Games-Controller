@@ -12,11 +12,11 @@
   <showcolour>-1</showcolour>
   <code>instance_create(0,0, obj_control_play)
 instance_create(0,0, obj_player)
-instance_create(64, 64, obj_back)
-instance_create(global.gui_center_x-200, 120, obj_move_trackpad)
-instance_create(global.gui_center_x-100, 120, obj_increase_trackpad)
-instance_create(global.gui_center_x+100, 120, obj_reduce_trackpad)
-instance_create(global.gui_center_x+200, 120, obj_reset_trackpad)
+instance_create(0, 0, obj_back)
+instance_create(global.gui_center_x-75-150, 75, obj_move_trackpad)
+instance_create(global.gui_center_x-75, 75, obj_increase_trackpad)
+instance_create(global.gui_center_x+75, 75, obj_reduce_trackpad)
+instance_create(global.gui_center_x+75+150, 75, obj_reset_trackpad)
 instance_create(0, 0, obj_trackpad)</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>

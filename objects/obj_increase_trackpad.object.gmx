@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_trackpad.trackpad_width += 1
+            <string>obj_trackpad.trackpad_width += 2
 obj_trackpad.trackpad_height = obj_trackpad.trackpad_width/1.77777777777
 </string>
           </argument>
