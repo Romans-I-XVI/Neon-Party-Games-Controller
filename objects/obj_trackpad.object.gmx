@@ -33,14 +33,33 @@ move_trackpad_offset_x = 0
 move_trackpad_offset_y = 0
 //Initial trackpad size is based off of a 4" screen
 trackpad_size_multiplier = 4/(display_get_width()/global.dpi_x)
-trackpad_width = 460*trackpad_size_multiplier
-trackpad_height = trackpad_width/1.77777777777
-x = global.gui_width - trackpad_width - 80*trackpad_size_multiplier
-y = global.gui_height - trackpad_height - 80*trackpad_size_multiplier
+if global.trackpad_width = -1 {
+    trackpad_width = 460*trackpad_size_multiplier
+    trackpad_height = trackpad_width/1.77777777777
+    x = global.gui_width - trackpad_width - 80*trackpad_size_multiplier
+    y = global.gui_height - trackpad_height - 80*trackpad_size_multiplier
+    global.trackpad_width = trackpad_width
+    global.trackpad_x = x
+    global.trackpad_y = y
+    }
+else {
+    trackpad_width = global.trackpad_width
+    trackpad_height = trackpad_width/1.77777777777
+    x = global.trackpad_x
+    y = global.trackpad_y
+    }
 
 //Change the player size on the trackpad
-obj_player.x = x+trackpad_width/2
-obj_player.y = y+trackpad_height/2
+if global.last_x = -1 and global.last_y = -1 {
+    obj_player.x = x+trackpad_width/2
+    obj_player.y = y+trackpad_height/2
+    global.last_x = obj_player.x
+    global.last_y = obj_player.y
+    }
+else {
+    obj_player.x = global.last_x
+    obj_player.y = global.last_y
+    }
 </string>
           </argument>
         </arguments>
@@ -63,17 +82,23 @@ obj_player.y = y+trackpad_height/2
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if x &gt; global.gui_width - trackpad_width - 80*trackpad_size_multiplier
+            <string>old_x = x
+old_y = y
+if x &gt; global.gui_width - trackpad_width - 80*trackpad_size_multiplier
     x = global.gui_width - trackpad_width - 80*trackpad_size_multiplier
+    obj_player.x += (x - old_x)/2
 
 if x &lt; 80*trackpad_size_multiplier
     x = 80*trackpad_size_multiplier
+    obj_player.x += (x - old_x)/2
     
 if y &gt; global.gui_height - trackpad_height - 80*trackpad_size_multiplier
     y = global.gui_height - trackpad_height - 80*trackpad_size_multiplier
+    obj_player.y += (y - old_y)/2
 
 if y &lt; 80*trackpad_size_multiplier
     y = 80*trackpad_size_multiplier
+    obj_player.y += (y - old_y)/2
 </string>
           </argument>
         </arguments>

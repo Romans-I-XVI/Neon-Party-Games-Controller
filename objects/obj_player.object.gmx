@@ -93,16 +93,16 @@ else {
     }
 
 if obj_player.x &lt; obj_trackpad.x
-        obj_player.x += 2
+        obj_player.x = obj_trackpad.x
         
 if obj_player.y &lt; obj_trackpad.y 
-        obj_player.y += 2
+        obj_player.y = obj_trackpad.y
         
 if obj_player.x &gt; obj_trackpad.x+obj_trackpad.trackpad_width
-        obj_player.x -= 2
+        obj_player.x = obj_trackpad.x+obj_trackpad.trackpad_width
         
 if obj_player.y &gt; obj_trackpad.y+obj_trackpad.trackpad_height
-        obj_player.y -= 2
+        obj_player.y = obj_trackpad.y+obj_trackpad.trackpad_height
 
 if not mouse_check_button(mb_left) {
     if move_towards_speed != 0 or hspeed != 0 or vspeed != 0 {
@@ -197,7 +197,7 @@ if obj_trackpad.trackpad_pressed {
     if position_meeting(mouse_x, mouse_y, obj_player) and not pressed {
         pressed = true
         }
-    if obj_player.x &lt; obj_trackpad.x or obj_player.y &lt; obj_trackpad.y or obj_player.x &gt; obj_trackpad.x+obj_trackpad.trackpad_width or obj_player.y &gt; obj_trackpad.y+obj_trackpad.trackpad_height {
+    if x &lt; obj_trackpad.x or y &lt; obj_trackpad.y or x &gt; obj_trackpad.x+obj_trackpad.trackpad_width or y &gt; obj_trackpad.y+obj_trackpad.trackpad_height {
         pressed = true
         }
         

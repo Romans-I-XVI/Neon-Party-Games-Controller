@@ -110,6 +110,11 @@ else {
           <argument>
             <kind>1</kind>
             <string>immersion_play_effect(2);
+global.trackpad_width = obj_trackpad.trackpad_width
+global.trackpad_x = obj_trackpad.x
+global.trackpad_y = obj_trackpad.y
+global.last_x = obj_player.x
+global.last_y = obj_player.y
 with obj_player {
     buff = buffer_create(50, buffer_grow, 1);
     buffer_seek(buff, buffer_seek_start, 0);
@@ -124,8 +129,6 @@ with obj_player {
     network_send_udp(sock, global.roku_ip, 54321, buff, buffer_tell(buff));
     buffer_delete(buff);
     }
-global.last_x = obj_player.x
-global.last_y = obj_player.y
 </string>
           </argument>
         </arguments>

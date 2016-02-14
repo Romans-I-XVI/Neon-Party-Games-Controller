@@ -11,6 +11,27 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>get = -1
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>605</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -70,30 +91,6 @@
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>301</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_alarm</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>30</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
       </action>
       <action>
         <libid>1</libid>
@@ -164,8 +161,8 @@
 ini_close(); 
 
 global.id = irandom(32000);
-global.last_x = room_width/2
-global.last_y = room_height/2
+global.last_x = -1
+global.last_y = -1
 global.device_ip[0] = 0
 global.device_ip[1] = 0
 global.device_ip[2] = 0
@@ -199,11 +196,9 @@ global.array_character_sprites[9] = spr_character_9
 global.array_character_sprites[10] = spr_character_10
 global.array_character_sprites[11] = spr_character_11
 
-//The following is a testing area
-global.haptic_test[0] = 98
-global.haptic_test[1] = 97
-global.haptic_test[2] = 96
-global.haptic_test[3] = 98
+global.trackpad_width = -1
+global.trackpad_x = -1
+global.trackpad_y = -1
 
 // -----This is the big list of feedback information (both audio and haptic)------ //
 
@@ -330,6 +325,30 @@ global.feedback_data[6, 8] = snd_cell_death
       </action>
       <action>
         <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>60</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>424</id>
         <kind>2</kind>
         <userelative>0</userelative>
@@ -358,8 +377,7 @@ global.feedback_data[6, 8] = snd_cell_death
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>get = -1
-found_roku = false
+            <string>found_roku = false
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
@@ -460,10 +478,10 @@ if global.device_ip[0] = 0 and global.device_ip[1] = 0 and global.device_ip[2] =
     }
 else {
     if global.roku_name == "" {
-        draw_text_transformed(room_width/2, 185-130*global.aspect_difference, global.roku_ip, global.aspect_difference, global.aspect_difference, 0)
+        draw_text_transformed(room_width/2, 50, global.roku_ip, global.aspect_difference, global.aspect_difference, 0)
         }
     else {
-        draw_text_transformed(room_width/2, 185-130*global.aspect_difference, global.roku_name + " - " + global.roku_ip, global.aspect_difference, global.aspect_difference, 0)
+        draw_text_transformed(room_width/2, 50, global.roku_name + " - " + global.roku_ip, global.aspect_difference, global.aspect_difference, 0)
         }
     }
 draw_text_transformed(room_width/2, 185+130*global.aspect_difference, global.name, global.aspect_difference, global.aspect_difference, 0)
