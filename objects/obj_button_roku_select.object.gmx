@@ -144,6 +144,8 @@ room_goto(room_main);
        name = string_copy(xml, pos_1, pos_2-pos_1 );
        ip = ip_hold;
        sprite_index = spr_button_roku_select
+       image_xscale = global.aspect_difference
+       image_yscale = global.aspect_difference
        }
     }
 </string>

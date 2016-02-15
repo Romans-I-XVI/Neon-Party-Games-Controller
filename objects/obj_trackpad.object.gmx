@@ -124,6 +124,7 @@ if y &lt; 80*trackpad_size_multiplier
             <string>if move_trackpad_pressed {
     in_move_mode = false
     move_trackpad_pressed = false
+    write_trackpad_data()
     }
 </string>
           </argument>

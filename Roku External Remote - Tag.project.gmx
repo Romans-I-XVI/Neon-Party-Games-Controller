@@ -120,6 +120,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\script_change_character_color.gml</script>
+    <script>scripts\write_trackpad_data.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_ariel</font>

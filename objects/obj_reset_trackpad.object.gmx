@@ -32,6 +32,7 @@ obj_trackpad.x = global.gui_width - obj_trackpad.trackpad_width - 80*obj_trackpa
 obj_trackpad.y = global.gui_height - obj_trackpad.trackpad_height - 80*obj_trackpad.trackpad_size_multiplier
 obj_player.x = obj_trackpad.x + obj_trackpad.trackpad_width/2
 obj_player.y = obj_trackpad.y + obj_trackpad.trackpad_height/2
+write_trackpad_data()
 </string>
           </argument>
         </arguments>

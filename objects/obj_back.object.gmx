@@ -27,9 +27,9 @@
             <kind>1</kind>
             <string>immersion_play_effect(2);
 if room = room_play {
-    global.trackpad_width = obj_trackpad.trackpad_width
-    global.trackpad_x = obj_trackpad.x
-    global.trackpad_y = obj_trackpad.y
+    //global.trackpad_width = obj_trackpad.trackpad_width
+    //global.trackpad_x = obj_trackpad.x
+    //global.trackpad_y = obj_trackpad.y
     global.last_x = obj_player.x
     global.last_y = obj_player.y
     with obj_player {

@@ -26,8 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>ip = ""
-image_xscale *= global.aspect_difference;
-image_yscale *= global.aspect_difference;
+image_xscale = global.aspect_difference;
+image_yscale = global.aspect_difference;
 </string>
           </argument>
         </arguments>
