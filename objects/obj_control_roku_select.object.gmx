@@ -138,7 +138,7 @@ if ip != ""
         if !ds_map_exists(Roku_IPs, ip)
             {
             ds_map_add(Roku_IPs,ip,ip);
-            button = instance_create(global.gui_center_x+((column - row * 3)*400-400)*global.aspect_difference, row*214+186, obj_button_roku_select);
+            button = instance_create(global.gui_center_x+((column - row * 3)*400-400)*global.aspect_difference, row*200+200, obj_button_roku_select);
             button.ip_hold = ip
             button.get = http_get("http://"+ip+":8060"); 
             }
@@ -180,12 +180,14 @@ else {
         draw_text_transformed(room_width/2, 50, global.roku_name + " - " + global.roku_ip, global.aspect_difference, global.aspect_difference, 0)
         }
     }
+//draw_set_font(font_neon_small)
 for (i = 0; i &lt; instance_number(obj_button_roku_select); i += 1)
    {
    instance = instance_find(obj_button_roku_select,i)
-   draw_text_transformed(instance.x, instance.y-22, instance.name, global.aspect_difference, global.aspect_difference, 0)
+   draw_text_transformed(instance.x, instance.y-24, instance.name, 1.1*global.aspect_difference, 1.1*global.aspect_difference, 0)
    draw_text_transformed(instance.x, instance.y+22, instance.ip, global.aspect_difference, global.aspect_difference, 0)
    }
+//draw_set_font(font_neon_1)
 if instance_number(obj_button_manual_ip) &gt; 0 {
     draw_text_transformed(obj_button_manual_ip.x,obj_button_manual_ip.y-22, "Connect", global.aspect_difference, global.aspect_difference, 0)
     draw_text_transformed(obj_button_manual_ip.x,obj_button_manual_ip.y+22, "Manually", global.aspect_difference, global.aspect_difference, 0)

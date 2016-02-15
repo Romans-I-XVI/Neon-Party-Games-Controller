@@ -124,6 +124,7 @@
   <fonts name="fonts">
     <font>fonts\font_ariel</font>
     <font>fonts\font_neon_1</font>
+    <font>fonts\font_neon_small</font>
   </fonts>
   <objects name="objects">
     <objects name="Control Objects">
