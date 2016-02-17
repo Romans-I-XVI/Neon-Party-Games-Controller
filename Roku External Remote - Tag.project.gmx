@@ -46,7 +46,6 @@
     <sound>sound\snd_hit_custom</sound>
     <sound>sound\snd_win</sound>
     <sound>sound\snd_lose</sound>
-    <sound>sound\snd_transition_1</sound>
     <sounds name="Cell">
       <sound>sound\snd_cell_booster_grow</sound>
       <sound>sound\snd_cell_booster_magnet_up</sound>

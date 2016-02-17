@@ -153,11 +153,16 @@
           <argument>
             <kind>1</kind>
             <string>ini_open("savedata.ini");
+    if irandom(1) == 0 {
+        global.name = ini_read_string("data", "player_name", "Mr. Null");
+        }
+    else {
+        global.name = ini_read_string("data", "player_name", "Mrs. Void");
+        }
     global.color = ini_read_real("data", "color", 0);
     global.character = ini_read_real("data", "character", 0);
-    global.name = ini_read_string("data", "player_name", "");
     global.roku_ip = ini_read_string("data", "ip", "0.0.0.0"); 
-    global.roku_name = ini_read_string("data", "name", "Mr. Null");
+    global.roku_name = ini_read_string("data", "name", "");
     global.trackpad_width = ini_read_real("data", "trackpad_width", -1)
     global.trackpad_x = ini_read_real("data", "trackpad_x", -1)
     global.trackpad_y = ini_read_real("data", "trackpad_y", -1)
