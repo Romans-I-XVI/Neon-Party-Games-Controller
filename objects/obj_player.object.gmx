@@ -331,7 +331,7 @@ if category == 0
         immersion_play_effect(haptic_feedback_value);
     }
 }
-else if category &lt;= 6 and haptic_feedback_value &lt;= 123
+else if category &lt;= 6
 {
     if array_height_2d(global.feedback_data) &gt;= category+1 and array_length_2d(global.feedback_data, category) &gt;= identifier+1
     audio_play_sound(global.feedback_data[category, identifier], 0, false);

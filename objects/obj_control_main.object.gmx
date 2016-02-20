@@ -392,10 +392,7 @@ instance_create(global.gui_center_x, 520, obj_button_color_select_screen)
 instance_create(global.gui_center_x-420*global.aspect_difference, 520, obj_button_roku_select_screen)
 instance_create(global.gui_center_x+420*global.aspect_difference, 520, obj_button_play)
 instance_create(global.gui_center_x,182,obj_player_fake)
-    
-if global.device_ip[0] = 0 and global.device_ip[1] = 0 and global.device_ip[2] = 0 and global.device_ip[3] = 0 {
-    instance_create(0, 0, obj_control_get_ip)
-    }
+instance_create(0, 0, obj_control_get_ip)
 
 </string>
           </argument>
