@@ -11,6 +11,28 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>a = irandom_range(49152,65535);
+host = network_create_server(network_socket_udp, a, 5);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>301</id>
         <kind>0</kind>
         <userelative>-1</userelative>
@@ -51,12 +73,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var a = irandom_range(49152,65535);
-var host = network_create_server(network_socket_udp, a, 5);
-
-if (host&lt;0) {
+            <string>if (host&lt;0) {
     show_message('Failed to create a broadcast server');
-    game_end();
 } else {
     var tsock = network_create_socket(network_socket_udp);
     var tbuff = buffer_create(32, buffer_fixed, 1);
