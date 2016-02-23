@@ -168,7 +168,7 @@
     global.trackpad_y = ini_read_real("data", "trackpad_y", -1)
 ini_close(); 
 
-global.id = irandom(32000);
+global.id = irandom(64000);
 global.last_x = -1
 global.last_y = -1
 global.device_ip[0] = 0
