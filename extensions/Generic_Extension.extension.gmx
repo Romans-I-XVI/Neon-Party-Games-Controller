@@ -9,9 +9,9 @@
   <description></description>
   <helpfile></helpfile>
   <androidProps>-1</androidProps>
-  <iosProps>0</iosProps>
+  <iosProps>-1</iosProps>
   <installdir></installdir>
-  <classname></classname>
+  <classname>GenericTest</classname>
   <androidclassname>GenericTest</androidclassname>
   <sourcedir></sourcedir>
   <androidsourcedir></androidsourcedir>
