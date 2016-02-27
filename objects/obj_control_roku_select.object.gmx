@@ -33,7 +33,6 @@ Roku_IPs = ds_map_create();
 ds_map_clear(Roku_IPs);
 column = 0
 
-host = network_create_server(network_socket_udp, 1900, 10)
 sock = network_create_socket(network_socket_udp);
 </string>
           </argument>
@@ -124,47 +123,6 @@ buffer_delete(buff);
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="70">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var ip = async_load[? "ip"];
-if ip != ""
-    {
-    column = ds_map_size(Roku_IPs)
-    row = 0
-    if (column &gt; 2) {
-        row = 1  
-        }
-    if column &lt;= 5 { 
-            
-        if !ds_map_exists(Roku_IPs, ip)
-            {
-            ds_map_add(Roku_IPs,ip,ip);
-            button = instance_create(global.gui_center_x+((column - row * 3)*400-400)*global.aspect_difference, row*200+200, obj_button_roku_select);
-            button.ip_hold = ip
-            button.get = http_get("http://"+ip+":8060"); 
-            }
-        }
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="7" enumb="68">
       <action>
         <libid>1</libid>
@@ -185,19 +143,22 @@ if ip != ""
             <string>var buff = ds_map_find_value(async_load, "buffer");
 received_data = buffer_read(buff, buffer_string);
 ip = string_delete(received_data, 1, string_pos("LOCATION:", received_data)+16)
-ip = string_delete(ip, string_pos(":", ip), 6)
-column = ds_map_size(Roku_IPs)
-row = 0
-if (column &gt; 2) {
-    row = 1  
-    }
-if column &lt;= 5 {  
-    if !ds_map_exists(Roku_IPs, ip)
-        {
-        ds_map_add(Roku_IPs,ip,ip);
-        button = instance_create(global.gui_center_x+((column - row * 3)*400-400)*global.aspect_difference, row*200+200, obj_button_roku_select);
-        button.ip_hold = ip
-        button.get = http_get("http://"+ip+":8060"); 
+ip = string_copy(ip, 1, string_pos(":", ip)-1)
+period_count = string_count(".", ip)
+if ip != "" and period_count = 3 {
+    column = ds_map_size(Roku_IPs)
+    row = 0
+    if (column &gt; 2) {
+        row = 1  
+        }
+    if column &lt;= 5 {  
+        if !ds_map_exists(Roku_IPs, ip)
+            {
+            ds_map_add(Roku_IPs,ip,ip);
+            button = instance_create(global.gui_center_x+((column - row * 3)*400-400)*global.aspect_difference, row*200+200, obj_button_roku_select);
+            button.ip_hold = ip
+            button.get = http_get("http://"+ip+":8060"); 
+            }
         }
     }
 </string>
@@ -290,6 +251,7 @@ if instance_number(obj_button_manual_ip) &gt; 0 {
           <argument>
             <kind>1</kind>
             <string>immersion_play_effect(2);
+network_destroy(obj_control_roku_select.sock);
 </string>
           </argument>
         </arguments>

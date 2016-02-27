@@ -30,7 +30,7 @@ image_speed = 0
 //image_index = global.color
 move_towards_speed = 1
 paused = false
-host = network_create_server(network_socket_udp, 54321, 10)
+host = network_create_server_raw(network_socket_udp, 54321, 10)
 sock = network_create_socket(network_socket_udp);
 pressed = false
 previous_x = x
@@ -130,7 +130,7 @@ if paused = false {
     for (i = 0; i &lt; 25-string_length(global.name); i += 1) {
         buffer_write(buff, buffer_u8, 0);
         }
-    network_send_udp(sock, global.roku_ip, 54321, buff, buffer_tell(buff));
+    network_send_udp_raw(sock, global.roku_ip, 54321, buff, buffer_tell(buff));
     buffer_delete(buff);
 }
 

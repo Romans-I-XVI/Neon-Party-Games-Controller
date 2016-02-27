@@ -39,9 +39,7 @@
       <filename>Neon-Party-Games-Remote.apk</filename>
     </datafile>
   </datafiles>
-  <NewExtensions>
-    <extension index="0">extensions\Generic_Extension</extension>
-  </NewExtensions>
+  <NewExtensions/>
   <sounds name="sound">
     <sound>sound\snd_hit_custom</sound>
     <sound>sound\snd_win</sound>
