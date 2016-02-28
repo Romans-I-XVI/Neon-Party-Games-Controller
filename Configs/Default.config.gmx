@@ -74,7 +74,7 @@
     <option_android_scale>0</option_android_scale>
     <option_android_set_device_id></option_android_set_device_id>
     <option_android_splash_png>Configs\Default\android\splash.png</option_android_splash_png>
-    <option_android_splash_time>0</option_android_splash_time>
+    <option_android_splash_time>2</option_android_splash_time>
     <option_android_target_sdk_version>16</option_android_target_sdk_version>
     <option_android_texture_page>1024</option_android_texture_page>
     <option_android_use_test_ads>0</option_android_use_test_ads>
@@ -271,8 +271,8 @@
     <option_ios_advertising_enable>0</option_ios_advertising_enable>
     <option_ios_advertising_key></option_ios_advertising_key>
     <option_ios_advertising_type>iAds</option_ios_advertising_type>
-    <option_ios_app_id>com.romansixvi.neonpartygames</option_ios_app_id>
-    <option_ios_build_version>29</option_ios_build_version>
+    <option_ios_app_id>com.romansixvi.npgcontroller</option_ios_app_id>
+    <option_ios_build_version>0</option_ios_build_version>
     <option_ios_certificate>iPhone Distribution: Austin Sojka (S37D9Q2A6N)</option_ios_certificate>
     <option_ios_device_type>3</option_ios_device_type>
     <option_ios_display_name>Neon Party Games Controller</option_ios_display_name>
