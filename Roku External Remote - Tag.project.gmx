@@ -44,6 +44,7 @@
     <sound>sound\snd_hit_custom</sound>
     <sound>sound\snd_win</sound>
     <sound>sound\snd_lose</sound>
+    <sound>sound\snd_click</sound>
     <sounds name="Cell">
       <sound>sound\snd_cell_booster_grow</sound>
       <sound>sound\snd_cell_booster_magnet_up</sound>
@@ -109,6 +110,7 @@
     <sprite>sprites\spr_back_red</sprite>
     <sprite>sprites\spr_back_silver</sprite>
     <sprite>sprites\spr_trackpad</sprite>
+    <sprite>sprites\spr_trackpad_moving</sprite>
     <sprite>sprites\spr_cursor</sprite>
   </sprites>
   <backgrounds name="background">

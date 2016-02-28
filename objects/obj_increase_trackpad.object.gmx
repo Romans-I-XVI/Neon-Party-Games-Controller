@@ -98,7 +98,7 @@ pressed = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if pressed and obj_trackpad.trackpad_height &lt;= 540 - 80*obj_trackpad.trackpad_size_multiplier and obj_trackpad.trackpad_width &lt;= global.gui_width - 2 {
+            <string>if pressed and obj_trackpad.trackpad_height &lt;= 540 - 80*obj_trackpad.trackpad_size_multiplier and obj_trackpad.trackpad_width &lt;= (global.gui_width - (80*obj_trackpad.trackpad_size_multiplier)*2)-2 {
     player_percentage_x = (obj_player.x - obj_trackpad.x) / obj_trackpad.trackpad_width
     player_percentage_y = (obj_player.y - obj_trackpad.y) / obj_trackpad.trackpad_height 
     obj_trackpad.trackpad_width += 2

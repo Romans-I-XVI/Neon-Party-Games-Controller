@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>a = irandom_range(49152,65535);
 host = network_create_server(network_socket_udp, a, 5);
+sock = network_create_socket(network_socket_udp);
 </string>
           </argument>
         </arguments>
@@ -74,13 +75,10 @@ host = network_create_server(network_socket_udp, a, 5);
           <argument>
             <kind>1</kind>
             <string>if (host&lt;0) {
-    show_message('Failed to create a broadcast server');
 } else {
-    var tsock = network_create_socket(network_socket_udp);
     var tbuff = buffer_create(32, buffer_fixed, 1);
     buffer_fill(tbuff, 0, buffer_bool, 0, 32);
-    network_send_broadcast(tsock, a, tbuff, buffer_get_size(tbuff));
-    network_destroy(tsock);
+    network_send_broadcast(sock, a, tbuff, buffer_get_size(tbuff));
     buffer_delete(tbuff);
 }
 </string>
@@ -131,6 +129,8 @@ host = network_create_server(network_socket_udp, a, 5);
             <kind>1</kind>
             <string>//show_message(string(ds_map_find_value(async_load, "ip")));
 ip_string = string(ds_map_find_value(async_load, "ip"));
+
+//show_message(ip_string)
 
 global.device_ip[0] = real(string_copy(ip_string, 0, string_pos(".", ip_string)-1))
 ip_string = string_delete(ip_string, 1, string_pos(".", ip_string))

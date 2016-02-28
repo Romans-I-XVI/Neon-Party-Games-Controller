@@ -219,7 +219,7 @@ if debug {
 
 
 if in_move_mode {
-    draw_sprite_stretched_ext(spr_trackpad, 0, x-(160*(trackpad_width/1280)), y-(90*(trackpad_height/720)), trackpad_width*1.25, trackpad_height*1.25, c_white, 0.5)
+    draw_sprite_stretched(spr_trackpad_moving, 0, x-(160*(trackpad_width/1280)), y-(90*(trackpad_height/720)), trackpad_width*1.25, trackpad_height*1.25)
     }
 else {
     draw_sprite_stretched(spr_trackpad, 0, x-(160*(trackpad_width/1280)), y-(90*(trackpad_height/720)), trackpad_width*1.25, trackpad_height*1.25)
