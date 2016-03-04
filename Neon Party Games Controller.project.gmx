@@ -105,13 +105,13 @@
     <sprite>sprites\spr_reduce_trackpad</sprite>
     <sprite>sprites\spr_move_trackpad</sprite>
     <sprite>sprites\spr_reset_trackpad</sprite>
-    <sprite>sprites\spr_back_aqua</sprite>
-    <sprite>sprites\spr_back_green</sprite>
-    <sprite>sprites\spr_back_red</sprite>
     <sprite>sprites\spr_back_silver</sprite>
     <sprite>sprites\spr_trackpad</sprite>
     <sprite>sprites\spr_trackpad_moving</sprite>
     <sprite>sprites\spr_cursor</sprite>
+    <sprite>sprites\spr_info</sprite>
+    <sprite>sprites\spr_credits</sprite>
+    <sprite>sprites\spr_hyperlink</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background_neon</background>
@@ -170,6 +170,9 @@
     <object>objects\obj_move_trackpad</object>
     <object>objects\obj_reset_trackpad</object>
     <object>objects\obj_back</object>
+    <object>objects\obj_info</object>
+    <object>objects\obj_credits</object>
+    <object>objects\obj_hyperlink</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_gamestart</room>
@@ -177,6 +180,7 @@
     <room>rooms\room_play</room>
     <room>rooms\room_select_color</room>
     <room>rooms\room_select_roku</room>
+    <room>rooms\room_info</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

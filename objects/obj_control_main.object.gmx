@@ -393,6 +393,7 @@ instance_create(global.gui_center_x-420*global.aspect_difference, 520, obj_butto
 instance_create(global.gui_center_x+420*global.aspect_difference, 520, obj_button_play)
 instance_create(global.gui_center_x,182,obj_player_fake)
 instance_create(0, 0, obj_control_get_ip)
+instance_create(global.gui_width, 0, obj_info)
 
 </string>
           </argument>
