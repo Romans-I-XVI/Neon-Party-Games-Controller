@@ -51,6 +51,7 @@
             <kind>1</kind>
             <string>immersion_play_effect(2);
 room_goto(room_info);
+
 </string>
           </argument>
         </arguments>

@@ -39,6 +39,8 @@ room_set_width(room_select_color, global.gui_width)
 room_set_height(room_select_color, global.gui_height)
 room_set_width(room_select_roku, global.gui_width)
 room_set_height(room_select_roku, global.gui_height)
+room_set_width(room_info, global.gui_width)
+room_set_height(room_info, global.gui_height)
 
 room_goto(room_main)</code>
   <enableViews>0</enableViews>
