@@ -305,38 +305,24 @@ if category == 0
         }
         snd = audio_play_sound(snd_hit_custom, 0, false);
         audio_sound_gain(snd, volume, 0);
-        if volume &lt;= 0.2
-            immersion_play_effect(101);
-        else if volume &lt;= 0.75
-            immersion_play_effect(100);
-        else
-            immersion_play_effect(99);
     }
     else if identifier == 1
     {
         audio_play_sound(snd_win, 0, false);
-        immersion_play_effect(54);
     }
     else if identifier == 2 
     {
         audio_play_sound(snd_lose, 0, false);
-        immersion_play_effect(27);
     }
     else if identifier == 3 
     {
         audio_play_sound(snd_transition_1, 0, false);
-    }
-    else if identifier == 100
-    {
-        immersion_play_effect(haptic_feedback_value);
     }
 }
 else if category &lt;= 6
 {
     if array_height_2d(global.feedback_data) &gt;= category+1 and array_length_2d(global.feedback_data, category) &gt;= identifier+1
     audio_play_sound(global.feedback_data[category, identifier], 0, false);
-    if haptic_feedback_value &lt;= 123
-        immersion_play_effect(haptic_feedback_value);
 }
     
     

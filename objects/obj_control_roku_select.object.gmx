@@ -250,8 +250,7 @@ if instance_number(obj_button_manual_ip) &gt; 0 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-network_destroy(obj_control_roku_select.sock);
+            <string>network_destroy(obj_control_roku_select.sock);
 </string>
           </argument>
         </arguments>

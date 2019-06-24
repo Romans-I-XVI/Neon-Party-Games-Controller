@@ -72,8 +72,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-msg = get_string_async("Please Enter Your Name",global.name);
+            <string>msg = get_string_async("Please Enter Your Name",global.name);
 
 </string>
           </argument>

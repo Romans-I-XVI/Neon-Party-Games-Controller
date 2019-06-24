@@ -49,8 +49,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-if room = room_play {
+            <string>if room = room_play {
     //global.trackpad_width = obj_trackpad.trackpad_width
     //global.trackpad_x = obj_trackpad.x
     //global.trackpad_y = obj_trackpad.y

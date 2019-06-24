@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-if obj_trackpad.in_move_mode = false
+            <string>if obj_trackpad.in_move_mode = false
     obj_trackpad.in_move_mode = true
 else 
     obj_trackpad.in_move_mode = false

@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-obj_trackpad.trackpad_width = 460*obj_trackpad.trackpad_size_multiplier
+            <string>obj_trackpad.trackpad_width = 460*obj_trackpad.trackpad_size_multiplier
 obj_trackpad.trackpad_height = obj_trackpad.trackpad_width/1.77777777777
 obj_trackpad.x = global.gui_width - obj_trackpad.trackpad_width - 80*obj_trackpad.trackpad_size_multiplier
 obj_trackpad.y = global.gui_height - obj_trackpad.trackpad_height - 80*obj_trackpad.trackpad_size_multiplier

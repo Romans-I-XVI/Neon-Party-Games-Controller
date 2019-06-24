@@ -76,8 +76,7 @@ image_yscale *= global.aspect_difference;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-global.character = 7
+            <string>global.character = 7
 with obj_player_fake {
     sprite_index = spr_character_7
     }

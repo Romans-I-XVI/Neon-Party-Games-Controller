@@ -127,8 +127,7 @@ pos_2 = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-global.roku_ip = ip
+            <string>global.roku_ip = ip
 global.roku_name = name
 ini_open("savedata.ini");
     ini_write_string("data", "ip", global.roku_ip); 

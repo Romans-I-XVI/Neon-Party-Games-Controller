@@ -72,8 +72,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-if not url = "none" {
+            <string>if not url = "none" {
     url_open(url);
     }
 

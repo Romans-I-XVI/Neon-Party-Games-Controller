@@ -73,8 +73,7 @@ image_yscale *= global.aspect_difference;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-global.color = 0;
+            <string>global.color = 0;
 script_change_character_color(0);
 ini_open("savedata.ini");
     ini_write_real("data", "color", global.color);

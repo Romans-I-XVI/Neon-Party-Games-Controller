@@ -133,8 +133,7 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_play_effect(2);
-//global.trackpad_width = obj_trackpad.trackpad_width
+            <string>//global.trackpad_width = obj_trackpad.trackpad_width
 //global.trackpad_x = obj_trackpad.x
 //global.trackpad_y = obj_trackpad.y
 global.last_x = obj_player.x
