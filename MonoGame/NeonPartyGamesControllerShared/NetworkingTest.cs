@@ -13,6 +13,7 @@ namespace NeonPartyGamesController
 	public class NetworkingTest : Entity, ITouchable
 	{
 		public const uint MaxNameLength = 25;
+		private readonly Socket Socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
 		public NetworkingTest() {
 			Debug.WriteLine("This is a test!");
@@ -89,10 +90,8 @@ namespace NeonPartyGamesController
 		}
 
 		public void SendUDP(string ip, int port, byte[] data) {
-			Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-			IPAddress server_addr = IPAddress.Parse(ip);
-			IPEndPoint end_point = new IPEndPoint(server_addr, port);
-			sock.SendTo(data, end_point);
+			IPEndPoint end_point = new IPEndPoint(IPAddress.Parse(ip), port);
+			this.Socket.SendTo(data, end_point);
 		}
 
 		private void AddToBuffer(byte[] buffer, byte[] bytes, int index) {
