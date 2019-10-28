@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
+using MonoEngine;
 
-namespace NeonPartyGamesControllerShared
+namespace NeonPartyGamesController
 {
-	public class NetworkingTest
+	public class NetworkingTest : Entity
 	{
 		public NetworkingTest() {
 			Debug.WriteLine("This is a test!");

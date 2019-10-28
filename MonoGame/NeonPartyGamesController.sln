@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeonPartyGamesController", 
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NeonPartyGamesControllerShared", "NeonPartyGamesControllerShared\NeonPartyGamesControllerShared.shproj", "{58535B3B-80F9-4F45-9865-D2457602BE1D}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoEngine", "monoEngine\MonoEngine\MonoEngine.shproj", "{21B5F966-179F-4871-A25A-FE80FAE9AFCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
