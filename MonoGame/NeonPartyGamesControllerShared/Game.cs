@@ -10,7 +10,7 @@ namespace NeonPartyGamesController
         public static Android.OS.Vibrator Vibrator;
 #endif
 
-		public NeonPartyGamesControllerGame() : base(1280, 720, 90, 50) {
+		public NeonPartyGamesControllerGame() : base(1280, 720, 0, 0) {
 #if !NETFX_CORE
 			this.Graphics.SynchronizeWithVerticalRetrace = false;
 #endif
