@@ -11,7 +11,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 		private static Circle _collider_circle => new Circle(50, 50, 50);
 		private static Action _on_click => () => Engine.ChangeRoom<RoomMain>();
 
-		public ButtonBack() : base(0, 0, _sprite, _collider_circle, _on_click) {
+		public ButtonBack() : base(0, 0, 1, _sprite, _collider_circle, _on_click) {
 
 		}
 	}

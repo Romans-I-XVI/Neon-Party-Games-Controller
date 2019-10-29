@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoEngine;
 using NeonPartyGamesController.Rooms;
+using Debugger = MonoEngine.Debugger;
 
 namespace NeonPartyGamesController
 {
@@ -94,6 +95,9 @@ namespace NeonPartyGamesController
 				AvailableTextures.spritesheet
 			);
 
+#if DEBUG
+			Engine.SpawnInstance<NeonPartyGamesControllerDebugger>();
+#endif
 			Engine.ChangeRoom<RoomMain>();
 		}
 	}

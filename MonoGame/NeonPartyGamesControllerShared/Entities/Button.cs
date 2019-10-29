@@ -9,18 +9,26 @@ namespace NeonPartyGamesController.Entities
 	{
 		protected Action OnClick;
 
-		private Button(int x, int y, Sprite sprite, Action on_click) {
+		private Button(int x, int y, float scale, Sprite sprite, Action on_click) {
 			this.Position = new Vector2(x, y);
+			sprite.Scale = new Vector2(scale);
 			this.AddSprite("main", sprite);
 			this.OnClick = on_click;
 		}
 
-		public Button(int x, int y, Sprite sprite, Rectangle collider_rect, Action on_click) : this(x, y, sprite, on_click) {
-			this.AddColliderRectangle("main", collider_rect.X, collider_rect.Y, collider_rect.Width, collider_rect.Height);
+		public Button(int x, int y, float scale, Sprite sprite, Rectangle collider_rect, Action on_click) : this(x, y, scale, sprite, on_click) {
+			int offset_x = (int)(collider_rect.X * scale);
+			int offset_y = (int)(collider_rect.Y * scale);
+			int width = (int)(collider_rect.Width * scale);
+			int height = (int)(collider_rect.Height * scale);
+			this.AddColliderRectangle("main", offset_x, offset_y, width, height);
 		}
 
-		public Button(int x, int y, Sprite sprite, Circle collider_circle, Action on_click) : this(x, y, sprite, on_click) {
-			this.AddColliderCircle("main", collider_circle.Radius, collider_circle.X, collider_circle.Y);
+		public Button(int x, int y, float scale, Sprite sprite, Circle collider_circle, Action on_click) : this(x, y, scale, sprite, on_click) {
+			float radius = collider_circle.Radius * scale;
+			int offset_x = (int)(collider_circle.X * scale);
+			int offset_y = (int)(collider_circle.Y * scale);
+			this.AddColliderCircle("main", radius, offset_x, offset_y);
 		}
 
 		public override void onMouseDown(MouseEventArgs e) {

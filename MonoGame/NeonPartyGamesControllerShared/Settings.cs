@@ -1,3 +1,4 @@
+using System.Net;
 using NeonPartyGamesController.Enums;
 
 namespace NeonPartyGamesController
@@ -21,5 +22,7 @@ namespace NeonPartyGamesController
 
 		public static Colors PlayerColor = Colors.Red;
 		public static Faces PlayerFace = Faces.Face_1;
+		public static IPAddress RokuIP = null;
+		public static string RokuName = "";
 	}
 }
