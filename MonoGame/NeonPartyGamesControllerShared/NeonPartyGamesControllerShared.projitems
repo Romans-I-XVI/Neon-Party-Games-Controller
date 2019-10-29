@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonPlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSelectFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSelectRoku.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSetName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentFaceDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentRokuDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />

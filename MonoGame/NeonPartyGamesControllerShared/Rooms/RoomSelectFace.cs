@@ -59,7 +59,11 @@ namespace NeonPartyGamesController.Rooms
 		}
 
 		private void SpawnSetNameButton(float layout_scale) {
-
+			float scale = 1f * layout_scale;
+			int x = (int)(Engine.Game.CanvasWidth / 2 - 365 * scale);
+			int y = 192;
+			var button = new ButtonSetName(x, y, scale);
+			Engine.SpawnInstance(button);
 		}
 	}
 }
