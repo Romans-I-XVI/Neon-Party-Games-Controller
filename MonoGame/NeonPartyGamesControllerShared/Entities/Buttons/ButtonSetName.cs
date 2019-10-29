@@ -14,15 +14,18 @@ namespace NeonPartyGamesController.Entities.Buttons
 
 		}
 
-		public static void SetName() {
-			string text = "";
+		private static void SetName() {
 #if Android
 #elif IOS
 #else
-			text = "Input Not Available";
+	#if DEBUG
+			var debugger = Engine.GetFirstInstanceByType<DebuggerWithTerminal>();
+			if (debugger != null) {
+				Action<string> evaluator = s => Settings.PlayerName = s;
+				debugger.OpenConsoleWithCustomEvaluator(evaluator);
+			}
+	#endif
 #endif
-
-			Settings.PlayerName = text;
 		}
 	}
 }

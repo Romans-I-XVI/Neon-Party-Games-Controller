@@ -10,8 +10,10 @@ namespace NeonPartyGamesController
 
 		public override void onKeyDown(KeyboardEventArgs e) {
 			base.onKeyDown(e);
-			if (e.Key == Keys.D0)
-				this.SetDrawColliders(Debugger.Variables["draw_colliders"] == "0");
+			if (!this.ConsoleOpen) {
+				if (e.Key == Keys.D0)
+					this.SetDrawColliders(Debugger.Variables["draw_colliders"] == "0");
+			}
 		}
 	}
 }
