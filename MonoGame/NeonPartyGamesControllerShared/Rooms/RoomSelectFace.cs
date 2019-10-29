@@ -13,17 +13,17 @@ namespace NeonPartyGamesController.Rooms
 			Engine.SpawnInstance<ButtonBack>();
 			Engine.SpawnInstance<CurrentFaceDrawer>();
 
-			this.SpawnFaces();
+			float required_space = 1116f;
+			float layout_scale = (Engine.Game.CanvasWidth < required_space) ? Engine.Game.CanvasWidth / required_space : 1f;
+			this.SpawnFaceButtons(layout_scale);
+			this.SpawnColorButtons(layout_scale);
+			this.SpawnSetNameButton(layout_scale);
 		}
 
 		public override void onSwitchAway(Room next_room) {
 		}
 
-		private void SpawnFaces() {
-			float layout_scale = 1f;
-			float required_space = 1116f;
-			if (Engine.Game.CanvasWidth < required_space)
-				layout_scale = Engine.Game.CanvasWidth / required_space;
+		private void SpawnFaceButtons(float layout_scale) {
 			float scale = 1.33f * layout_scale;
 			int spread = (int)(186 * layout_scale);
 			int start_x = Engine.Game.CanvasWidth / 2;
@@ -39,6 +39,14 @@ namespace NeonPartyGamesController.Rooms
 					Engine.SpawnInstance(button);
 				}
 			}
+		}
+
+		private void SpawnColorButtons(float layout_scale) {
+
+		}
+
+		private void SpawnSetNameButton(float layout_scale) {
+
 		}
 	}
 }
