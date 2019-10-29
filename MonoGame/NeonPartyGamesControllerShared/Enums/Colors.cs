@@ -1,6 +1,6 @@
 namespace NeonPartyGamesController.Enums
 {
-	public enum Colors
+	public enum Colors : byte
 	{
 		Red,
 		Green,
