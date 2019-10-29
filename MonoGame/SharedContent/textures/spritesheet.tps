@@ -196,12 +196,12 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">buttons/color_aqua.png</key>
-            <key type="filename">buttons/color_green.png</key>
-            <key type="filename">buttons/color_orange.png</key>
-            <key type="filename">buttons/color_purple.png</key>
-            <key type="filename">buttons/color_red.png</key>
-            <key type="filename">buttons/color_yellow.png</key>
+            <key type="filename">buttons/color_0.png</key>
+            <key type="filename">buttons/color_1.png</key>
+            <key type="filename">buttons/color_2.png</key>
+            <key type="filename">buttons/color_3.png</key>
+            <key type="filename">buttons/color_4.png</key>
+            <key type="filename">buttons/color_5.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

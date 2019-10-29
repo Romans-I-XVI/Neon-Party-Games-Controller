@@ -42,7 +42,20 @@ namespace NeonPartyGamesController.Rooms
 		}
 
 		private void SpawnColorButtons(float layout_scale) {
+			float scale = 1f * layout_scale;
+			int spread = (int)(128 * layout_scale);
+			int start_x = (int)(Engine.Game.CanvasWidth / 2 + 240 * scale);
+			int start_y = 128 + spread / 2;
 
+			for (int x = 0; x < 3; x++) {
+				int offset_x = x * spread;
+				for (int y = 0; y < 2; y++) {
+					int offset_y = spread * y - spread / 2;
+					int color_int = (x + (y * 3));
+					var button = new ButtonColor((Colors)color_int, start_x + offset_x, start_y + offset_y, scale);
+					Engine.SpawnInstance(button);
+				}
+			}
 		}
 
 		private void SpawnSetNameButton(float layout_scale) {

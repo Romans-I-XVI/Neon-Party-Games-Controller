@@ -13,7 +13,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 		private readonly Faces Face;
 		private Colors CurrentColor;
 
-		public ButtonFace(Faces face, int x, int y, float scale) : base(x, y, scale, GetSprite(face), _collider_circle, GetOnClick(face)) {
+		public ButtonFace(Faces face, int x, int y, float scale) : base(x, y, scale, ButtonFace.GetSprite(face), _collider_circle, ButtonFace.GetOnClick(face)) {
 			this.Face = face;
 			this.CurrentColor = Settings.PlayerColor;
 		}
@@ -21,8 +21,11 @@ namespace NeonPartyGamesController.Entities.Buttons
 		public override void onUpdate(float dt) {
 			base.onUpdate(dt);
 			if (this.CurrentColor != Settings.PlayerColor) {
+				var original_sprite_scale = this.GetSprite("main").Scale;
 				this.RemoveSprite("main");
-				this.AddSprite("main", GetSprite(this.Face));
+				var sprite = ButtonFace.GetSprite(this.Face);
+				sprite.Scale = original_sprite_scale;
+				this.AddSprite("main", sprite);
 				this.CurrentColor = Settings.PlayerColor;
 			}
 		}

@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ContentHolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonBack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonPlay.cs" />
