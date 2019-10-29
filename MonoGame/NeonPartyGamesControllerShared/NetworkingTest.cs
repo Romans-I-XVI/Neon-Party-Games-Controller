@@ -20,6 +20,8 @@ namespace NeonPartyGamesController
 
 		public NetworkingTest() {
 			Debug.WriteLine("This is a test!");
+			var sprite = new Sprite(SpriteSheetHolder.SpriteSheet.GetRegion("faces/character_0_0"));
+			this.AddSprite("main", sprite);
 		}
 
 		public override void onUpdate(float dt) {

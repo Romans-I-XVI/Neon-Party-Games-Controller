@@ -89,6 +89,10 @@ namespace NeonPartyGamesController
 
 		protected override void LoadContent() {
 			base.LoadContent();
+			ContentHolder.Init(this);
+			SpriteSheetHolder.Init(
+				AvailableTextures.spritesheet
+			);
 
 			Engine.ChangeRoom<RoomMain>();
 		}

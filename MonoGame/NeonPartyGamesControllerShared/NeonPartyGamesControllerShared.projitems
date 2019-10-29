@@ -9,6 +9,8 @@
     <Import_RootNamespace>NeonPartyGamesControllerShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AvailableContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentHolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Trackpad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Colors.cs" />
@@ -20,5 +22,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomSelectFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomSelectRoku.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpriteSheetHolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TexturePacker\SpriteSheet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TexturePacker\SpriteSheetLoader.cs" />
   </ItemGroup>
 </Project>

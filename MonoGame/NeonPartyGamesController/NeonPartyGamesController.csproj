@@ -12,6 +12,31 @@
     <ItemGroup>
         <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.4" />
         <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.7.0.7" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3-beta2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="..\SharedContent\textures\spritesheet.json">
+        <Link>Content/textures/spritesheet.json</Link>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Content\textures\**" />
+      <Compile Remove="Content\bin\**" />
+      <Compile Remove="Content\obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Content\textures\**" />
+      <EmbeddedResource Remove="Content\bin\**" />
+      <EmbeddedResource Remove="Content\obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Content\textures\**" />
+      <None Remove="Content\bin\**" />
+      <None Remove="Content\obj\**" />
     </ItemGroup>
 
     <Import Project="..\monoEngine\MonoEngine\MonoEngine.projitems" Label="Shared" />
