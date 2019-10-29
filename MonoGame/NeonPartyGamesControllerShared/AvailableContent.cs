@@ -5,7 +5,11 @@ namespace NeonPartyGamesController
 		spritesheet,
 	}
 
-	public enum AvailableFonts {}
+	public enum AvailableFonts
+	{
+		blippo,
+		blippo_small
+	}
 
 	public enum AvailableMusic {}
 

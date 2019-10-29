@@ -1,0 +1,14 @@
+using System.Collections.Generic;
+using MonoEngine;
+
+namespace NeonPartyGamesController.Rooms
+{
+	public class RoomInfo : Room
+	{
+		public override void onSwitchTo(Room previous_room, Dictionary<string, object> args) {
+		}
+
+		public override void onSwitchAway(Room next_room) {
+		}
+	}
+}

@@ -265,7 +265,7 @@
                 <false/>
             </struct>
             <key type="filename">buttons/play.png</key>
-            <key type="filename">buttons/select_color.png</key>
+            <key type="filename">buttons/select_face.png</key>
             <key type="filename">buttons/select_roku.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

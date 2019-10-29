@@ -7,6 +7,7 @@
 
     <ItemGroup>
         <MonoGameContentReference Include="**\*.mgcb" />
+        <MonoGameContentReference Remove="Content\fonts\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,12 +20,14 @@
       <EmbeddedResource Include="..\SharedContent\textures\spritesheet.json">
         <Link>Content/textures/spritesheet.json</Link>
       </EmbeddedResource>
+      <EmbeddedResource Remove="Content\fonts\**" />
     </ItemGroup>
 
     <ItemGroup>
       <Compile Remove="Content\textures\**" />
       <Compile Remove="Content\bin\**" />
       <Compile Remove="Content\obj\**" />
+      <Compile Remove="Content\fonts\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -37,6 +40,7 @@
       <None Remove="Content\textures\**" />
       <None Remove="Content\bin\**" />
       <None Remove="Content\obj\**" />
+      <None Remove="Content\fonts\**" />
     </ItemGroup>
 
     <Import Project="..\monoEngine\MonoEngine\MonoEngine.projitems" Label="Shared" />

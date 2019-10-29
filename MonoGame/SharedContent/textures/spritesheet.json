@@ -135,7 +135,7 @@
 	"sourceSize": {"w":480,"h":252},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"buttons/select_color":
+"buttons/select_face":
 {
 	"frame": {"x":1,"y":1157,"w":440,"h":350},
 	"rotated": false,
@@ -907,6 +907,6 @@
 	"format": "RGBA8888",
 	"size": {"w":2009,"h":1744},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:9031f4c8e8bf221101b0b2c506a0f35a:de8fb78cc62e5f7dfa1cca822b9d1254:729adc6043343cfda41c447ce8f464d6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:8445fe33190d839eded187457297221d:de8fb78cc62e5f7dfa1cca822b9d1254:729adc6043343cfda41c447ce8f464d6$"
 }
 }

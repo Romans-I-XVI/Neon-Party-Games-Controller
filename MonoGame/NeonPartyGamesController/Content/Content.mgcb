@@ -13,6 +13,20 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin fonts/blippo.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/blippo.spritefont
+
+#begin fonts/blippo_small.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/blippo_small.spritefont
+
 #begin textures/spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
