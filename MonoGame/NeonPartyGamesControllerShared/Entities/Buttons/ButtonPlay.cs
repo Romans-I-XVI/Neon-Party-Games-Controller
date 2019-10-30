@@ -7,7 +7,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 {
 	public class ButtonPlay : Button
 	{
-		private static Sprite _sprite => new Sprite(SpriteSheetHolder.SpriteSheet.GetRegion("buttons/play"));
+		private static Sprite _sprite => new Sprite(SpriteSheetHolder.SpriteSheet.GetRegion(AvailableRegions.Buttons.Play));
 		private static Rectangle _collider_rect => new Rectangle(-360 / 2, -270 / 2, 360, 270);
 		private static Action _on_click => () => Engine.ChangeRoom<RoomPlay>();
 

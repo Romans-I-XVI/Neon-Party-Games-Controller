@@ -10,7 +10,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 	{
 		public readonly string[] ButtonText;
 		private const int MaxFontWidth = 270;
-		private static Sprite _sprite => new Sprite(SpriteSheetHolder.SpriteSheet.GetRegion("buttons/roku_select"));
+		private static Sprite _sprite => new Sprite(SpriteSheetHolder.SpriteSheet.GetRegion(AvailableRegions.Buttons.RokuIPSelect));
 		private static Rectangle _collider_rect => new Rectangle(-360 / 2, -170 / 2, 360, 170);
 		private readonly float Scale;
 

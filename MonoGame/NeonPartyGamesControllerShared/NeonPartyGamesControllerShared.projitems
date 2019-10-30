@@ -10,11 +10,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AvailableContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AvailableRegions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContentHolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonBack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonFace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonHyperlink.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonManuallyEnterIP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonPlay.cs" />
@@ -24,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSetName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentFaceDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentRokuDrawer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EmptyEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\RokuIPButtonSpawner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Trackpad.cs" />
