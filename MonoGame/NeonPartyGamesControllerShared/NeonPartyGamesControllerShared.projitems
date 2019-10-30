@@ -17,9 +17,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonHyperlink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonIncreaseTrackpad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonManuallyEnterIP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonMoveTrackpad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonPlay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonReduceTrackpad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonResetTrackpad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonRokuIP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSelectFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSelectRoku.cs" />

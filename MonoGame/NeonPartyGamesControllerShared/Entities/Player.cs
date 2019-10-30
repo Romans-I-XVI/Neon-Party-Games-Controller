@@ -2,5 +2,10 @@ using MonoEngine;
 
 namespace NeonPartyGamesController.Entities
 {
-	public class Player : Entity {}
+	public class Player : Entity
+	{
+		public Player(Trackpad trackpad) {
+
+		}
+	}
 }

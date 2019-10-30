@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using MonoEngine;
+using NeonPartyGamesController.Entities;
 using NeonPartyGamesController.Enums;
 
 namespace NeonPartyGamesController
@@ -10,32 +13,49 @@ namespace NeonPartyGamesController
 	public static class Settings
 	{
 		public static void Initialize() {
-			string name = SaveDataHandler.LoadData(SavePaths.PlayerName).Trim();
+			string trackpad_position = SaveDataHandler.LoadData(SavePaths.TrackpadPosition)?.Trim();
+			if (!string.IsNullOrEmpty(trackpad_position)) {
+				string[] data = trackpad_position.Split('|');
+				if (data != null && data.Length == 2) {
+					var previous_position = new Vector2();
+					previous_position.X = float.Parse(data[0]);
+					previous_position.Y = float.Parse(data[1]);
+					_trackpad_position = previous_position;
+				}
+			} else {
+				_trackpad_position = new Vector2(Engine.Game.CanvasWidth - Trackpad.DefaultWidth / 2, Engine.Game.CanvasHeight - Trackpad.DefaultHeight / 2);
+			}
+
+			string trackpad_scale = SaveDataHandler.LoadData(SavePaths.TrackpadScale)?.Trim();
+			if (!string.IsNullOrEmpty(trackpad_scale))
+				_trackpad_scale = float.Parse(trackpad_scale);
+
+			string name = SaveDataHandler.LoadData(SavePaths.PlayerName)?.Trim();
 			if (!string.IsNullOrEmpty(name))
 				_player_name = name;
 
-			string color = SaveDataHandler.LoadData(SavePaths.PlayerColor).Trim();
+			string color = SaveDataHandler.LoadData(SavePaths.PlayerColor)?.Trim();
 			if (!string.IsNullOrEmpty(color)) {
 				bool success = int.TryParse(color, out int color_int);
 				if (success)
 					_player_color = (Colors)color_int;
 			}
 
-			string face = SaveDataHandler.LoadData(SavePaths.PlayerFace).Trim();
+			string face = SaveDataHandler.LoadData(SavePaths.PlayerFace)?.Trim();
 			if (!string.IsNullOrEmpty(face)) {
 				bool success = int.TryParse(face, out int face_int);
 				if (success)
 					_player_face = (Faces)face_int;
 			}
 
-			string roku_ip = SaveDataHandler.LoadData(SavePaths.RokuIP).Trim();
+			string roku_ip = SaveDataHandler.LoadData(SavePaths.RokuIP)?.Trim();
 			if (!string.IsNullOrEmpty(roku_ip)) {
 				bool success = IPAddress.TryParse(roku_ip, out IPAddress roku_ip_address);
 				if (success)
 					_roku_ip = roku_ip_address;
 			}
 
-			string roku_name = SaveDataHandler.LoadData(SavePaths.RokuName).Trim();
+			string roku_name = SaveDataHandler.LoadData(SavePaths.RokuName)?.Trim();
 			if (!string.IsNullOrEmpty(roku_name))
 				_roku_name = roku_name;
 
@@ -57,6 +77,9 @@ namespace NeonPartyGamesController
 			public const string PlayerFace = "PlayerFace.txt";
 			public const string RokuIP = "RokuIP.txt";
 			public const string RokuName = "RokuName.txt";
+			public const string TrackpadPosition = "TrackpadPosition.txt";
+			public const string TrackpadScale = "TrackpadScale.txt";
+
 		}
 		public const int MaxNameLength = 25;
 
@@ -65,6 +88,8 @@ namespace NeonPartyGamesController
 		private static Faces _player_face = Faces.Face_1;
 		private static IPAddress _roku_ip = null;
 		private static string _roku_name = "";
+		private static float _trackpad_scale = Trackpad.DefaultScale;
+		private static Vector2 _trackpad_position = Vector2.One;
 
 		public static string PlayerName {
 			get => Settings._player_name;
@@ -108,6 +133,22 @@ namespace NeonPartyGamesController
 			set {
 				SaveDataHandler.SaveData(value, SavePaths.RokuName);
 				_roku_name = value;
+			}
+		}
+
+		public static float TrackpadScale {
+			get => _trackpad_scale;
+			set {
+				SaveDataHandler.SaveData(value.ToString(), SavePaths.TrackpadScale);
+				_trackpad_scale = value;
+			}
+		}
+
+		public static Vector2 TrackpadPosition {
+			get => _trackpad_position;
+			set {
+				SaveDataHandler.SaveData(value.X + "|" + value.Y, SavePaths.TrackpadPosition);
+				_trackpad_position = value;
 			}
 		}
 
