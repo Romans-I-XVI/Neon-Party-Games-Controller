@@ -28,7 +28,9 @@ namespace NeonPartyGamesController.Entities
 		private readonly List<ButtonRokuIP> Buttons = new List<ButtonRokuIP>();
 
 		public RokuIPButtonSpawner() {
-			this.UdpClient = new UdpClient(Settings.RokuSearchPort, AddressFamily.InterNetwork);
+			try {
+				this.UdpClient = new UdpClient(Settings.RokuSearchPort, AddressFamily.InterNetwork);
+			} catch {}
 			this.StartUdpListener();
 			this.SendScanPacket();
 			const float required_space = 1200;
@@ -60,20 +62,32 @@ namespace NeonPartyGamesController.Entities
 
 		public override void onDestroy() {
 			base.onDestroy();
-			this.UdpClient.Close();
-			this.UdpClient.Dispose();
+			if (this.UdpClient != null) {
+				try {
+					this.UdpClient.Close();
+					this.UdpClient.Dispose();
+				} catch {}
+			}
 			this.UdpClient = null;
 		}
 
 		public override void onChangeRoom(Room previous_room, Room next_room) {
 			base.onChangeRoom(previous_room, next_room);
-			this.UdpClient.Close();
-			this.UdpClient.Dispose();
+			if (this.UdpClient != null) {
+				try {
+					this.UdpClient.Close();
+					this.UdpClient.Dispose();
+				} catch {}
+			}
 			this.UdpClient = null;
 		}
 
 		private void SendScanPacket() {
-			this.UdpClient.SendAsync(Settings.RokuSearchBytes, Settings.RokuSearchBytes.Length, this.IPEndPoint);
+			if (this.UdpClient != null) {
+				try {
+					this.UdpClient.SendAsync(Settings.RokuSearchBytes, Settings.RokuSearchBytes.Length, this.IPEndPoint);
+				} catch {}
+			}
 		}
 
 		private void StartUdpListener() {
