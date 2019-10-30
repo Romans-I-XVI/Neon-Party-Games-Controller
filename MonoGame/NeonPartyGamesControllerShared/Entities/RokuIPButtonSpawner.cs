@@ -28,7 +28,7 @@ namespace NeonPartyGamesController.Entities
 
 		public RokuIPButtonSpawner() {
 			this.UdpClient = new UdpClient(Settings.RokuSearchPort, AddressFamily.InterNetwork);
-			this.StartUDPListener();
+			this.StartUdpListener();
 			const float required_space = 1200;
 			this.Scale = (Engine.Game.CanvasWidth < required_space) ? Engine.Game.CanvasWidth / required_space : 1f;
 
@@ -60,32 +60,42 @@ namespace NeonPartyGamesController.Entities
 			base.onDestroy();
 			this.UdpClient.Close();
 			this.UdpClient.Dispose();
+			this.UdpClient = null;
 		}
 
 		public override void onChangeRoom(Room previousRoom, Room nextRoom) {
 			base.onChangeRoom(previousRoom, nextRoom);
 			this.UdpClient.Close();
 			this.UdpClient.Dispose();
+			this.UdpClient = null;
 		}
 
 		private void SendScanPacket() {
 			this.UdpClient.SendAsync(Settings.RokuSearchBytes, Settings.RokuSearchBytes.Length, IPEndPoint);
 		}
 
-		private void StartUDPListener()
-		{
-			Task.Run(() =>
-			{
-				while (this.Buttons.Count < this.Positions.Length && Engine.Room is RoomSelectRoku) {
+		private void StartUdpListener() {
+			Task.Run(this.UdpListenTask);
+		}
+
+		private async void UdpListenTask() {
+			while (this.Buttons.Count < this.Positions.Length && !this.IsExpired && this.UdpClient != null) {
+				string name = null;
+				string roku_ip = null;
+				try {
 					var ep = this.IPEndPoint;
 					this.UdpClient.Receive(ref ep);
-					string roku_ip = ep.Address.ToString();
-					var name_task = this.GetRokuName(roku_ip);
-					name_task.Wait(2500);
-					string name = name_task.Result;
-					this.SpawnButton(name, roku_ip);
+					if (this.IsExpired) break;
+					roku_ip = ep.Address.ToString();
+					name = await this.GetRokuName(roku_ip);
+					if (this.IsExpired) break;
+				} catch (Exception e) {
+					Console.WriteLine(e);
 				}
-			});
+
+				if (roku_ip != null && name != null)
+					this.SpawnButton(name, roku_ip);
+			}
 		}
 
 		private async Task<string> GetRokuName(string roku_ip) {
@@ -114,7 +124,7 @@ namespace NeonPartyGamesController.Entities
 
 		private void SpawnButton(string roku_name, string roku_ip) {
 			lock (this.Buttons) {
-				if (this.Buttons.Count < this.Positions.Length && !this.DoesButtonWithIPExist(roku_ip) && Engine.Room is RoomSelectRoku) {
+				if (this.Buttons.Count < this.Positions.Length && !this.DoesButtonWithIPExist(roku_ip) && Engine.Room is RoomSelectRoku && !this.IsExpired) {
 					int i = this.Buttons.Count;
 					var pos = this.Positions[i].ToPoint();
 					var button = new ButtonRokuIP(pos.X, pos.Y, this.Scale, roku_name, roku_ip);
