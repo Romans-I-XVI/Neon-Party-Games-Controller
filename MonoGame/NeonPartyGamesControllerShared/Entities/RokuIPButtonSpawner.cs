@@ -89,9 +89,7 @@ namespace NeonPartyGamesController.Entities
 					roku_ip = ep.Address.ToString();
 					name = await this.GetRokuName(roku_ip);
 					if (this.IsExpired) break;
-				} catch (Exception e) {
-					Console.WriteLine(e);
-				}
+				} catch {}
 
 				if (roku_ip != null && name != null)
 					this.SpawnButton(name, roku_ip);
