@@ -48,5 +48,15 @@ namespace NeonPartyGamesController
 				return _roku_search_bytes;
 			}
 		}
+
+		public static readonly string[] MusicLinks = {
+			"https://www.audiotool.com/track/instantly/",
+			"https://www.audiotool.com/track/electric_love_zone_remix_preview/",
+			"https://www.audiotool.com/track/lowlife_original_mix/",
+			"https://www.audiotool.com/track/boogie_cat_s_bar/",
+			"https://www.audiotool.com/track/the_seeker-l9htihhw/",
+			"https://www.audiotool.com/track/conversion/",
+			"https://www.audiotool.com/track/dead_space-svuvi/",
+		};
 	}
 }
