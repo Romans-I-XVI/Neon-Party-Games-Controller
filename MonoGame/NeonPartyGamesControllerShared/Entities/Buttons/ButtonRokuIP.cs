@@ -9,6 +9,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 	public class ButtonRokuIP : Button
 	{
 		public readonly string[] ButtonText;
+		private const int MaxFontWidth = 270;
 		private static Sprite _sprite => new Sprite(SpriteSheetHolder.SpriteSheet.GetRegion("buttons/roku_select"));
 		private static Rectangle _collider_rect => new Rectangle(-360 / 2, -170 / 2, 360, 170);
 		private readonly float Scale;
@@ -19,12 +20,18 @@ namespace NeonPartyGamesController.Entities.Buttons
 		}
 
 		public override void onDraw(SpriteBatch sprite_batch) {
+			var font = ContentHolder.Get(AvailableFonts.blippo);
 			base.onDraw(sprite_batch);
 			int spread = (int)(22 * this.Scale);
 			for (int i = 0; i < this.ButtonText.Length; i++) {
 				string text = this.ButtonText[i];
+				float line_scale = 1.0f;
+				var text_size = font.MeasureString(text);
+				if (text_size.X > ButtonRokuIP.MaxFontWidth) {
+					line_scale = ButtonRokuIP.MaxFontWidth / text_size.X;
+				}
 				var offset = new Vector2(0, spread * (i == 0 ? -1 : 1));
-				sprite_batch.DrawString(ContentHolder.Get(AvailableFonts.blippo), text, this.Position + offset, Color.White, 0, DrawFrom.Center, this.Scale, SpriteEffects.None, 0);
+				sprite_batch.DrawString(font, text, this.Position + offset, Color.White, 0, DrawFrom.Center, this.Scale * line_scale, SpriteEffects.None, 0);
 			}
 		}
 
