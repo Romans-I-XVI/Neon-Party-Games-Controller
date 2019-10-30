@@ -13,7 +13,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 		private static Rectangle _collider_rect => new Rectangle(-360 / 2, -170 / 2, 360, 170);
 		private readonly float Scale;
 
-		public ButtonRokuIP(int x, int y, float scale, string roku_name, string roku_ip) : base(x, y, scale, _sprite, _collider_rect, ButtonRokuIP.GetOnClickAction(roku_ip)) {
+		public ButtonRokuIP(int x, int y, float scale, string roku_name, string roku_ip) : base(x, y, scale, _sprite, _collider_rect, ButtonRokuIP.GetOnClickAction(roku_name, roku_ip)) {
 			this.Scale = scale;
 			this.ButtonText = new[] {roku_name, roku_ip};
 		}
@@ -28,10 +28,11 @@ namespace NeonPartyGamesController.Entities.Buttons
 			}
 		}
 
-		private static Action GetOnClickAction(string ip_string) {
+		private static Action GetOnClickAction(string roku_name, string ip_string) {
 			return () => {
 				bool success = IPAddress.TryParse(ip_string, out IPAddress ip);
 				if (success && ip != null) {
+					Settings.RokuName = roku_name != null ? roku_name.Trim() : "";
 					Settings.RokuIP = ip;
 				}
 			};

@@ -18,7 +18,8 @@ namespace NeonPartyGamesController.Entities
 {
 	public class RokuIPButtonSpawner : Entity
 	{
-		public readonly int ScanDelay = 50;
+		public readonly int ScanDelay = 250;
+		private bool UdpListenerRunning = false;
 		private UdpClient UdpClient;
 		private IPEndPoint IPEndPoint => new IPEndPoint(IPAddress.Parse(Settings.RokuSearchAddress), Settings.RokuSearchPort);
 		private readonly GameTimeSpan ScanDelayTimer = new GameTimeSpan();
@@ -29,6 +30,7 @@ namespace NeonPartyGamesController.Entities
 		public RokuIPButtonSpawner() {
 			this.UdpClient = new UdpClient(Settings.RokuSearchPort, AddressFamily.InterNetwork);
 			this.StartUdpListener();
+			this.SendScanPacket();
 			const float required_space = 1200;
 			this.Scale = (Engine.Game.CanvasWidth < required_space) ? Engine.Game.CanvasWidth / required_space : 1f;
 
@@ -63,22 +65,24 @@ namespace NeonPartyGamesController.Entities
 			this.UdpClient = null;
 		}
 
-		public override void onChangeRoom(Room previousRoom, Room nextRoom) {
-			base.onChangeRoom(previousRoom, nextRoom);
+		public override void onChangeRoom(Room previous_room, Room next_room) {
+			base.onChangeRoom(previous_room, next_room);
 			this.UdpClient.Close();
 			this.UdpClient.Dispose();
 			this.UdpClient = null;
 		}
 
 		private void SendScanPacket() {
-			this.UdpClient.SendAsync(Settings.RokuSearchBytes, Settings.RokuSearchBytes.Length, IPEndPoint);
+			this.UdpClient.SendAsync(Settings.RokuSearchBytes, Settings.RokuSearchBytes.Length, this.IPEndPoint);
 		}
 
 		private void StartUdpListener() {
-			Task.Run(this.UdpListenTask);
+			if (!this.UdpListenerRunning)
+				Task.Run(this.UdpListenTask);
 		}
 
 		private async void UdpListenTask() {
+			this.UdpListenerRunning = true;
 			while (this.Buttons.Count < this.Positions.Length && !this.IsExpired && this.UdpClient != null) {
 				string name = null;
 				string roku_ip = null;
@@ -94,6 +98,8 @@ namespace NeonPartyGamesController.Entities
 				if (roku_ip != null && name != null)
 					this.SpawnButton(name, roku_ip);
 			}
+
+			this.UdpListenerRunning = false;
 		}
 
 		private async Task<string> GetRokuName(string roku_ip) {
