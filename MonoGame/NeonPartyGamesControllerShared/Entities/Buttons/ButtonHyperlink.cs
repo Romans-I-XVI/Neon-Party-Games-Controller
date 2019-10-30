@@ -1,5 +1,5 @@
 using System;
-using Microsoft.Xna.Framework;
+using System.Diagnostics;
 using MonoEngine;
 
 namespace NeonPartyGamesController.Entities.Buttons
@@ -14,9 +14,17 @@ namespace NeonPartyGamesController.Entities.Buttons
 		}
 
 		private static Action GetOnClickAction(string link) {
-			// TODO: Add hyperlink opening functionality
 			return () => {
-				Console.WriteLine(link);
+				try {
+					var psi = new ProcessStartInfo
+					{
+						FileName = link,
+						UseShellExecute = true
+					};
+					Process.Start(psi);
+				} catch (Exception e) {
+					Debug.WriteLine(e);
+				}
 			};
 		}
 
