@@ -91,7 +91,7 @@ namespace NeonPartyGamesController.Entities
 					this.UdpClient.Receive(ref ep);
 					if (this.IsExpired) break;
 					roku_ip = ep.Address.ToString();
-					name = await this.GetRokuName(roku_ip);
+					name = await RokuECP.GetRokuName(roku_ip);
 					if (this.IsExpired) break;
 				} catch {}
 
@@ -100,30 +100,6 @@ namespace NeonPartyGamesController.Entities
 			}
 
 			this.UdpListenerRunning = false;
-		}
-
-		private async Task<string> GetRokuName(string roku_ip) {
-			string name = "";
-
-			var client = new HttpClient();
-			byte[] response = await client.GetByteArrayAsync("http://" + roku_ip + ":8060/");
-			string res = Encoding.ASCII.GetString(response, 0, response.Length - 1);
-
-			try {
-				int p_from = res.IndexOf("<friendlyName>") + "<friendlyName>".Length;
-				int p_to = res.LastIndexOf("</friendlyName>");
-				name = res.Substring(p_from, p_to - p_from);
-			} catch {}
-
-			if (name.Trim() == "") {
-				try {
-					int p_from = res.IndexOf("<modelName>") + "<modelName>".Length;
-					int p_to = res.LastIndexOf("</modelName>");
-					name = res.Substring(p_from, p_to - p_from);
-				} catch {}
-			}
-
-			return HttpUtility.HtmlDecode(name);
 		}
 
 		private void SpawnButton(string roku_name, string roku_ip) {

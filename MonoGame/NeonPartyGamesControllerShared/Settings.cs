@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using NeonPartyGamesController.Enums;
 
 namespace NeonPartyGamesController
@@ -36,6 +38,16 @@ namespace NeonPartyGamesController
 			string roku_name = SaveDataHandler.LoadData(SavePaths.RokuName).Trim();
 			if (!string.IsNullOrEmpty(roku_name))
 				_roku_name = roku_name;
+
+			if (_roku_ip != null) {
+				Task.Run(async () => {
+					bool alive = await RokuECP.PingRoku(roku_ip);
+					if (!alive) {
+						RokuIP = null;
+						RokuName = "";
+					}
+				});
+			}
 		}
 
 		public static class SavePaths

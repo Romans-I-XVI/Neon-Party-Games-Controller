@@ -33,17 +33,15 @@ namespace NeonPartyGamesController.Entities.Buttons
 #else
 	#if DEBUG
 			var debugger = Engine.GetFirstInstanceByType<DebuggerWithTerminal>();
-			if (debugger != null) {
-				Action<string> evaluator = ButtonManuallyEnterIP.ParseIPText;
-				debugger.OpenConsoleWithCustomEvaluator(evaluator);
-			}
-	#endif
+			debugger?.OpenConsoleWithCustomEvaluator(ButtonManuallyEnterIP.ParseIPText);
+#endif
 #endif
 		}
 
 		private static void ParseIPText(string ip_string) {
 			bool success = IPAddress.TryParse(ip_string, out IPAddress ip);
 			if (success && ip != null) {
+				Settings.RokuName = "";
 				Settings.RokuIP = ip;
 			} else {
 				ButtonManuallyEnterIP.DisplayInvalidIPMessage();
