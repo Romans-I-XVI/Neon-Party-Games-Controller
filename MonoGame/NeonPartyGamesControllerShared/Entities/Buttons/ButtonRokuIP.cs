@@ -8,7 +8,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 {
 	public class ButtonRokuIP : Button
 	{
-		private readonly string[] ButtonText;
+		public readonly string[] ButtonText;
 		private static Sprite _sprite => new Sprite(SpriteSheetHolder.SpriteSheet.GetRegion("buttons/roku_select"));
 		private static Rectangle _collider_rect => new Rectangle(-360 / 2, -170 / 2, 360, 170);
 		private readonly float Scale;
