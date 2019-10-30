@@ -93,7 +93,7 @@ namespace NeonPartyGamesController
 			SpriteSheetHolder.Init(
 				AvailableTextures.spritesheet
 			);
-
+			Settings.Initialize();
 #if DEBUG
 			Engine.SpawnInstance<NeonPartyGamesControllerDebugger>();
 #endif

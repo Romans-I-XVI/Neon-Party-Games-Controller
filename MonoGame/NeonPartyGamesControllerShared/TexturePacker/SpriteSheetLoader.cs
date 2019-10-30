@@ -9,10 +9,6 @@ using Newtonsoft.Json;
 
 namespace NeonPartyGamesController.TexturePacker
 {
-#if NETFX_CORE
-    using System.Threading.Tasks;
-#endif
-
 	public class SpriteSheetLoader
 	{
 		public SpriteSheet Load(Texture2D texture, string data_path) {

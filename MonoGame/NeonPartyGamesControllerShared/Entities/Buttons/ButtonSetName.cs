@@ -21,7 +21,11 @@ namespace NeonPartyGamesController.Entities.Buttons
 	#if DEBUG
 			var debugger = Engine.GetFirstInstanceByType<DebuggerWithTerminal>();
 			if (debugger != null) {
-				Action<string> evaluator = s => Settings.PlayerName = s;
+				Action<string> evaluator = s => {
+					if (s != null && s.Trim() != "") {
+						Settings.PlayerName = s.Trim();
+					};
+				};
 				debugger.OpenConsoleWithCustomEvaluator(evaluator);
 			}
 	#endif
