@@ -14,6 +14,7 @@ namespace NeonPartyGamesController.Rooms
 			float layout_scale = 1f;
 			var button_manually_enter_ip= new ButtonManuallyEnterIP(Engine.Game.CanvasWidth / 2, 620, layout_scale);
 			Engine.SpawnInstance(button_manually_enter_ip);
+			Engine.SpawnInstance<RokuIPButtonSpawner>();
 		}
 
 		public override void onSwitchAway(Room next_room) {
