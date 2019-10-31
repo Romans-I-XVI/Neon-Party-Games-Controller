@@ -34,6 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentRokuDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EmptyEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerNetworkingControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\RokuIPButtonSpawner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Trackpad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Colors.cs" />
