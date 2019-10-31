@@ -112,6 +112,8 @@ namespace NeonPartyGamesController.Entities
 		private void Dispose() {
 			try {
 				this.Socket.Close();
+			} catch {}
+			try {
 				this.Socket.Dispose();
 			} catch {}
 		}
