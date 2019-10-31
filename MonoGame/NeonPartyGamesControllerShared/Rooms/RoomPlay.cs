@@ -8,8 +8,6 @@ namespace NeonPartyGamesController.Rooms
 	public class RoomPlay : Room
 	{
 		public override void onSwitchTo(Room previous_room, Dictionary<string, object> args) {
-			Engine.SpawnInstance<ButtonBack>();
-
 			var trackpad = Engine.SpawnInstance<Trackpad>();
 			var player = new Player(trackpad);
 			Engine.SpawnInstance(player);
@@ -26,6 +24,9 @@ namespace NeonPartyGamesController.Rooms
 			Engine.SpawnInstance(button_increase_trackpad);
 			Engine.SpawnInstance(button_reduce_trackpad);
 			Engine.SpawnInstance(button_reset_trackpad);
+
+			var button_back_avoid_trackpad = new ButtonBackAvoidTrackpad(trackpad);
+			Engine.SpawnInstance(button_back_avoid_trackpad);
 		}
 
 		public override void onSwitchAway(Room next_room) {

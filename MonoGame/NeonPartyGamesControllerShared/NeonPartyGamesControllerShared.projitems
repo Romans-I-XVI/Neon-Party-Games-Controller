@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ContentHolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonBack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonBackAvoidTrackpad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonHyperlink.cs" />
@@ -28,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSelectFace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSelectRoku.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSetName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonTrackpadControlBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentFaceDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentRokuDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EmptyEntity.cs" />
