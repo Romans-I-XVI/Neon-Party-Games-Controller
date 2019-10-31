@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using MonoEngine;
 
@@ -7,7 +8,10 @@ namespace NeonPartyGamesController.Entities
 {
 	public class Button : Entity, ITouchable
 	{
+		protected bool LastClickWasOnSelf { get; private set; }
+		protected int LastClickTouchID { get; private set; }
 		protected Action OnClick;
+		protected Action OnClickHeld = null;
 
 		private Button(int x, int y, float scale, Sprite sprite, Action on_click) {
 			this.Position = new Vector2(x, y);
@@ -33,16 +37,42 @@ namespace NeonPartyGamesController.Entities
 
 		public override void onMouseDown(MouseEventArgs e) {
 			base.onMouseDown(e);
-			if (this.IsClickOnSelf(e.Position))
+			if (this.IsClickOnSelf(e.Position)) {
 				this.OnClick();
+				this.LastClickWasOnSelf = true;
+			} else {
+				this.LastClickWasOnSelf = false;
+			}
+		}
+
+		public override void onMouse(MouseState state) {
+			base.onMouse(state);
+			if (this.LastClickWasOnSelf && state.LeftButton == ButtonState.Pressed && this.IsClickOnSelf(state.Position)) {
+				this.OnClickHeld?.Invoke();
+			}
 		}
 
 		public void onTouchPressed(TouchLocation touch) {
-			if (this.IsClickOnSelf(touch.Position.ToPoint()))
+			if (this.IsClickOnSelf(touch.Position.ToPoint())) {
 				this.OnClick();
+				this.LastClickWasOnSelf = true;
+				this.LastClickTouchID = touch.Id;
+			} else {
+				this.LastClickWasOnSelf = false;
+			}
 		}
 
 		public void onTouch(TouchCollection touch) {
+			if (this.LastClickWasOnSelf) {
+				for (int i = 0; i < touch.Count; i++) {
+					if (touch[i].Id == this.LastClickTouchID) {
+						if (IsClickOnSelf(touch[i].Position.ToPoint())) {
+							this.OnClickHeld?.Invoke();
+							break;
+						}
+					}
+				}
+			}
 		}
 
 		public void onTouchReleased(TouchLocation touch) {

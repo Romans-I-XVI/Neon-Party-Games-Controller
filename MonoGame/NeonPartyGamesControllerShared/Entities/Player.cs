@@ -2,9 +2,6 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoEngine;
-using NeonPartyGamesController.Enums;
-
-// ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 namespace NeonPartyGamesController.Entities
 {
