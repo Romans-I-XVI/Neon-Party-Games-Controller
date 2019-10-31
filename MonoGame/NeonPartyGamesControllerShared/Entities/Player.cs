@@ -1,25 +1,30 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using MonoEngine;
 
 namespace NeonPartyGamesController.Entities
 {
-	public class Player : Entity
+	public class Player : Entity, ITouchable
 	{
 		public readonly Trackpad Trackpad;
 		private Vector2 DestPositionPercent;
 		private Vector2 CurrentPositionPercent;
+		private int CurrentTouchID;
 		private bool IsCurrentClickValid;
 		private bool IsLockedToInputPosition;
+		private bool Active;
 
 		public Player(Trackpad trackpad) {
 			this.Trackpad = trackpad;
 			this.Position = trackpad.Position;
 			this.DestPositionPercent = new Vector2(0.5f, 0.5f);
 			this.CurrentPositionPercent = new Vector2(0.5f, 0.5f);
+			this.CurrentTouchID = -1;
 			this.IsCurrentClickValid = false;
 			this.IsLockedToInputPosition = true;
+			this.Active = true;
 			this.Depth = trackpad.Depth - 1;
 
 			var sprite = new Sprite(SpriteSheetHolder.SpriteSheet.GetRegion(AvailableRegions.Extra.Cursor)) {
@@ -34,19 +39,11 @@ namespace NeonPartyGamesController.Entities
 			var sprite = this.GetSprite("main");
 			sprite.Scale.X = this.Trackpad.Scale;
 			sprite.Scale.Y = this.Trackpad.Scale;
-
-			if (this.IsLockedToInputPosition) {
-				this.CurrentPositionPercent = this.DestPositionPercent;
-			} else {
-				float speed = 0.25f * 60 * dt;
-				this.CurrentPositionPercent = GameUtilities.MoveTowards(this.CurrentPositionPercent, this.DestPositionPercent, speed);
-				const float min_diff = 0.01f;
-				float diff_x = Math.Abs(this.CurrentPositionPercent.X - this.DestPositionPercent.X);
-				float diff_y = Math.Abs(this.CurrentPositionPercent.Y - this.DestPositionPercent.Y);
-				if (diff_x <= min_diff && diff_y <= min_diff)
-					this.IsLockedToInputPosition = true;
+			sprite.Enabled = !this.Trackpad.InMoveMode;
+			this.Active = sprite.Enabled;
+			if (this.Active) {
+				this.UpdatePosition(dt);
 			}
-			this.Position = this.CalculatePositionFromPercent(this.CurrentPositionPercent);
 		}
 
 		public override void onMouseDown(MouseEventArgs e) {
@@ -63,17 +60,63 @@ namespace NeonPartyGamesController.Entities
 			}
 		}
 
+		public void onTouchPressed(TouchLocation touch) {
+			if (this.CurrentTouchID == -1) {
+				this.onInputDown(touch.Position.ToPoint());
+				if (this.IsCurrentClickValid) {
+					this.CurrentTouchID = touch.Id;
+				}
+			}
+		}
+
+		public void onTouch(TouchCollection touch) {
+			if (this.IsCurrentClickValid) {
+				for (int i = 0; i < touch.Count; i++) {
+					if (touch[i].Id == this.CurrentTouchID) {
+						this.onInput(touch[i].Position.ToPoint());
+						break;
+					}
+				}
+			}
+		}
+
+		public void onTouchReleased(TouchLocation touch) {
+			if (touch.Id == this.CurrentTouchID)
+				this.CurrentTouchID = -1;
+		}
+
 		private void onInputDown(Point position) {
+			if (!this.Active)
+				return;
+
 			var trackpad_rect = this.Trackpad.CurrentTrackpadRect;
 			this.IsCurrentClickValid = CollisionChecking.Check(position, trackpad_rect);
 			this.IsLockedToInputPosition = false;
 		}
 
 		private void onInput(Point position) {
+			if (!this.Active)
+				return;
+
 			if (this.IsCurrentClickValid) {
 				var dest_pos = this.ClampPositionToTrackpad(position.ToVector2());
 				this.DestPositionPercent = this.CalculatePercentFromPosition(dest_pos);
 			}
+		}
+
+		private void UpdatePosition(float dt) {
+			if (this.IsLockedToInputPosition) {
+				this.CurrentPositionPercent = this.DestPositionPercent;
+			} else {
+				float speed = 0.25f * 60 * dt;
+				this.CurrentPositionPercent = GameUtilities.MoveTowards(this.CurrentPositionPercent, this.DestPositionPercent, speed);
+				const float min_diff = 0.01f;
+				float diff_x = Math.Abs(this.CurrentPositionPercent.X - this.DestPositionPercent.X);
+				float diff_y = Math.Abs(this.CurrentPositionPercent.Y - this.DestPositionPercent.Y);
+				if (diff_x <= min_diff && diff_y <= min_diff)
+					this.IsLockedToInputPosition = true;
+			}
+			this.Position = this.CalculatePositionFromPercent(this.CurrentPositionPercent);
 		}
 
 		private Vector2 ClampPositionToTrackpad(Vector2 position) {

@@ -14,9 +14,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 		}
 
 		private static Action GetOnClickAction(Trackpad trackpad) {
-			return () => {
-				//TODO: Add something to handle trackpad adjustments
-			};
+			return () => { trackpad.InMoveMode = !trackpad.InMoveMode; };
 		}
 	}
 }
