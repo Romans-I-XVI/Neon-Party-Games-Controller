@@ -17,6 +17,9 @@ namespace NeonPartyGamesController.Entities
 		public float MaxY => Engine.Game.CanvasHeight - (Trackpad.BaseTrackpadHeight / 2) * this.Scale - Trackpad.MinimumBuffer;
 		public float MinX => (Trackpad.BaseTrackpadWidth / 2) * this.Scale + Trackpad.MinimumBuffer;
 		public float MinY => (Trackpad.BaseTrackpadHeight / 2) * this.Scale + Trackpad.MinimumBuffer;
+		public int CurrentTrackpadWidth => (int)(Trackpad.BaseTrackpadWidth * this.Scale);
+		public int CurrentTrackpadHeight => (int)(Trackpad.BaseTrackpadHeight * this.Scale);
+		public Rectangle CurrentTrackpadRect => new Rectangle((int)(this.Position.X - this.CurrentTrackpadWidth / 2f), (int)(this.Position.Y - this.CurrentTrackpadHeight / 2f), this.CurrentTrackpadWidth, this.CurrentTrackpadHeight);
 
 		public Trackpad() {
 			if (Settings.TrackpadScale > Trackpad.MinimumScale) {
