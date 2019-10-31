@@ -11,6 +11,10 @@ namespace NeonPartyGamesController.Entities.Buttons
 
 		public ButtonIncreaseTrackpad(int x, int y, Trackpad trackpad) : base(x, y, 1, _sprite, _collider_rect, trackpad.IncreaseScale, trackpad) {
 			this.OnClickHeld = trackpad.IncreaseScale;
+			this.OnClickReleased = () => {
+				Settings.TrackpadScale = trackpad.Scale;
+				Settings.TrackpadPosition = trackpad.Position;
+			};
 		}
 	}
 }

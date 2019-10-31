@@ -12,6 +12,7 @@ namespace NeonPartyGamesController.Entities
 		protected int LastClickTouchID { get; private set; }
 		protected Action OnClick;
 		protected Action OnClickHeld = null;
+		protected Action OnClickReleased = null;
 
 		private Button(int x, int y, float scale, Sprite sprite, Action on_click) {
 			this.Position = new Vector2(x, y);
@@ -37,18 +38,31 @@ namespace NeonPartyGamesController.Entities
 
 		public override void onMouseDown(MouseEventArgs e) {
 			base.onMouseDown(e);
-			if (this.IsClickOnSelf(e.Position)) {
-				this.OnClick();
-				this.LastClickWasOnSelf = true;
-			} else {
-				this.LastClickWasOnSelf = false;
+			if (e.Button == MouseButtons.LeftButton) {
+				if (this.IsClickOnSelf(e.Position)) {
+					this.OnClick();
+					this.LastClickWasOnSelf = true;
+				} else {
+					this.LastClickWasOnSelf = false;
+				}
 			}
 		}
 
 		public override void onMouse(MouseState state) {
 			base.onMouse(state);
-			if (this.LastClickWasOnSelf && state.LeftButton == ButtonState.Pressed && this.IsClickOnSelf(state.Position)) {
-				this.OnClickHeld?.Invoke();
+			if (this.LastClickWasOnSelf && state.LeftButton == ButtonState.Pressed) {
+				if (this.IsClickOnSelf(state.Position)) {
+					this.OnClickHeld?.Invoke();
+				} else {
+					this.ReleaseClick();
+				}
+			}
+		}
+
+		public override void onMouseUp(MouseEventArgs e) {
+			base.onMouseUp(e);
+			if (this.LastClickWasOnSelf && e.Button == MouseButtons.LeftButton) {
+				this.ReleaseClick();
 			}
 		}
 
@@ -68,14 +82,25 @@ namespace NeonPartyGamesController.Entities
 					if (touch[i].Id == this.LastClickTouchID) {
 						if (IsClickOnSelf(touch[i].Position.ToPoint())) {
 							this.OnClickHeld?.Invoke();
-							break;
+						} else {
+							this.ReleaseClick();
 						}
+
+						break;
 					}
 				}
 			}
 		}
 
 		public void onTouchReleased(TouchLocation touch) {
+			if (this.LastClickWasOnSelf && touch.Id == this.LastClickTouchID) {
+				this.ReleaseClick();
+			}
+		}
+
+		private void ReleaseClick() {
+			this.LastClickWasOnSelf = false;
+			this.OnClickReleased?.Invoke();
 		}
 
 		private bool IsClickOnSelf(Point click_position) {

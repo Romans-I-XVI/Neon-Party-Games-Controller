@@ -29,7 +29,7 @@ namespace NeonPartyGamesController.Entities
 		public Rectangle CurrentTrackpadRect => new Rectangle((int)(this.Position.X - this.CurrentTrackpadWidth / 2f), (int)(this.Position.Y - this.CurrentTrackpadHeight / 2f), this.CurrentTrackpadWidth, this.CurrentTrackpadHeight);
 
 		public Trackpad() {
-			if (Settings.TrackpadScale > Trackpad.MinimumScale) {
+			if (Settings.TrackpadScale > 0) {
 				this.Scale = Settings.TrackpadScale;
 			} else {
 				this.SetToDefaultScale();
@@ -154,6 +154,8 @@ namespace NeonPartyGamesController.Entities
 
 		public void DisableMoveMode() {
 			this.InMoveMode = false;
+			Settings.TrackpadScale = this.Scale;
+			Settings.TrackpadPosition = this.Position;
 		}
 	}
 }
