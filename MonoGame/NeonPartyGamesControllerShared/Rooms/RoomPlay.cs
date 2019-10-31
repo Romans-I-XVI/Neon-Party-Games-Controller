@@ -9,7 +9,6 @@ namespace NeonPartyGamesController.Rooms
 	{
 		public override void onSwitchTo(Room previous_room, Dictionary<string, object> args) {
 			Engine.SpawnInstance<ButtonBack>();
-			Engine.SpawnInstance<NetworkingTest>();
 
 			var trackpad = Engine.SpawnInstance<Trackpad>();
 			var player = new Player(trackpad);

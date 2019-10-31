@@ -22,8 +22,6 @@ namespace NeonPartyGamesController
 					previous_position.Y = float.Parse(data[1]);
 					_trackpad_position = previous_position;
 				}
-			} else {
-				_trackpad_position = new Vector2(Engine.Game.CanvasWidth - Trackpad.DefaultWidth / 2, Engine.Game.CanvasHeight - Trackpad.DefaultHeight / 2);
 			}
 
 			string trackpad_scale = SaveDataHandler.LoadData(SavePaths.TrackpadScale)?.Trim();
@@ -88,8 +86,8 @@ namespace NeonPartyGamesController
 		private static Faces _player_face = Faces.Face_1;
 		private static IPAddress _roku_ip = null;
 		private static string _roku_name = "";
-		private static float _trackpad_scale = Trackpad.DefaultScale;
-		private static Vector2 _trackpad_position = Vector2.One;
+		private static float _trackpad_scale = -1;
+		private static Vector2 _trackpad_position = new Vector2(-1, -1);
 
 		public static string PlayerName {
 			get => Settings._player_name;
