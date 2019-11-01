@@ -31,8 +31,11 @@ namespace NeonPartyGamesController.Entities
 			this.Depth = player.Depth - 1;
 			this.Player = player;
 			this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-			this.SendDelayTimer = new GameTimeSpan();
 			this.RemoteEndPoint = new IPEndPoint(roku_ip, roku_port);
+			try {
+				this.Socket.Connect(this.RemoteEndPoint);
+			} catch {}
+			this.SendDelayTimer = new GameTimeSpan();
 			this.InitializeData();
 			this.StartSendingPackets();
 		}
@@ -101,6 +104,14 @@ namespace NeonPartyGamesController.Entities
 		}
 
 		private IPAddress GetMyIP() {
+			IPAddress address_from_socket = null;
+			try {
+				address_from_socket = ((IPEndPoint)this.Socket.LocalEndPoint)?.Address;
+			} catch {}
+
+			if (address_from_socket != null)
+				return address_from_socket;
+
 			List<IPAddress> addresses = new List<IPAddress>();
 
 			// Get a list of all network interfaces (usually one per network card, dialup, and VPN connection)
