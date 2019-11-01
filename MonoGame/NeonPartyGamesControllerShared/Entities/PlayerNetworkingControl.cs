@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -99,8 +101,53 @@ namespace NeonPartyGamesController.Entities
 		}
 
 		private IPAddress GetMyIP() {
-			//TODO: Add proper retrieval of personal IP address
-			return new IPAddress(new byte[] {192, 168, 1, 245});
+			List<IPAddress> addresses = new List<IPAddress>();
+
+			// Get a list of all network interfaces (usually one per network card, dialup, and VPN connection)
+			NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+			foreach (NetworkInterface network in networkInterfaces)
+			{
+				// Read the IP configuration for each network
+				IPInterfaceProperties properties = network.GetIPProperties();
+
+				if (properties.UnicastAddresses.Count > 0) {
+					var address = properties.UnicastAddresses[0];
+
+					// We're only interested in IPv4 addresses for now
+					if (address.Address.AddressFamily != AddressFamily.InterNetwork)
+						continue;
+
+					// Ignore loopback addresses (e.g., 127.0.0.1)
+					if (IPAddress.IsLoopback(address.Address))
+						continue;
+
+					addresses.Add(address.Address);
+				}
+			}
+
+			if (addresses.Count == 1) {
+				return addresses[0];
+			} else if (addresses.Count > 1) {
+				if (Settings.RokuIP == null)
+					return null;
+
+				var best_choice = addresses[0];
+				for (int i = addresses.Count - 1; i >= 0; i--) {
+					var local_bytes = addresses[i].GetAddressBytes();
+					var remote_bytes = Settings.RokuIP.GetAddressBytes();
+					if (local_bytes.Length == 4 &&
+					    remote_bytes.Length == 4 &&
+						local_bytes[0] == remote_bytes[0] &&
+					    local_bytes[1] == remote_bytes[1] &&
+					    local_bytes[2] == remote_bytes[2]) {
+						best_choice = addresses[i];
+					}
+				}
+
+				return best_choice;
+			}
+
+			return null;
 		}
 
 		private ushort GetMyID() {
@@ -110,7 +157,7 @@ namespace NeonPartyGamesController.Entities
 
 		private void InitializeData() {
 			this.Data = new byte[PlayerNetworkingControl.SendDataSize];
-			var ip = this.GetMyIP();
+			var ip = this.GetMyIP() ?? new IPAddress(new byte[4]);
 			ushort id = this.GetMyID();
 			var pos = this.Player.GetRokuScreenPosition();
 
