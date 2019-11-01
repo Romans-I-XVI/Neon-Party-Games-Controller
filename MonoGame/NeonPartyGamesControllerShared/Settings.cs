@@ -154,6 +154,7 @@ namespace NeonPartyGamesController
 		public const int RokuCanvasHeight = 720;
 		public const string RokuSearchAddress = "239.255.255.250";
 		public const int RokuSearchPort = 1900;
+		public const int RokuPort = 54321;
 		private static byte[] _roku_search_bytes = null;
 		public static byte[] RokuSearchBytes {
 			get {

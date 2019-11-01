@@ -11,8 +11,10 @@ namespace NeonPartyGamesController.Rooms
 			var trackpad = Engine.SpawnInstance<Trackpad>();
 			var player = new Player(trackpad);
 			Engine.SpawnInstance(player);
-			var player_networking_control = new PlayerNetworkingControl(player);
-			Engine.SpawnInstance(player_networking_control);
+			if (Settings.RokuIP != null) {
+				var player_networking_control = new PlayerNetworkingControl(player, Settings.RokuIP, Settings.RokuPort);
+				Engine.SpawnInstance(player_networking_control);
+			}
 
 			int button_y = 75;
 			int button_spread_x = 150;
