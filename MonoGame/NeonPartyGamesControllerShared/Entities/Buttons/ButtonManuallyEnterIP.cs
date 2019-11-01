@@ -3,6 +3,7 @@ using System.Net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoEngine;
+using NeonPartyGamesController.Rooms;
 
 namespace NeonPartyGamesController.Entities.Buttons
 {
@@ -43,6 +44,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 			if (success && ip != null) {
 				Settings.RokuName = "";
 				Settings.RokuIP = ip;
+				Engine.ChangeRoom<RoomMain>();
 			} else {
 				ButtonManuallyEnterIP.DisplayInvalidIPMessage();
 			}
