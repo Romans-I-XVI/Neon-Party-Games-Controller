@@ -14,11 +14,13 @@ namespace NeonPartyGamesController.Entities
 	public class PlayerNetworkingControl : Entity
 	{
 		public const int SendDataSize = 50;
+		// Packets will send up to 4 times per target Roku frame (60fps)
+		// This makes sure the Roku always has the latest data but without flooding the socket
+		private const float MinimumSendDelay = 16.66666666f / 4f;
 		public readonly Player Player;
 		private readonly Socket Socket;
 		private readonly IPEndPoint RemoteEndPoint;
 		private byte[] Data;
-		private readonly float MinimumSendDelay = 16.66666666f;
 		private readonly GameTimeSpan SendDelayTimer;
 		private ManualResetEvent SendWaitHandle = null;
 
@@ -62,8 +64,8 @@ namespace NeonPartyGamesController.Entities
 					this.SendWaitHandle.Reset();
 
 					float current_time = this.SendDelayTimer.TotalMilliseconds;
-					if (current_time < this.MinimumSendDelay) {
-						int time_to_sleep = (int)(this.MinimumSendDelay - current_time);
+					if (current_time < PlayerNetworkingControl.MinimumSendDelay) {
+						int time_to_sleep = (int)(PlayerNetworkingControl.MinimumSendDelay - current_time);
 						Thread.Sleep(time_to_sleep);
 					}
 					this.SendDelayTimer.Mark();
@@ -85,7 +87,7 @@ namespace NeonPartyGamesController.Entities
 
 		private ushort GetMyID() {
 			//TODO: Add proper retrieval of personal ID
-			return 0;
+			return (ushort)Engine.Random.Next(ushort.MaxValue);
 		}
 
 		private void InitializeData() {
