@@ -40,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Colors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Faces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\InputDevices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SoundEffectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\SpriteBatchExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\SpriteFontExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
