@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\SpriteFontExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HapticFeedbackPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NeonPartyGamesControllerDebugger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkingTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RokuECP.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomSelectRoku.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SaveDataHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoundPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpriteSheetHolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TexturePacker\SpriteSheet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TexturePacker\SpriteSheetLoader.cs" />

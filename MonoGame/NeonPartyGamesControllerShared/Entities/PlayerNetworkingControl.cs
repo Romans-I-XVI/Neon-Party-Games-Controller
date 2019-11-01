@@ -16,28 +16,39 @@ namespace NeonPartyGamesController.Entities
 	public class PlayerNetworkingControl : Entity
 	{
 		public const int SendDataSize = 50;
+		public const int ReceiveDataSize = 4;
 		// Packets will send up to 4 times per target Roku frame (60fps)
 		// This makes sure the Roku always has the latest data but without flooding the socket
 		private const float MinimumSendDelay = 16.66666666f / 4f;
 		public readonly Player Player;
-		private readonly Socket Socket;
+		private readonly Socket SendSocket;
+		private readonly Socket ReceiveSocket;
 		private readonly IPEndPoint RemoteEndPoint;
 		private byte[] Data;
 		private readonly GameTimeSpan SendDelayTimer;
 		private ManualResetEvent SendWaitHandle = null;
 		private bool SentDestroyPacket = false;
+		private readonly IPAddress RokuIP;
+		private readonly int RokuPort;
 
 		public PlayerNetworkingControl(Player player, IPAddress roku_ip, int roku_port) {
 			this.Depth = player.Depth - 1;
 			this.Player = player;
-			this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-			this.RemoteEndPoint = new IPEndPoint(roku_ip, roku_port);
+			this.RokuIP = roku_ip;
+			this.RokuPort = roku_port;
+			this.SendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			this.ReceiveSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			this.RemoteEndPoint = new IPEndPoint(this.RokuIP, this.RokuPort);
 			try {
-				this.Socket.Connect(this.RemoteEndPoint);
+				this.SendSocket.Connect(this.RemoteEndPoint);
+			} catch {}
+			try {
+				this.ReceiveSocket.Bind(new IPEndPoint(this.GetMyIP(), this.RokuPort));
 			} catch {}
 			this.SendDelayTimer = new GameTimeSpan();
 			this.InitializeData();
 			this.StartSendingPackets();
+			this.StartReceivingPackets();
 		}
 
 		~PlayerNetworkingControl() {
@@ -83,8 +94,28 @@ namespace NeonPartyGamesController.Entities
 					// This extra check is for the rare scenario where the destroy packet gets sent between the while check and here.
 					if (!this.SentDestroyPacket) {
 						try {
-							this.Socket.SendTo(send_buffer, this.RemoteEndPoint);
+							this.SendSocket.SendTo(send_buffer, this.RemoteEndPoint);
 						} catch {}
+					}
+				}
+			});
+		}
+
+		private void StartReceivingPackets() {
+			byte[] receive_buffer = new byte[PlayerNetworkingControl.ReceiveDataSize];
+			EndPoint ep = new IPEndPoint(IPAddress.Any, 0);
+			Task.Run(() => {
+				while (!this.IsExpired) {
+					int received = 0;
+					try {
+						received = this.ReceiveSocket.ReceiveFrom(receive_buffer, ref ep);
+					} catch {}
+
+					if (received > 0 && ((IPEndPoint)ep).Address.Equals(this.RokuIP) && ((IPEndPoint)ep).Port == this.RokuPort) {
+						if (received >= 3)
+							SoundPlayer.Play(receive_buffer[0], receive_buffer[1], receive_buffer[2]);
+						if (received >= 4)
+							HapticFeedbackPlayer.Play(receive_buffer[3]);
 					}
 				}
 			});
@@ -99,14 +130,14 @@ namespace NeonPartyGamesController.Entities
 				}
 
 				send_buffer[10] = Convert.ToByte(true);
-				this.Socket.SendTo(send_buffer, this.RemoteEndPoint);
+				this.SendSocket.SendTo(send_buffer, this.RemoteEndPoint);
 			} catch {}
 		}
 
 		private IPAddress GetMyIP() {
 			IPAddress address_from_socket = null;
 			try {
-				address_from_socket = ((IPEndPoint)this.Socket.LocalEndPoint)?.Address;
+				address_from_socket = ((IPEndPoint)this.SendSocket.LocalEndPoint)?.Address;
 			} catch {}
 
 			if (address_from_socket != null)
@@ -139,13 +170,13 @@ namespace NeonPartyGamesController.Entities
 			if (addresses.Count == 1) {
 				return addresses[0];
 			} else if (addresses.Count > 1) {
-				if (Settings.RokuIP == null)
+				if (this.RokuIP == null)
 					return null;
 
 				var best_choice = addresses[0];
 				for (int i = addresses.Count - 1; i >= 0; i--) {
 					var local_bytes = addresses[i].GetAddressBytes();
-					var remote_bytes = Settings.RokuIP.GetAddressBytes();
+					var remote_bytes = this.RokuIP.GetAddressBytes();
 					if (local_bytes.Length == 4 &&
 					    remote_bytes.Length == 4 &&
 						local_bytes[0] == remote_bytes[0] &&
@@ -212,10 +243,10 @@ namespace NeonPartyGamesController.Entities
 				this.SendDestroyPacket();
 
 			try {
-				this.Socket.Close();
+				this.SendSocket.Close();
 			} catch {}
 			try {
-				this.Socket.Dispose();
+				this.SendSocket.Dispose();
 			} catch {}
 		}
 	}
