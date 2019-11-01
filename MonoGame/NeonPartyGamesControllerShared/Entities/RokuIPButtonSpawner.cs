@@ -102,11 +102,17 @@ namespace NeonPartyGamesController.Entities
 				string roku_ip = null;
 				try {
 					var ep = this.IPEndPoint;
-					this.UdpClient.Receive(ref ep);
+					var data = this.UdpClient.Receive(ref ep);
 					if (this.IsExpired) break;
-					roku_ip = ep.Address.ToString();
-					name = await RokuECP.GetRokuName(roku_ip);
-					if (this.IsExpired) break;
+					string received_text = Encoding.ASCII.GetString(data);
+					if (!string.IsNullOrEmpty(received_text)) {
+						bool is_roku = received_text.ToLower().Contains("roku:ecp");
+						if (is_roku) {
+							roku_ip = ep.Address.ToString();
+							name = await RokuECP.GetRokuName(roku_ip);
+						}
+						if (this.IsExpired) break;
+					}
 				} catch {}
 
 				if (roku_ip != null && name != null)
