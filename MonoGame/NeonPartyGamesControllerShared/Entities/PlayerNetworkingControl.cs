@@ -23,6 +23,7 @@ namespace NeonPartyGamesController.Entities
 		private byte[] Data;
 		private readonly GameTimeSpan SendDelayTimer;
 		private ManualResetEvent SendWaitHandle = null;
+		private bool SentDestroyPacket = false;
 
 		public PlayerNetworkingControl(Player player, IPAddress roku_ip, int roku_port) {
 			this.Depth = player.Depth - 1;
@@ -59,7 +60,7 @@ namespace NeonPartyGamesController.Entities
 			byte[] send_buffer = new byte[PlayerNetworkingControl.SendDataSize];
 
 			Task.Run(() => {
-				while (!this.IsExpired) {
+				while (!this.IsExpired && !this.SentDestroyPacket) {
 					this.SendWaitHandle.WaitOne();
 					this.SendWaitHandle.Reset();
 
@@ -73,11 +74,28 @@ namespace NeonPartyGamesController.Entities
 					lock (this.Data) {
 						this.Data.CopyTo(send_buffer, 0);
 					}
-					try {
-						this.Socket.SendTo(send_buffer, this.RemoteEndPoint);
-					} catch {}
+
+					// This extra check is for the rare scenario where the destroy packet gets sent between the while check and here.
+					if (!this.SentDestroyPacket) {
+						try {
+							this.Socket.SendTo(send_buffer, this.RemoteEndPoint);
+						} catch {}
+					}
 				}
 			});
+		}
+
+		private void SendDestroyPacket() {
+			this.SentDestroyPacket = true;
+			try {
+				byte[] send_buffer = new byte[PlayerNetworkingControl.SendDataSize];
+				lock (this.Data) {
+					this.Data.CopyTo(send_buffer, 0);
+				}
+
+				send_buffer[10] = Convert.ToByte(true);
+				this.Socket.SendTo(send_buffer, this.RemoteEndPoint);
+			} catch {}
 		}
 
 		private IPAddress GetMyIP() {
@@ -137,6 +155,9 @@ namespace NeonPartyGamesController.Entities
 		}
 
 		private void Dispose() {
+			if (!this.SentDestroyPacket)
+				this.SendDestroyPacket();
+
 			try {
 				this.Socket.Close();
 			} catch {}
