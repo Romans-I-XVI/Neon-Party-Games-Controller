@@ -161,15 +161,10 @@ namespace NeonPartyGamesController.Entities
 			return null;
 		}
 
-		private ushort GetMyID() {
-			//TODO: Add proper retrieval of personal ID
-			return (ushort)Engine.Random.Next(ushort.MaxValue);
-		}
-
 		private void InitializeData() {
 			this.Data = new byte[PlayerNetworkingControl.SendDataSize];
 			var ip = this.GetMyIP() ?? new IPAddress(new byte[4]);
-			ushort id = this.GetMyID();
+			ushort id = Settings.ID;
 			var pos = this.Player.GetRokuScreenPosition();
 
 			byte fill = 0;
