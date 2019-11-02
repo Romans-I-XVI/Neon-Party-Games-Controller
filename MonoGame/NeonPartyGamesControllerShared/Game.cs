@@ -14,6 +14,9 @@ namespace NeonPartyGamesController
         public static Microsoft.Devices.Sensors.Accelerometer Accelerometer = new Microsoft.Devices.Sensors.Accelerometer();
         public static Android.OS.Vibrator Vibrator;
 #endif
+		public static bool ExitGame = false;
+		public delegate void dgExitEvent();
+		public event dgExitEvent exitEvent;
 
 		public NeonPartyGamesControllerGame() : base(1280, NeonPartyGamesControllerGame.ScreenHeight, 0, 0) {
 			this.CanvasWidth = NeonPartyGamesControllerGame.GetScreenWidth();
@@ -98,6 +101,17 @@ namespace NeonPartyGamesController
 			Engine.SpawnInstance<NeonPartyGamesControllerDebugger>();
 #endif
 			Engine.ChangeRoom<RoomMain>();
+		}
+
+		protected override void Update(GameTime game_time) {
+			base.Update(game_time);
+			if (NeonPartyGamesControllerGame.ExitGame) {
+				NeonPartyGamesControllerGame.ExitGame = false;
+				this.exitEvent?.Invoke();
+#if !ANDROID && !IOS
+                this.Exit();
+#endif
+			}
 		}
 	}
 }
