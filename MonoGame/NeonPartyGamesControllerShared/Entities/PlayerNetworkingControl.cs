@@ -248,6 +248,12 @@ namespace NeonPartyGamesController.Entities
 			try {
 				this.SendSocket.Dispose();
 			} catch {}
+            try {
+                this.ReceiveSocket.Close();
+            } catch {}
+            try {
+                this.ReceiveSocket.Dispose();
+            } catch {}
 		}
 	}
 }
