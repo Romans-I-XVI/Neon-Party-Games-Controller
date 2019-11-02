@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +34,14 @@ namespace NeonPartyGamesController.Entities
 				SendTimeout = 100,
 				ReceiveTimeout = 100
 			};
+			try {
+				var nic_count = NetworkInterface.GetAllNetworkInterfaces().Count(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback);
+				if (nic_count > 1) {
+					var ip = GetLocalIPWithGateway();
+					if (ip != null)
+						this.Socket.Bind(new IPEndPoint(ip, 0));
+				}
+			} catch {}
 			this.StartListenerTask();
 			this.SendScanPacket();
 			const float required_space = 1200;
@@ -57,7 +67,22 @@ namespace NeonPartyGamesController.Entities
 			this.IsExpired = true;
 		}
 
-		public override void onUpdate(float dt) {
+		private IPAddress GetLocalIPWithGateway() {
+			// Code from https://stackoverflow.com/questions/44608330/c-sharp-get-active-nic-ipv4-address
+			foreach (var net_i in NetworkInterface.GetAllNetworkInterfaces()) {
+				if (net_i.NetworkInterfaceType == NetworkInterfaceType.Loopback || net_i.OperationalStatus != OperationalStatus.Up)
+					continue;
+
+				foreach (var uni_ip_addr_info in net_i.GetIPProperties().UnicastAddresses.Where(x => net_i.GetIPProperties().GatewayAddresses.Count > 0)) {
+					if (uni_ip_addr_info.Address.AddressFamily == AddressFamily.InterNetwork)
+						return uni_ip_addr_info.Address;
+				}
+			}
+
+			return null;
+		}
+
+        public override void onUpdate(float dt) {
 			base.onUpdate(dt);
 			if (this.ScanDelayTimer.TotalMilliseconds >= this.ScanDelay) {
 				this.SendScanPacket();
