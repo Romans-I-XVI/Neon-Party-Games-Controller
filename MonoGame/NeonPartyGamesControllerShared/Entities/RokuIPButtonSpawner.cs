@@ -20,7 +20,9 @@ namespace NeonPartyGamesController.Entities
 	{
 		public readonly int ScanDelay = 250;
 		private bool UdpListenerRunning = false;
-		private UdpClient UdpClient;
+		private readonly Socket SendSocket;
+		private readonly Socket ReceiveSocket;
+		private readonly IPEndPoint RemoteEndPoint;
 		private IPEndPoint IPEndPoint => new IPEndPoint(IPAddress.Parse(Settings.RokuSearchAddress), Settings.RokuSearchPort);
 		private readonly GameTimeSpan ScanDelayTimer = new GameTimeSpan();
 		private readonly float Scale;
@@ -28,9 +30,19 @@ namespace NeonPartyGamesController.Entities
 		private readonly List<ButtonRokuIP> Buttons = new List<ButtonRokuIP>();
 
 		public RokuIPButtonSpawner() {
+			this.SendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			this.ReceiveSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			this.RemoteEndPoint = new IPEndPoint(IPAddress.Parse(Settings.RokuSearchAddress), Settings.RokuSearchPort);
 			try {
-				this.UdpClient = new UdpClient(Settings.RokuSearchPort, AddressFamily.InterNetwork);
-			} catch {}
+				this.SendSocket.Connect(this.RemoteEndPoint);
+			} catch (Exception ex) {
+				Debug.WriteLine(ex);
+			}
+			try {
+				this.ReceiveSocket.Bind(new IPEndPoint(((IPEndPoint)this.SendSocket.LocalEndPoint).Address, Settings.RokuSearchPort));
+			} catch (Exception ex) {
+				Debug.WriteLine(ex);
+			}
 			this.StartUdpListener();
 			this.SendScanPacket();
 			const float required_space = 1200;
@@ -52,6 +64,10 @@ namespace NeonPartyGamesController.Entities
 			}
 		}
 
+		~RokuIPButtonSpawner() {
+			this.IsExpired = true;
+		}
+
 		public override void onUpdate(float dt) {
 			base.onUpdate(dt);
 			if (this.ScanDelayTimer.TotalMilliseconds >= this.ScanDelay) {
@@ -62,56 +78,53 @@ namespace NeonPartyGamesController.Entities
 
 		public override void onDestroy() {
 			base.onDestroy();
-			if (this.UdpClient != null) {
-				try {
-					this.UdpClient.Close();
-					this.UdpClient.Dispose();
-				} catch {}
-			}
-			this.UdpClient = null;
+			this.Dispose();
 		}
 
 		public override void onChangeRoom(Room previous_room, Room next_room) {
 			base.onChangeRoom(previous_room, next_room);
-			if (this.UdpClient != null) {
-				try {
-					this.UdpClient.Close();
-					this.UdpClient.Dispose();
-				} catch {}
-			}
-			this.UdpClient = null;
+			this.Dispose();
 		}
 
 		private void SendScanPacket() {
-			if (this.UdpClient != null) {
-				try {
-					this.UdpClient.SendAsync(Settings.RokuSearchBytes, Settings.RokuSearchBytes.Length, this.IPEndPoint);
-				} catch {}
+			try {
+				this.SendSocket.SendTo(Settings.RokuSearchBytes, this.RemoteEndPoint);
+			} catch (Exception ex) {
+				Debug.WriteLine(ex);
 			}
 		}
 
 		private void StartUdpListener() {
-			if (!this.UdpListenerRunning)
-				Task.Run(this.UdpListenTask);
+//			if (!this.UdpListenerRunning)
+//				Task.Run(this.UdpListenTask);
 		}
 
 		private async void UdpListenTask() {
+			byte[] receive_buffer = new byte[2048];
+			EndPoint ep = new IPEndPoint(IPAddress.Any, 0);
+
 			this.UdpListenerRunning = true;
-			while (this.Buttons.Count < this.Positions.Length && !this.IsExpired && this.UdpClient != null) {
+			while (this.Buttons.Count < this.Positions.Length && !this.IsExpired) {
 				string name = null;
 				string roku_ip = null;
 				try {
-					var ep = this.IPEndPoint;
-					var data = this.UdpClient.Receive(ref ep);
+					int received = 0;
+					try {
+						received = this.ReceiveSocket.ReceiveFrom(receive_buffer, ref ep);
+					} catch (Exception e) {
+						Debug.WriteLine(e);
+					}
 					if (this.IsExpired) break;
-					string received_text = Encoding.ASCII.GetString(data);
-					if (!string.IsNullOrEmpty(received_text)) {
-						bool is_roku = received_text.ToLower().Contains("roku:ecp");
-						if (is_roku) {
-							roku_ip = ep.Address.ToString();
-							name = await RokuECP.GetRokuName(roku_ip);
+					if (received > 0) {
+						string received_text = Encoding.ASCII.GetString(receive_buffer, 0, received);
+						if (!string.IsNullOrEmpty(received_text)) {
+							bool is_roku = received_text.ToLower().Contains("roku:ecp");
+							if (is_roku) {
+								roku_ip = ((IPEndPoint)ep).Address.ToString();
+								name = await RokuECP.GetRokuName(roku_ip);
+							}
+							if (this.IsExpired) break;
 						}
-						if (this.IsExpired) break;
 					}
 				} catch {}
 
@@ -141,6 +154,21 @@ namespace NeonPartyGamesController.Entities
 			}
 
 			return false;
+		}
+
+		private void Dispose() {
+			try {
+				this.SendSocket.Close();
+			} catch {}
+			try {
+				this.SendSocket.Dispose();
+			} catch {}
+			try {
+				this.ReceiveSocket.Close();
+			} catch {}
+			try {
+				this.ReceiveSocket.Dispose();
+			} catch {}
 		}
 	}
 }
