@@ -36,8 +36,12 @@ namespace NeonPartyGamesController.Entities
 			this.Player = player;
 			this.RokuIP = roku_ip;
 			this.RokuPort = roku_port;
-			this.SendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-			this.ReceiveSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			this.SendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp) {
+				SendTimeout = 100
+			};
+			this.ReceiveSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp) {
+				ReceiveTimeout = 100
+			};
 			this.RemoteEndPoint = new IPEndPoint(this.RokuIP, this.RokuPort);
 			try {
 				this.SendSocket.Connect(this.RemoteEndPoint);
