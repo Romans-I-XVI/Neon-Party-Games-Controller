@@ -28,7 +28,10 @@ namespace NeonPartyGamesController.Entities
 		private readonly List<ButtonRokuIP> Buttons = new List<ButtonRokuIP>();
 
 		public RokuIPButtonSpawner() {
-			this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp) {
+				SendTimeout = 100,
+				ReceiveTimeout = 100
+			};
 			this.StartListenerTask();
 			this.SendScanPacket();
 			const float required_space = 1200;
