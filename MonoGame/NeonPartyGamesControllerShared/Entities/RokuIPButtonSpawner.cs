@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +21,8 @@ namespace NeonPartyGamesController.Entities
 	public class RokuIPButtonSpawner : Entity
 	{
 		public readonly int ScanDelay = 250;
-		private bool UdpListenerRunning = false;
-		private UdpClient UdpClient;
+		private bool ListenerRunning = false;
+		private readonly Socket Socket;
 		private IPEndPoint IPEndPoint => new IPEndPoint(IPAddress.Parse(Settings.RokuSearchAddress), Settings.RokuSearchPort);
 		private readonly GameTimeSpan ScanDelayTimer = new GameTimeSpan();
 		private readonly float Scale;
@@ -28,10 +30,19 @@ namespace NeonPartyGamesController.Entities
 		private readonly List<ButtonRokuIP> Buttons = new List<ButtonRokuIP>();
 
 		public RokuIPButtonSpawner() {
+			this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp) {
+				SendTimeout = 100,
+				ReceiveTimeout = 100
+			};
 			try {
-				this.UdpClient = new UdpClient(Settings.RokuSearchPort, AddressFamily.InterNetwork);
+				var nic_count = NetworkInterface.GetAllNetworkInterfaces().Count(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback);
+				if (nic_count > 1) {
+					var ip = GetLocalIPWithGateway();
+					if (ip != null)
+						this.Socket.Bind(new IPEndPoint(ip, 0));
+				}
 			} catch {}
-			this.StartUdpListener();
+			this.StartListenerTask();
 			this.SendScanPacket();
 			const float required_space = 1200;
 			this.Scale = (Engine.Game.CanvasWidth < required_space) ? Engine.Game.CanvasWidth / required_space : 1f;
@@ -52,7 +63,26 @@ namespace NeonPartyGamesController.Entities
 			}
 		}
 
-		public override void onUpdate(float dt) {
+		~RokuIPButtonSpawner() {
+			this.IsExpired = true;
+		}
+
+		private IPAddress GetLocalIPWithGateway() {
+			// Code from https://stackoverflow.com/questions/44608330/c-sharp-get-active-nic-ipv4-address
+			foreach (var net_i in NetworkInterface.GetAllNetworkInterfaces()) {
+				if (net_i.NetworkInterfaceType == NetworkInterfaceType.Loopback || net_i.OperationalStatus != OperationalStatus.Up)
+					continue;
+
+				foreach (var uni_ip_addr_info in net_i.GetIPProperties().UnicastAddresses.Where(x => net_i.GetIPProperties().GatewayAddresses.Count > 0)) {
+					if (uni_ip_addr_info.Address.AddressFamily == AddressFamily.InterNetwork)
+						return uni_ip_addr_info.Address;
+				}
+			}
+
+			return null;
+		}
+
+        public override void onUpdate(float dt) {
 			base.onUpdate(dt);
 			if (this.ScanDelayTimer.TotalMilliseconds >= this.ScanDelay) {
 				this.SendScanPacket();
@@ -62,64 +92,56 @@ namespace NeonPartyGamesController.Entities
 
 		public override void onDestroy() {
 			base.onDestroy();
-			if (this.UdpClient != null) {
-				try {
-					this.UdpClient.Close();
-					this.UdpClient.Dispose();
-				} catch {}
-			}
-			this.UdpClient = null;
+			this.Dispose();
 		}
 
 		public override void onChangeRoom(Room previous_room, Room next_room) {
 			base.onChangeRoom(previous_room, next_room);
-			if (this.UdpClient != null) {
-				try {
-					this.UdpClient.Close();
-					this.UdpClient.Dispose();
-				} catch {}
-			}
-			this.UdpClient = null;
+			this.Dispose();
 		}
 
 		private void SendScanPacket() {
-			if (this.UdpClient != null) {
-				try {
-					this.UdpClient.SendAsync(Settings.RokuSearchBytes, Settings.RokuSearchBytes.Length, this.IPEndPoint);
-				} catch {}
-			}
+			try {
+				this.Socket.SendTo(Settings.RokuSearchBytes, this.IPEndPoint);
+			} catch {}
 		}
 
-		private void StartUdpListener() {
-			if (!this.UdpListenerRunning)
-				Task.Run(this.UdpListenTask);
-		}
+		private void StartListenerTask() {
+			if (this.ListenerRunning)
+				return;
 
-		private async void UdpListenTask() {
-			this.UdpListenerRunning = true;
-			while (this.Buttons.Count < this.Positions.Length && !this.IsExpired && this.UdpClient != null) {
-				string name = null;
-				string roku_ip = null;
-				try {
-					var ep = this.IPEndPoint;
-					var data = this.UdpClient.Receive(ref ep);
-					if (this.IsExpired) break;
-					string received_text = Encoding.ASCII.GetString(data);
-					if (!string.IsNullOrEmpty(received_text)) {
-						bool is_roku = received_text.ToLower().Contains("roku:ecp");
-						if (is_roku) {
-							roku_ip = ep.Address.ToString();
-							name = await RokuECP.GetRokuName(roku_ip);
-						}
+			byte[] receive_buffer = new byte[1024];
+			EndPoint ep = new IPEndPoint(IPAddress.Any, 0);
+
+			this.ListenerRunning = true;
+			Task.Run(async () => {
+				while (this.Buttons.Count < this.Positions.Length && !this.IsExpired) {
+					string name = null;
+					string roku_ip = null;
+					try {
+						int received = 0;
+						try {
+							received = this.Socket.ReceiveFrom(receive_buffer, ref ep);
+						} catch {}
 						if (this.IsExpired) break;
-					}
-				} catch {}
+						if (received > 0) {
+							string received_text = Encoding.ASCII.GetString(receive_buffer, 0, received);
+							if (!string.IsNullOrEmpty(received_text)) {
+								bool is_roku = received_text.ToLower().Contains("roku:ecp");
+								if (is_roku) {
+									roku_ip = ((IPEndPoint)ep).Address.ToString();
+									name = await RokuECP.GetRokuName(roku_ip);
+								}
+								if (this.IsExpired) break;
+							}
+						}
+					} catch {}
 
-				if (roku_ip != null && name != null)
-					this.SpawnButton(name, roku_ip);
-			}
-
-			this.UdpListenerRunning = false;
+					if (roku_ip != null && name != null)
+						this.SpawnButton(name, roku_ip);
+				}
+				this.ListenerRunning = false;
+			});
 		}
 
 		private void SpawnButton(string roku_name, string roku_ip) {
@@ -141,6 +163,15 @@ namespace NeonPartyGamesController.Entities
 			}
 
 			return false;
+		}
+
+		private void Dispose() {
+			try {
+				this.Socket.Close();
+			} catch {}
+			try {
+				this.Socket.Dispose();
+			} catch {}
 		}
 	}
 }
