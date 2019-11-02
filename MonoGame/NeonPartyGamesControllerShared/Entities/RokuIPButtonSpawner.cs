@@ -78,9 +78,7 @@ namespace NeonPartyGamesController.Entities
 		private void SendScanPacket() {
 			try {
 				this.Socket.SendTo(Settings.RokuSearchBytes, this.IPEndPoint);
-			} catch (Exception ex) {
-				Debug.WriteLine(ex);
-			}
+			} catch {}
 		}
 
 		private void StartListenerTask() {
