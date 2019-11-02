@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">NeonPartyGamesController</string>
+    <string name="ApplicationName">Neon Party Games Controller</string>
 </resources>
