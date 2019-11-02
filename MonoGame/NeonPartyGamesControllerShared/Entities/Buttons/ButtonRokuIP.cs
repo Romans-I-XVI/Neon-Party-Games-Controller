@@ -20,6 +20,13 @@ namespace NeonPartyGamesController.Entities.Buttons
 			this.ButtonText = new[] {roku_name, roku_ip};
 		}
 
+		public override void onUpdate(float dt) {
+			base.onUpdate(dt);
+			if (!(Engine.Room is RoomSelectRoku)) {
+				this.IsExpired = true;
+			}
+		}
+
 		public override void onDraw(SpriteBatch sprite_batch) {
 			var font = ContentHolder.Get(AvailableFonts.blippo);
 			base.onDraw(sprite_batch);
