@@ -35,12 +35,12 @@ namespace NeonPartyGamesController
 
 		protected void MakeFullScreen() {
 			var ui_options =
-				SystemUiFlags.HideNavigation; // |
-			//SystemUiFlags.LayoutFullscreen |
-			//SystemUiFlags.LayoutHideNavigation |
-			//SystemUiFlags.LayoutStable |
-			//SystemUiFlags.Fullscreen |
-			//SystemUiFlags.ImmersiveSticky;
+				SystemUiFlags.HideNavigation |
+				SystemUiFlags.LayoutFullscreen |
+				SystemUiFlags.LayoutHideNavigation |
+				SystemUiFlags.LayoutStable |
+				SystemUiFlags.Fullscreen |
+				SystemUiFlags.ImmersiveSticky;
 
 			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)ui_options;
 		}
