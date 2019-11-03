@@ -31,7 +31,11 @@ namespace NeonPartyGamesController
 			this.IsFixedTimeStep = false;
 			this.Content.RootDirectory = "Content";
 
+#if ANDROID || IOS
+			this.Graphics.IsFullScreen = true;
+#else
 			this.Graphics.IsFullScreen = false;
+#endif
 #if !ANDROID && !IOS && !PLAYSTATION4
 			this.Graphics.HardwareModeSwitch = false;
 			this.IsMouseVisible = true;
