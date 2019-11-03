@@ -34,7 +34,7 @@ namespace NeonPartyGamesController.Rooms
 				for (int y = 0; y < 2; y++) {
 					int offset_y = y * spread;
 					int face_int = (x + (y * 6)) + 1;
-					Faces face = Enum.Parse<Faces>("Face_" + face_int);
+					Faces face = (Faces)Enum.Parse(typeof(Faces), "Face_" + face_int);
 					var button = new ButtonFace(face, start_x + offset_x, start_y + offset_y, scale);
 					Engine.SpawnInstance(button);
 				}
