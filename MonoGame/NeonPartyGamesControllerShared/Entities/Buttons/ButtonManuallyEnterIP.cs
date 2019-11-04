@@ -39,8 +39,8 @@ namespace NeonPartyGamesController.Entities.Buttons
 			input.InputType = Android.Text.InputTypes.ClassPhone;
 			builder.SetView(input);
 
-			builder.SetPositiveButton("OK", (senderAlert, args) =>
-			{
+			builder.SetPositiveButton("OK", (sender_alert, args) => {
+				VibrationHelper.Vibrate();
 				if (!string.IsNullOrWhiteSpace(input.Text))
 				{
 					ParseIPText(input.Text);
@@ -73,8 +73,8 @@ namespace NeonPartyGamesController.Entities.Buttons
 			Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
 			builder.SetTitle(title);
 			builder.SetMessage(ip_string + " is not a valid IP address");
-			builder.SetPositiveButton("OK", (senderAlert, args) =>
-			{
+			builder.SetPositiveButton("OK", (sender_alert, args) => {
+				VibrationHelper.Vibrate();
 			});
 			builder.Show();
 #elif IOS

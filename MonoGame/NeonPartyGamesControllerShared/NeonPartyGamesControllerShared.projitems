@@ -60,5 +60,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)SpriteSheetHolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TexturePacker\SpriteSheet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TexturePacker\SpriteSheetLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VibrationHelper.cs" />
   </ItemGroup>
 </Project>

@@ -21,10 +21,10 @@ namespace NeonPartyGamesController.Entities.Buttons
 
 			builder.SetTitle("Enter Name");
 			input.InputType = Android.Text.InputTypes.ClassText;
-			input.SetFilters(new []{ new Android.Text.InputFilterLengthFilter(Settings.MaxNameLength) });
+			input.SetFilters(new Android.Text.IInputFilter[]{ new Android.Text.InputFilterLengthFilter(Settings.MaxNameLength) });
 			builder.SetView(input);
-			builder.SetPositiveButton("OK", (senderAlert, args) =>
-			{
+			builder.SetPositiveButton("OK", (sender_alert, args) => {
+				VibrationHelper.Vibrate();
 				if (!string.IsNullOrWhiteSpace(input.Text))
 				{
 					Settings.PlayerName = input.Text.Trim();

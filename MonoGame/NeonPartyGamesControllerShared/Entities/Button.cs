@@ -9,6 +9,7 @@ namespace NeonPartyGamesController.Entities
 	public class Button : Entity, ITouchable
 	{
 		protected bool ShouldPlaySoundOnClick = true;
+		protected bool ShouldVibrateOnClick = true;
 		protected bool LastClickWasOnSelf { get; private set; }
 		protected int LastClickTouchID { get; private set; }
 		protected Action OnClick;
@@ -41,6 +42,8 @@ namespace NeonPartyGamesController.Entities
 			base.onMouseDown(e);
 			if (e.Button == MouseButtons.LeftButton) {
 				if (this.IsClickOnSelf(e.Position)) {
+					if (this.ShouldVibrateOnClick)
+						VibrationHelper.Vibrate();
 					if (this.ShouldPlaySoundOnClick)
 						ContentHolder.Get(AvailableSounds.click).TryPlay();
 					this.OnClick?.Invoke();
@@ -71,6 +74,8 @@ namespace NeonPartyGamesController.Entities
 
 		public void onTouchPressed(TouchLocation touch) {
 			if (this.IsClickOnSelf(touch.Position.ToPoint())) {
+				if (this.ShouldVibrateOnClick)
+					VibrationHelper.Vibrate();
 				if (this.ShouldPlaySoundOnClick)
 					ContentHolder.Get(AvailableSounds.click).TryPlay();
 				this.OnClick?.Invoke();
