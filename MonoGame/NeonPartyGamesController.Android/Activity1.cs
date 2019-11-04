@@ -21,6 +21,7 @@ namespace NeonPartyGamesController
 
 			this.MakeFullScreen();
 			NeonPartyGamesControllerGame.Vibrator = (Vibrator)this.ApplicationContext.GetSystemService(Android.Content.Context.VibratorService);
+			NeonPartyGamesControllerGame.AndroidContext = this;
 			var g = new NeonPartyGamesControllerGame();
 			g.exitEvent += () => MoveTaskToBack(true);
 			this.SetContentView((View)g.Services.GetService(typeof(View)));

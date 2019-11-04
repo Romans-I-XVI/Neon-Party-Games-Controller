@@ -11,8 +11,9 @@ namespace NeonPartyGamesController
 		public const int ScreenHeight = 720;
 
 #if ANDROID
-        public static Microsoft.Devices.Sensors.Accelerometer Accelerometer = new Microsoft.Devices.Sensors.Accelerometer();
-        public static Android.OS.Vibrator Vibrator;
+		public static Microsoft.Devices.Sensors.Accelerometer Accelerometer = new Microsoft.Devices.Sensors.Accelerometer();
+		public static Android.OS.Vibrator Vibrator;
+		public static Android.Content.Context AndroidContext;
 #endif
 		public static bool ExitGame = false;
 		public delegate void dgExitEvent();
