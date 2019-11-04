@@ -43,7 +43,7 @@ namespace NeonPartyGamesController.Entities
 				if (this.IsClickOnSelf(e.Position)) {
 					if (this.ShouldPlaySoundOnClick)
 						ContentHolder.Get(AvailableSounds.click).TryPlay();
-					this.OnClick();
+					this.OnClick?.Invoke();
 					this.LastClickWasOnSelf = true;
 				} else {
 					this.LastClickWasOnSelf = false;
@@ -73,7 +73,7 @@ namespace NeonPartyGamesController.Entities
 			if (this.IsClickOnSelf(touch.Position.ToPoint())) {
 				if (this.ShouldPlaySoundOnClick)
 					ContentHolder.Get(AvailableSounds.click).TryPlay();
-				this.OnClick();
+				this.OnClick?.Invoke();
 				this.LastClickWasOnSelf = true;
 				this.LastClickTouchID = touch.Id;
 			} else {
