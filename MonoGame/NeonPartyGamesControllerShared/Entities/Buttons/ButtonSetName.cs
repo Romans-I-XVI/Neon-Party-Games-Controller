@@ -15,7 +15,22 @@ namespace NeonPartyGamesController.Entities.Buttons
 		}
 
 		private static void SetName() {
-#if Android
+#if ANDROID
+			Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
+			Android.Widget.EditText input = new Android.Widget.EditText(NeonPartyGamesControllerGame.AndroidContext);
+
+			builder.SetTitle("Enter Name");
+			input.InputType = Android.Text.InputTypes.ClassText;
+			input.SetFilters(new []{ new Android.Text.InputFilterLengthFilter(Settings.MaxNameLength) });
+			builder.SetView(input);
+			builder.SetPositiveButton("OK", (senderAlert, args) =>
+			{
+				if (!string.IsNullOrWhiteSpace(input.Text))
+				{
+					Settings.PlayerName = input.Text.Trim();
+				}
+			});
+			builder.Show();
 #elif IOS
 #else
 	#if DEBUG
