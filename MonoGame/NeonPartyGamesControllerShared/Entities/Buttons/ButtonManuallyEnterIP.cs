@@ -57,7 +57,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 		}
 
 		private static void ParseIPText(string ip_string) {
-			bool success = IPAddress.TryParse(ip_string, out IPAddress ip);
+			bool success = IPAddress.TryParse(ip_string, out IPAddress ip) && ip_string.Split('.').Length == 4;
 			if (success && ip != null) {
 				Settings.RokuName = "";
 				Settings.RokuIP = ip;
@@ -72,7 +72,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 #if ANDROID
 			Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
 			builder.SetTitle(title);
-			builder.SetMessage(ip_string + "is not a valid IP address");
+			builder.SetMessage(ip_string + " is not a valid IP address");
 			builder.SetPositiveButton("OK", (senderAlert, args) =>
 			{
 			});
