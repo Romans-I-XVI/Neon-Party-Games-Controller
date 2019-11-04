@@ -9,6 +9,7 @@ namespace NeonPartyGamesController.Rooms
 	public class RoomInfo : Room
 	{
 		public override void onSwitchTo(Room previous_room, Dictionary<string, object> args) {
+			Engine.Game.BackgroundColor = Color.Black;
 			Engine.SpawnInstance<ButtonBack>();
 			this.SpawnCreditsImage();
 			this.SpawnHyperlinks();
@@ -35,6 +36,7 @@ namespace NeonPartyGamesController.Rooms
 		}
 
 		public override void onSwitchAway(Room next_room) {
+			Engine.Game.BackgroundColor = Settings.BackgroundColor;
 		}
 	}
 }

@@ -80,6 +80,7 @@ namespace NeonPartyGamesController
 
 		}
 		public const int MaxNameLength = 25;
+		public static Color BackgroundColor => new Color(0x04, 0x04, 0x04);
 		public static readonly ushort ID = (ushort)Engine.Random.Next(ushort.MaxValue);
 
 		private static string _player_name = "Mr. Null";

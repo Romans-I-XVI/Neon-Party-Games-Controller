@@ -21,6 +21,7 @@ namespace NeonPartyGamesController
 
 		public NeonPartyGamesControllerGame() : base(1280, NeonPartyGamesControllerGame.ScreenHeight, 0, 0) {
 			this.CanvasWidth = NeonPartyGamesControllerGame.GetScreenWidth();
+			this.BackgroundColor = Settings.BackgroundColor;
 			this.Graphics.PreferredBackBufferWidth = this.CanvasWidth;
 			this.Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
 
