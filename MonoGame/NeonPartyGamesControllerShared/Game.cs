@@ -11,7 +11,6 @@ namespace NeonPartyGamesController
 		public const int ScreenHeight = 720;
 
 #if ANDROID
-		public static Microsoft.Devices.Sensors.Accelerometer Accelerometer = new Microsoft.Devices.Sensors.Accelerometer();
 		public static Android.Content.Context AndroidContext;
 #endif
 		public static bool ExitGame = false;
@@ -83,16 +82,6 @@ namespace NeonPartyGamesController
 			Debug.WriteLine("Height: " + NeonPartyGamesControllerGame.ScreenHeight);
 			Debug.WriteLine("----- Fake Screen Size Enabled ------");
 			return screen_width;
-		}
-
-		protected override void Initialize() {
-			base.Initialize();
-#if ANDROID
-            if (NeonPartyGamesControllerGame.Accelerometer.State != Microsoft.Devices.Sensors.SensorState.Ready)
-            {
-                NeonPartyGamesControllerGame.Accelerometer.Start();
-            }
-#endif
 		}
 
 		protected override void LoadContent() {

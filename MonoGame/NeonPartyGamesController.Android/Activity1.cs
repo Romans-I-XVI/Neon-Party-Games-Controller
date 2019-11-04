@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using Android.Views;
 using Microsoft.Xna.Framework;
 
@@ -19,9 +20,9 @@ namespace NeonPartyGamesController
 	{
 		protected override void OnCreate(Bundle bundle) {
 			base.OnCreate(bundle);
+			Xamarin.Essentials.Platform.Init(this, bundle);
 
 			this.MakeFullScreen();
-			VibrationHelper.Init((Vibrator)this.ApplicationContext.GetSystemService(Android.Content.Context.VibratorService));
 			NeonPartyGamesControllerGame.AndroidContext = this;
 			var g = new NeonPartyGamesControllerGame();
 			g.exitEvent += () => MoveTaskToBack(true);
@@ -45,6 +46,13 @@ namespace NeonPartyGamesController
 				SystemUiFlags.ImmersiveSticky;
 
 			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)ui_options;
+		}
+
+		public override void OnRequestPermissionsResult(int request_code, string[] permissions, [GeneratedEnum] Permission[] grant_results)
+		{
+			Xamarin.Essentials.Platform.OnRequestPermissionsResult(request_code, permissions, grant_results);
+
+			base.OnRequestPermissionsResult(request_code, permissions, grant_results);
 		}
 	}
 }

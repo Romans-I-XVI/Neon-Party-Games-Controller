@@ -4,13 +4,6 @@ namespace NeonPartyGamesController
 	{
 		public static int StandardVibrationLength = 18;
 
-#if ANDROID
-		private static Android.OS.Vibrator Vibrator;
-		public static void Init(Android.OS.Vibrator vibrator) {
-			VibrationHelper.Vibrator = vibrator;
-		}
-#endif
-
 		public static bool Vibrate()
 		{
 			return Vibrate(StandardVibrationLength);
@@ -18,9 +11,13 @@ namespace NeonPartyGamesController
 
 		public static bool Vibrate(int milliseconds)
 		{
-#if ANDROID
-			VibrationHelper.Vibrator.Vibrate(milliseconds);
-			return true;
+#if ANDROID || IOS || NETFX_CORE
+			try {
+				Xamarin.Essentials.Vibration.Vibrate(milliseconds);
+				return true;
+			} catch {
+				return false;
+			}
 #else
             return false;
 #endif

@@ -15,13 +15,10 @@ namespace NeonPartyGamesController.Entities.Buttons
 
 		private static Action GetOnClickAction(string link) {
 			return () => {
-#if ANDROID
+#if ANDROID || IOS || NETFX_CORE
 				try {
-					var uri = Android.Net.Uri.Parse(link);
-					var intent = new Android.Content.Intent(Android.Content.Intent.ActionView, uri);
-					NeonPartyGamesControllerGame.AndroidContext.StartActivity(intent);
+					Xamarin.Essentials.Browser.OpenAsync(link);
 				} catch {}
-#elif IOS
 #else
 				try {
 					var psi = new ProcessStartInfo
