@@ -11,6 +11,7 @@ namespace NeonPartyGamesController
 {
 	public static class VibrationHelper
 	{
+		private static uint _current_vibration_task_id = 0;
 		public static int StandardVibrationLength = 18;
 
 		public static bool Vibrate()
@@ -60,11 +61,13 @@ namespace NeonPartyGamesController
 		public static void Vibrate(int[] on_off_duration_array) {
 			if (on_off_duration_array == null)
 				return;
+			_current_vibration_task_id++;
+			uint my_vibration_task_id = _current_vibration_task_id;
 			var array = (int[])on_off_duration_array.Clone();
 
 			Task.Run(() => {
 				int index = 0;
-				while (index < array.Length) {
+				while (index < array.Length && _current_vibration_task_id == my_vibration_task_id) {
 					if (index % 2 == 0)
 						VibrationHelper.Vibrate(array[index]);
 					Thread.Sleep(array[index]);
