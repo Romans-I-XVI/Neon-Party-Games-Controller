@@ -48,7 +48,10 @@ namespace NeonPartyGamesController
 			public const int Icon = 2130771968;
 			
 			// aapt resource value: 0x7F010001
-			public const int Splash = 2130771969;
+			public const int IconRound = 2130771969;
+			
+			// aapt resource value: 0x7F010002
+			public const int Splash = 2130771970;
 			
 			static Drawable()
 			{

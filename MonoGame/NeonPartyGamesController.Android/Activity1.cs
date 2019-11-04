@@ -9,6 +9,7 @@ namespace NeonPartyGamesController
 	[Activity(Label = "@string/ApplicationName"
 		, MainLauncher = true
 		, Icon = "@drawable/icon"
+		, RoundIcon = "@drawable/iconround"
 		, Theme = "@style/Theme.Splash"
 		, AlwaysRetainTaskState = true
 		, LaunchMode = LaunchMode.SingleInstance
