@@ -10,7 +10,9 @@ namespace NeonPartyGamesController
 	{
 		ImpactStrong = 96,
 		ImpactWeak = 98,
-		BuzzStrong = 30,
-		BuzzWeak = 32
+		ShortBuzzStrong = 30,
+		ShortBuzzWeak = 32,
+		LongBuzzStrong = 27,
+		TripleStrongClick = 21
 	}
 }
