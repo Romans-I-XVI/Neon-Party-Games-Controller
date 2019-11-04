@@ -22,11 +22,6 @@
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <MonoGamePlatform>Android</MonoGamePlatform>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\Austin\AppData\Local\Xamarin\Mono for Android\Keystore\Romans_I_XVI_Gaming\npgcontroller.keystore</AndroidSigningKeyStore>
-    <AndroidSigningStorePass>Britt08</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>asojka09</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>Britt08</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +48,11 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\Austin\AppData\Local\Xamarin\Mono for Android\Keystore\Romans_I_XVI_Gaming\npgcontroller.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Britt08</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>asojka09</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Britt08</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
