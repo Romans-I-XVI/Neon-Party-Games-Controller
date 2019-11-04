@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5E6F72C2-7CB8-455B-B9B0-823126881186</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>NeonPartyGamesControllerShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AvailableContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AvailableRegions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentHolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonBack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonBackAvoidTrackpad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonFace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonHyperlink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonIncreaseTrackpad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonManuallyEnterIP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonMoveTrackpad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonPlay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonReduceTrackpad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonResetTrackpad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonRokuIP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSelectFace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSelectRoku.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonSetName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Buttons\ButtonTrackpadControlBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentFaceDrawer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentRokuDrawer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EmptyEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerNetworkingControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\RokuIPButtonSpawner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Trackpad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Faces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\InputDevices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SoundEffectExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SpriteBatchExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SpriteFontExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HapticFeedbackPlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NeonPartyGamesControllerDebugger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkingTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RokuECP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomMain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomPlay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomSelectFace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomSelectRoku.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SaveDataHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoundPlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpriteSheetHolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TexturePacker\SpriteSheet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TexturePacker\SpriteSheetLoader.cs" />
+  </ItemGroup>
+</Project>

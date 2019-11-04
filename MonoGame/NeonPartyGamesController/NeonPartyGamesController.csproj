@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <MonoGameContentReference Include="**\*.mgcb" />
+        <MonoGameContentReference Remove="Content\fonts\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.7.0.7" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3-beta2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="..\SharedContent\textures\spritesheet.json">
+        <Link>Content/textures/spritesheet.json</Link>
+      </EmbeddedResource>
+      <EmbeddedResource Remove="Content\fonts\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Content\textures\**" />
+      <Compile Remove="Content\bin\**" />
+      <Compile Remove="Content\obj\**" />
+      <Compile Remove="Content\fonts\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Content\textures\**" />
+      <EmbeddedResource Remove="Content\bin\**" />
+      <EmbeddedResource Remove="Content\obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Content\textures\**" />
+      <None Remove="Content\bin\**" />
+      <None Remove="Content\obj\**" />
+      <None Remove="Content\fonts\**" />
+    </ItemGroup>
+
+    <Import Project="..\monoEngine\MonoEngine\MonoEngine.projitems" Label="Shared" />
+
+    <Import Project="..\NeonPartyGamesControllerShared\NeonPartyGamesControllerShared.projitems" Label="Shared" />
+
+</Project>
