@@ -1,8 +1,16 @@
+using System.Collections.Generic;
+
 namespace NeonPartyGamesController
 {
 	public static class HapticFeedbackPlayer
 	{
+		public static readonly Dictionary<HapticEffect, int[]> Haptics = new Dictionary<HapticEffect, int[]> {
+			[HapticEffect.ShortBuzzWeak] = new []{26, 8, 26, 8, 26}
+		};
+
 		public static void Play(byte value) {
+			if (HapticFeedbackPlayer.Haptics.ContainsKey((HapticEffect)value))
+				VibrationHelper.Vibrate(HapticFeedbackPlayer.Haptics[(HapticEffect)value]);
 		}
 	}
 
