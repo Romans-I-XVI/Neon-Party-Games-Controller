@@ -4,8 +4,8 @@ namespace NeonPartyGamesController
 {
 	public static class HapticFeedbackPlayer
 	{
-		public static readonly Dictionary<HapticEffect, int[]> Haptics = new Dictionary<HapticEffect, int[]> {
-			[HapticEffect.ShortBuzzWeak] = new []{26, 8, 26, 8, 26}
+		public static Dictionary<HapticEffect, int[]> Haptics = new Dictionary<HapticEffect, int[]> {
+			[HapticEffect.ShortBuzzWeak] = new []{20, 30, 20}
 		};
 
 		public static void Play(byte value) {
