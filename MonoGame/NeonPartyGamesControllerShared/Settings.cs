@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MonoEngine;
@@ -59,8 +60,15 @@ namespace NeonPartyGamesController
 
 			if (_roku_ip != null) {
 				Task.Run(async () => {
-					bool alive = await RokuECP.PingRoku(roku_ip);
-					if (!alive) {
+					const int max_retry_time = 2500;
+					const int min_retry_delay = 100;
+					var timer = new GameTimeSpan();
+					bool alive = false;
+					while (!alive && timer.TotalMilliseconds < max_retry_time) {
+						alive = await RokuECP.PingRoku(roku_ip);
+						Thread.Sleep(min_retry_delay);
+					}
+					if (!alive && !Settings.HasRokuIPChangedSinceLaunch) {
 						RokuIP = null;
 						RokuName = "";
 					}
@@ -82,6 +90,7 @@ namespace NeonPartyGamesController
 		public const int MaxNameLength = 25;
 		public static Color BackgroundColor => new Color(0x04, 0x04, 0x04);
 		public static readonly ushort ID = (ushort)Engine.Random.Next(ushort.MaxValue);
+		public static bool HasRokuIPChangedSinceLaunch { get; private set; }
 
 		private static string _player_name = "Mr. Null";
 		private static Colors _player_color = Colors.Red;
@@ -122,6 +131,7 @@ namespace NeonPartyGamesController
 		public static IPAddress RokuIP {
 			get => _roku_ip;
 			set {
+				Settings.HasRokuIPChangedSinceLaunch = true;
 				string write_value = (value != null) ? value.ToString() : "";
 				SaveDataHandler.SaveData(write_value, SavePaths.RokuIP);
 				_roku_ip = value;
