@@ -56,6 +56,9 @@ namespace NeonPartyGamesController.Entities
 		public override void onMouse(MouseState state) {
 			base.onMouse(state);
 			if (state.LeftButton == ButtonState.Pressed) {
+				if (!this.IsCurrentClickValid)
+					this.onInputDown(state.Position);
+
 				this.onInput(state.Position);
 			}
 		}
@@ -70,6 +73,14 @@ namespace NeonPartyGamesController.Entities
 		}
 
 		public void onTouch(TouchCollection touch) {
+			if (!this.IsCurrentClickValid) {
+				for (int i = 0; i < touch.Count; i++) {
+					this.onTouchPressed(touch[i]);
+					if (this.IsCurrentClickValid)
+						break;
+				}
+			}
+
 			if (this.IsCurrentClickValid) {
 				for (int i = 0; i < touch.Count; i++) {
 					if (touch[i].Id == this.CurrentTouchID) {
