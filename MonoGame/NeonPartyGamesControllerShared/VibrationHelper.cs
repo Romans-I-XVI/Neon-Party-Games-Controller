@@ -6,7 +6,7 @@ namespace NeonPartyGamesController
 	public static class VibrationHelper
 	{
 		private static uint _current_vibration_task_id = 0;
-		public static int StandardVibrationLength = 18;
+		public static int StandardVibrationLength = 20;
 
 		public static bool Vibrate()
 		{
