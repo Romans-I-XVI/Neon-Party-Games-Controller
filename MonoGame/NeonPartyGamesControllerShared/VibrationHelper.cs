@@ -1,11 +1,5 @@
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using MonoEngine;
-using NeonPartyGamesController.Rooms;
 
 namespace NeonPartyGamesController
 {
@@ -16,32 +10,7 @@ namespace NeonPartyGamesController
 
 		public static bool Vibrate()
 		{
-			if (Engine.Room is RoomSelectFace) {
-				VibrationHelper.FetchAndPlayVibration();
-				return true;
-			}
 			return Vibrate(StandardVibrationLength);
-		}
-
-		private static void FetchAndPlayVibration() {
-			try {
-				var task = Task.Run(() => RokuECP.Client.GetByteArrayAsync("http://192.168.1.245/vibrator.txt"));
-				task.Wait();
-				var bytes = task.Result;
-				string res = Encoding.ASCII.GetString(bytes);
-				System.Diagnostics.Debug.WriteLine(res);
-				if (!string.IsNullOrEmpty(res)) {
-					var string_array = res.Split(',');
-					int[] test = new int[string_array.Length];
-					for (int i = 0; i < test.Length; i++) {
-						test[i] = int.Parse(string_array[i]);
-					}
-					VibrationHelper.Vibrate(test);
-				}
-
-			} catch (Exception e) {
-				System.Diagnostics.Debug.WriteLine(e);
-			}
 		}
 
 		public static bool Vibrate(int milliseconds)
