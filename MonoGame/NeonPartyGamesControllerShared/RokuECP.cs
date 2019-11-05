@@ -9,7 +9,7 @@ namespace NeonPartyGamesController
 	public static class RokuECP
 	{
 		private static HttpClient _client = null;
-		public static HttpClient Client {
+		private static HttpClient Client {
 			get {
 				if (_client == null) {
 					_client = new HttpClient();
