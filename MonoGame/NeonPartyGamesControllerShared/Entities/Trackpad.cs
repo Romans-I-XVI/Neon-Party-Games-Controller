@@ -12,7 +12,7 @@ namespace NeonPartyGamesController.Entities
 		public bool InMoveMode { get; private set; }
 		public const float BaseTrackpadWidth = 640;
 		public const float BaseTrackpadHeight = 360;
-		public const float MinimumBuffer = 40;
+		public const float MinimumBuffer = 50;
 		public const float MinimumScale = 0.2f;
 		public const float MaximumScale = 1.4f;
 		public const float DefaultScale = 0.575f;
