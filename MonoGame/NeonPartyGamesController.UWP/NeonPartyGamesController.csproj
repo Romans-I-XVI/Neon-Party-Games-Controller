@@ -115,6 +115,9 @@
     <None Include="NeonPartyGamesController_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\SharedContent\textures\spritesheet.json">
+      <Link>Content\textures\spritesheet.json</Link>
+    </EmbeddedResource>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
