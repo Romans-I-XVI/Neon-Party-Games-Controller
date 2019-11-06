@@ -1,12 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeonPartyGamesController", "NeonPartyGamesController\NeonPartyGamesController.csproj", "{10631EB0-2DD5-4EE2-B281-E6E26230777C}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeonPartyGamesController", "NeonPartyGamesController\NeonPartyGamesController.csproj", "{10631EB0-2DD5-4EE2-B281-E6E26230777C}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NeonPartyGamesControllerShared", "NeonPartyGamesControllerShared\NeonPartyGamesControllerShared.shproj", "{58535B3B-80F9-4F45-9865-D2457602BE1D}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoEngine", "monoEngine\MonoEngine\MonoEngine.shproj", "{21B5F966-179F-4871-A25A-FE80FAE9AFCF}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		monoEngine\MonoEngine\MonoEngine.projitems*{21b5f966-179f-4871-a25a-fe80fae9afcf}*SharedItemsImports = 13
+		NeonPartyGamesControllerShared\NeonPartyGamesControllerShared.projitems*{58535b3b-80f9-4f45-9865-d2457602be1d}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -16,5 +23,11 @@ Global
 		{10631EB0-2DD5-4EE2-B281-E6E26230777C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10631EB0-2DD5-4EE2-B281-E6E26230777C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10631EB0-2DD5-4EE2-B281-E6E26230777C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E54A4A8-7B42-4813-86CD-F1DDE6F14D70}
 	EndGlobalSection
 EndGlobal
