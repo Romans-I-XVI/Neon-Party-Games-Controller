@@ -48,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)HapticFeedbackPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NeonPartyGamesControllerDebugger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkingTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlatformFunctions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RokuECP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rooms\RoomMain.cs" />

@@ -18,66 +18,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 		}
 
 		private static void SetName() {
-            string title = "Enter Name";
-
-#if ANDROID
-			Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
-			Android.Widget.EditText input = new Android.Widget.EditText(NeonPartyGamesControllerGame.AndroidContext);
-
-			builder.SetTitle(title);
-			input.InputType = Android.Text.InputTypes.ClassText;
-			input.SetFilters(new Android.Text.IInputFilter[]{ new Android.Text.InputFilterLengthFilter(Settings.MaxNameLength) });
-			builder.SetView(input);
-			builder.SetPositiveButton("OK", (sender_alert, args) => {
-				VibrationHelper.Vibrate();
-				if (!string.IsNullOrWhiteSpace(input.Text))
-				{
-					Settings.PlayerName = input.Text.Trim();
-				}
-			});
-			builder.Show();
-#elif IOS
-#elif NETFX_CORE
-            Xamarin.Essentials.MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                TextBox inputTextBox = new TextBox
-                {
-                    AcceptsReturn = false,
-                    Height = 32
-                };
-                ContentDialog dialog = new ContentDialog
-                {
-                    Content = inputTextBox,
-                    Title = title,
-                    PrimaryButtonText = "Ok",
-                    IsSecondaryButtonEnabled = true,
-                    SecondaryButtonText = "Cancel",
-                    DefaultButton = ContentDialogButton.Primary
-                };
-                string result = "";
-                if (await dialog.ShowAsync() == ContentDialogResult.Primary)
-                    result = inputTextBox.Text;
-                else
-                    result = "";
-
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    Settings.PlayerName = result.Trim();
-                }
-            });
-#else
-	#if DEBUG
-			var debugger = Engine.GetFirstInstanceByType<DebuggerWithTerminal>();
-			if (debugger != null) {
-				Action<string> evaluator = s => {
-					if (s != null && s.Trim() != "") {
-						Settings.PlayerName = s.Trim();
-					};
-				};
-				debugger.OpenConsoleWithCustomEvaluator(evaluator);
-			}
-	#endif
-#endif
+			PlatformFunctions.OpenInputDialog("Enter Name", result => Settings.PlayerName = result.Trim());
 		}
 	}
 }
