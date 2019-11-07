@@ -26,7 +26,7 @@ namespace NeonPartyGamesController
 				input.InputType = Android.Text.InputTypes.ClassText;
 			input.SetFilters(new Android.Text.IInputFilter[]{ new Android.Text.InputFilterLengthFilter(Settings.MaxNameLength) });
 			builder.SetView(input);
-			builder.SetPositiveButton("OK", (sender_alert, args) => {
+			builder.SetPositiveButton("OK", (sender_alert, sender_args) => {
 				VibrationHelper.Vibrate();
 				if (!string.IsNullOrWhiteSpace(input.Text))
 				{
@@ -81,7 +81,7 @@ namespace NeonPartyGamesController
 			Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
 			builder.SetTitle(title);
 			builder.SetMessage(message);
-			builder.SetPositiveButton("OK", (sender_alert, args) => {
+			builder.SetPositiveButton("OK", (sender_alert, sender_args) => {
 				VibrationHelper.Vibrate();
 			});
 			builder.Show();

@@ -1,10 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 using Microsoft.Xna.Framework;
 using MonoEngine;
-using NeonPartyGamesController.Rooms;
-using System.Diagnostics;
 
 namespace NeonPartyGamesController.Entities.Buttons
 {
