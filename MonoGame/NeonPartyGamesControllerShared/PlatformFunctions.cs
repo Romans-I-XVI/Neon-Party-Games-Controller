@@ -16,8 +16,9 @@ namespace NeonPartyGamesController
 
 			Engine.Pause();
 #if ANDROID
-			Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
-			Android.Widget.EditText input = new Android.Widget.EditText(NeonPartyGamesControllerGame.AndroidContext);
+			var builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
+			var input = new Android.Widget.EditText(NeonPartyGamesControllerGame.AndroidContext);
+			var tcs = new System.Threading.Tasks.TaskCompletionSource<string>();
 
 			builder.SetTitle(title);
 			if (args != null && args.Length > 0)
@@ -28,12 +29,10 @@ namespace NeonPartyGamesController
 			builder.SetView(input);
 			builder.SetPositiveButton("OK", (sender_alert, sender_args) => {
 				VibrationHelper.Vibrate();
-				if (!string.IsNullOrWhiteSpace(input.Text))
-				{
-					Settings.PlayerName = input.Text.Trim();
-				}
+				tcs.TrySetResult(input.Text);
 			});
 			builder.Show();
+			result = await tcs.Task;
 #elif IOS
 #elif NETFX_CORE
             await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(async () =>
@@ -78,13 +77,17 @@ namespace NeonPartyGamesController
 			PlatformFunctions.IsDialogOpen = true;
 			Engine.Pause();
 #if ANDROID
-			Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
+			var builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
+			var tcs = new System.Threading.Tasks.TaskCompletionSource<bool>();
+
 			builder.SetTitle(title);
 			builder.SetMessage(message);
 			builder.SetPositiveButton("OK", (sender_alert, sender_args) => {
 				VibrationHelper.Vibrate();
+				tcs.TrySetResult(true);
 			});
 			builder.Show();
+			await tcs.Task;
 #elif IOS
 #elif NETFX_CORE
 			await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(async () =>
