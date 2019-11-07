@@ -58,8 +58,13 @@ namespace NeonPartyGamesController
             });
 #else
 	#if DEBUG
-			var debugger = Engine.GetFirstInstanceByType<DebuggerWithTerminal>();
-			debugger?.OpenConsoleWithCustomEvaluator(callback);
+			await System.Threading.Tasks.Task.Run(() => {
+				var debugger = Engine.GetFirstInstanceByType<DebuggerWithTerminal>();
+				debugger?.OpenConsoleWithCustomEvaluator(value => result = value);
+				while (debugger != null && debugger.ConsoleOpen) {
+					System.Threading.Thread.Sleep(1);
+				}
+			});
 	#endif
 #endif
 			Engine.Resume();
