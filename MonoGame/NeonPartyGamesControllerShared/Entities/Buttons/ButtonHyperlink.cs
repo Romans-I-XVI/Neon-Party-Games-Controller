@@ -17,7 +17,9 @@ namespace NeonPartyGamesController.Entities.Buttons
 			return () => {
 #if ANDROID || IOS || NETFX_CORE
 				try {
-					Xamarin.Essentials.Browser.OpenAsync(link);
+					Xamarin.Essentials.MainThread.BeginInvokeOnMainThread(() => {
+						Xamarin.Essentials.Browser.OpenAsync(link);
+					});
 				} catch {}
 #else
 				try {

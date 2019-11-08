@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  IgnorableNamespaces="uap mp">
+
+  <Identity
+    Name="RomansIXVIGamingLLC.NeonPartyGamesController"
+    Publisher="CN=1460E382-1222-42D8-AC98-5E3FAF26828C"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="750ff607-649a-47bd-9868-6f40e9949548" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>Neon Party Games Controller</DisplayName>
+    <PublisherDisplayName>Romans I XVI Gaming, LLC</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="NeonPartyGamesController.App">
+      <uap:VisualElements
+        DisplayName="Neon Party Games Controller"
+        Square150x150Logo="Assets\MediumTile.png"
+        Square44x44Logo="Assets\AppIcon.png"
+        Description="This is the official controller for Neon Party Games. Neon Party Games is a unique group multiplayer game available on the Roku. Play head to head with an unlimited number of people all interacting on one screen in 6 exciting game modes! If you don&apos;t already have Neon Party Games installed on your Roku you can install it here -- https://my.roku.com/add/neonpartygames"
+        BackgroundColor="#000000">
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#000000"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\WideTile.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square150x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="landscapeFlipped"/></uap:InitialRotationPreference>
+        <uap:LockScreen BadgeLogo="Assets\LockScreenLogo.png" Notification="badgeAndTileText"/>
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
