@@ -28,20 +28,25 @@
   </Resources>
 
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="NeonPartyGamesController.App">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="NeonPartyGamesController.App">
       <uap:VisualElements
         DisplayName="Neon Party Games Controller"
-        Square150x150Logo="Assets\Logo.png"
-        Square44x44Logo="Assets\SmallLogo.png"
+        Square150x150Logo="Assets\MediumTile.png"
+        Square44x44Logo="Assets\AppIcon.png"
         Description="This is the official controller for Neon Party Games. Neon Party Games is a unique group multiplayer game available on the Roku. Play head to head with an unlimited number of people all interacting on one screen in 6 exciting game modes! If you don&apos;t already have Neon Party Games installed on your Roku you can install it here -- https://my.roku.com/add/neonpartygames"
-        BackgroundColor="#464646">
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
-        <uap:DefaultTile/>
+        BackgroundColor="#000000">
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#000000"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\WideTile.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square150x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="landscape"/>
           <uap:Rotation Preference="landscapeFlipped"/></uap:InitialRotationPreference>
+        <uap:LockScreen BadgeLogo="Assets\LockScreenLogo.png" Notification="badgeAndTileText"/>
       </uap:VisualElements>
     </Application>
   </Applications>
