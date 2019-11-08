@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="1ffa6e5a-af88-451c-8b37-17e8265cff1a"
-    Publisher="CN=conta"
+    Name="RomansIXVIGamingLLC.NeonPartyGamesController"
+    Publisher="CN=1460E382-1222-42D8-AC98-5E3FAF26828C"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="1ffa6e5a-af88-451c-8b37-17e8265cff1a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="750ff607-649a-47bd-9868-6f40e9949548" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>NeonPartyGamesController</DisplayName>
-    <PublisherDisplayName>conta</PublisherDisplayName>
+    <DisplayName>Neon Party Games Controller</DisplayName>
+    <PublisherDisplayName>Romans I XVI Gaming, LLC</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
