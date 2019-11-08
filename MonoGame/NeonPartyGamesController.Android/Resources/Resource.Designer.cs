@@ -741,27 +741,30 @@ namespace NeonPartyGamesController
 		public partial class Styleable
 		{
 			
+			// aapt resource value: { 0x10101A5,0x101031F,0x7F010000 }
 			public static int[] ColorStateListItem = new int[] {
 					16843173,
 					16843551,
 					2130771968};
 			
-			// aapt resource value: 0x2
+			// aapt resource value: 2
 			public const int ColorStateListItem_alpha = 2;
 			
-			// aapt resource value: 0x1
+			// aapt resource value: 1
 			public const int ColorStateListItem_android_alpha = 1;
 			
-			// aapt resource value: 0x7F010003
-			public const int ColorStateListItem_android_color = 2130771971;
+			// aapt resource value: 0
+			public const int ColorStateListItem_android_color = 0;
 			
+			// aapt resource value: { 0x7F01000C,0x7F010013 }
 			public static int[] CoordinatorLayout = new int[] {
 					2130771980,
 					2130771987};
 			
-			// aapt resource value: 0x7F010007
-			public const int CoordinatorLayout_keylines = 2130771975;
+			// aapt resource value: 0
+			public const int CoordinatorLayout_keylines = 0;
 			
+			// aapt resource value: { 0x10100B3,0x7F01000D,0x7F01000E,0x7F01000F,0x7F010010,0x7F010011,0x7F010012 }
 			public static int[] CoordinatorLayout_Layout = new int[] {
 					16842931,
 					2130771981,
@@ -771,30 +774,31 @@ namespace NeonPartyGamesController
 					2130771985,
 					2130771986};
 			
-			// aapt resource value: 0x7F010010
-			public const int CoordinatorLayout_Layout_android_layout_gravity = 2130771984;
+			// aapt resource value: 0
+			public const int CoordinatorLayout_Layout_android_layout_gravity = 0;
 			
-			// aapt resource value: 0x1
+			// aapt resource value: 1
 			public const int CoordinatorLayout_Layout_layout_anchor = 1;
 			
-			// aapt resource value: 0x2
+			// aapt resource value: 2
 			public const int CoordinatorLayout_Layout_layout_anchorGravity = 2;
 			
-			// aapt resource value: 0x3
+			// aapt resource value: 3
 			public const int CoordinatorLayout_Layout_layout_behavior = 3;
 			
-			// aapt resource value: 0x4
+			// aapt resource value: 4
 			public const int CoordinatorLayout_Layout_layout_dodgeInsetEdges = 4;
 			
-			// aapt resource value: 0x5
+			// aapt resource value: 5
 			public const int CoordinatorLayout_Layout_layout_insetEdge = 5;
 			
-			// aapt resource value: 0x6
+			// aapt resource value: 6
 			public const int CoordinatorLayout_Layout_layout_keyline = 6;
 			
-			// aapt resource value: 0x1
+			// aapt resource value: 1
 			public const int CoordinatorLayout_statusBarBackground = 1;
 			
+			// aapt resource value: { 0x7F010003,0x7F010004,0x7F010005,0x7F010006,0x7F010007,0x7F010008 }
 			public static int[] FontFamily = new int[] {
 					2130771971,
 					2130771972,
@@ -803,6 +807,7 @@ namespace NeonPartyGamesController
 					2130771975,
 					2130771976};
 			
+			// aapt resource value: { 0x1010532,0x1010533,0x101053F,0x101056F,0x1010570,0x7F010002,0x7F010009,0x7F01000A,0x7F01000B,0x7F010014 }
 			public static int[] FontFamilyFont = new int[] {
 					16844082,
 					16844083,
@@ -815,54 +820,55 @@ namespace NeonPartyGamesController
 					2130771979,
 					2130771988};
 			
-			// aapt resource value: 0x7F010025
-			public const int FontFamilyFont_android_font = 2130772005;
+			// aapt resource value: 0
+			public const int FontFamilyFont_android_font = 0;
 			
-			// aapt resource value: 0x2
+			// aapt resource value: 2
 			public const int FontFamilyFont_android_fontStyle = 2;
 			
-			// aapt resource value: 0x4
+			// aapt resource value: 4
 			public const int FontFamilyFont_android_fontVariationSettings = 4;
 			
-			// aapt resource value: 0x1
+			// aapt resource value: 1
 			public const int FontFamilyFont_android_fontWeight = 1;
 			
-			// aapt resource value: 0x3
+			// aapt resource value: 3
 			public const int FontFamilyFont_android_ttcIndex = 3;
 			
-			// aapt resource value: 0x5
+			// aapt resource value: 5
 			public const int FontFamilyFont_font = 5;
 			
-			// aapt resource value: 0x6
+			// aapt resource value: 6
 			public const int FontFamilyFont_fontStyle = 6;
 			
-			// aapt resource value: 0x7
+			// aapt resource value: 7
 			public const int FontFamilyFont_fontVariationSettings = 7;
 			
-			// aapt resource value: 0x8
+			// aapt resource value: 8
 			public const int FontFamilyFont_fontWeight = 8;
 			
-			// aapt resource value: 0x9
+			// aapt resource value: 9
 			public const int FontFamilyFont_ttcIndex = 9;
 			
-			// aapt resource value: 0x7F010018
-			public const int FontFamily_fontProviderAuthority = 2130771992;
+			// aapt resource value: 0
+			public const int FontFamily_fontProviderAuthority = 0;
 			
-			// aapt resource value: 0x1
+			// aapt resource value: 1
 			public const int FontFamily_fontProviderCerts = 1;
 			
-			// aapt resource value: 0x2
+			// aapt resource value: 2
 			public const int FontFamily_fontProviderFetchStrategy = 2;
 			
-			// aapt resource value: 0x3
+			// aapt resource value: 3
 			public const int FontFamily_fontProviderFetchTimeout = 3;
 			
-			// aapt resource value: 0x4
+			// aapt resource value: 4
 			public const int FontFamily_fontProviderPackage = 4;
 			
-			// aapt resource value: 0x5
+			// aapt resource value: 5
 			public const int FontFamily_fontProviderQuery = 5;
 			
+			// aapt resource value: { 0x101019D,0x101019E,0x10101A1,0x10101A2,0x10101A3,0x10101A4,0x1010201,0x101020B,0x1010510,0x1010511,0x1010512,0x1010513 }
 			public static int[] GradientColor = new int[] {
 					16843165,
 					16843166,
@@ -877,50 +883,51 @@ namespace NeonPartyGamesController
 					16844050,
 					16844051};
 			
+			// aapt resource value: { 0x10101A5,0x1010514 }
 			public static int[] GradientColorItem = new int[] {
 					16843173,
 					16844052};
 			
-			// aapt resource value: 0x7F010049
-			public const int GradientColorItem_android_color = 2130772041;
+			// aapt resource value: 0
+			public const int GradientColorItem_android_color = 0;
 			
-			// aapt resource value: 0x1
+			// aapt resource value: 1
 			public const int GradientColorItem_android_offset = 1;
 			
-			// aapt resource value: 0x7
+			// aapt resource value: 7
 			public const int GradientColor_android_centerColor = 7;
 			
-			// aapt resource value: 0x3
+			// aapt resource value: 3
 			public const int GradientColor_android_centerX = 3;
 			
-			// aapt resource value: 0x4
+			// aapt resource value: 4
 			public const int GradientColor_android_centerY = 4;
 			
-			// aapt resource value: 0x1
+			// aapt resource value: 1
 			public const int GradientColor_android_endColor = 1;
 			
-			// aapt resource value: 0x10
-			public const int GradientColor_android_endX = 16;
+			// aapt resource value: 10
+			public const int GradientColor_android_endX = 10;
 			
-			// aapt resource value: 0x11
-			public const int GradientColor_android_endY = 17;
+			// aapt resource value: 11
+			public const int GradientColor_android_endY = 11;
 			
-			// aapt resource value: 0x5
+			// aapt resource value: 5
 			public const int GradientColor_android_gradientRadius = 5;
 			
-			// aapt resource value: 0x7F010036
-			public const int GradientColor_android_startColor = 2130772022;
+			// aapt resource value: 0
+			public const int GradientColor_android_startColor = 0;
 			
-			// aapt resource value: 0x8
+			// aapt resource value: 8
 			public const int GradientColor_android_startX = 8;
 			
-			// aapt resource value: 0x9
+			// aapt resource value: 9
 			public const int GradientColor_android_startY = 9;
 			
-			// aapt resource value: 0x6
+			// aapt resource value: 6
 			public const int GradientColor_android_tileMode = 6;
 			
-			// aapt resource value: 0x2
+			// aapt resource value: 2
 			public const int GradientColor_android_type = 2;
 			
 			static Styleable()
