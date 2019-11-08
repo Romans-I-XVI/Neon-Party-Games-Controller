@@ -18,7 +18,7 @@ namespace NeonPartyGamesController
 #if ANDROID
 			var builder = new Android.App.AlertDialog.Builder(NeonPartyGamesControllerGame.AndroidContext);
 			var input = new Android.Widget.EditText(NeonPartyGamesControllerGame.AndroidContext);
-			var tcs = new System.Threading.Tasks.TaskCompletionSource<string>();
+			var tcs = new System.Threading.Tasks.TaskCompletionSource<bool>();
 
 			builder.SetTitle(title);
 			if (args != null && args.Length > 0)
@@ -29,10 +29,11 @@ namespace NeonPartyGamesController
 			builder.SetView(input);
 			builder.SetPositiveButton("OK", (sender_alert, sender_args) => {
 				VibrationHelper.Vibrate();
-				tcs.TrySetResult(input.Text);
+				result = input.Text;
 			});
+			builder.SetOnDismissListener(new OnDismissListener(() => tcs.TrySetResult(true)));
 			builder.Show();
-			result = await tcs.Task;
+			await tcs.Task;
 #elif IOS
 #elif NETFX_CORE
             await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(async () =>
@@ -89,8 +90,8 @@ namespace NeonPartyGamesController
 			builder.SetMessage(message);
 			builder.SetPositiveButton("OK", (sender_alert, sender_args) => {
 				VibrationHelper.Vibrate();
-				tcs.TrySetResult(true);
 			});
+			builder.SetOnDismissListener(new OnDismissListener(() => tcs.TrySetResult(true)));
 			builder.Show();
 			await tcs.Task;
 #elif IOS
@@ -104,5 +105,22 @@ namespace NeonPartyGamesController
 			Engine.Resume();
 			PlatformFunctions.IsDialogOpen = false;
 		}
+
+#if ANDROID
+		private sealed class OnDismissListener : Java.Lang.Object, Android.Content.IDialogInterfaceOnDismissListener
+		{
+			private readonly Action action;
+
+			public OnDismissListener(Action action)
+			{
+				this.action = action;
+			}
+
+			public void OnDismiss(Android.Content.IDialogInterface dialog)
+			{
+				this.action();
+			}
+		}
+#endif
 	}
 }
