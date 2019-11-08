@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoEngine;
+using NeonPartyGamesController.Entities;
 using NeonPartyGamesController.Rooms;
 
 namespace NeonPartyGamesController
@@ -34,7 +35,11 @@ namespace NeonPartyGamesController
 #if ANDROID || IOS
 			this.Graphics.IsFullScreen = true;
 #else
+	#if DEBUG
 			this.Graphics.IsFullScreen = false;
+	#else
+			this.Graphics.IsFullScreen = true;
+	#endif
 #endif
 #if !ANDROID && !IOS && !PLAYSTATION4
 			this.Graphics.HardwareModeSwitch = false;
@@ -93,6 +98,9 @@ namespace NeonPartyGamesController
 			Settings.Initialize();
 #if DEBUG
 			Engine.SpawnInstance<NeonPartyGamesControllerDebugger>();
+#endif
+#if !ANDROID && !IOS
+			Engine.SpawnInstance<FullscreenControl>();
 #endif
 			Engine.ChangeRoom<RoomMain>();
 		}

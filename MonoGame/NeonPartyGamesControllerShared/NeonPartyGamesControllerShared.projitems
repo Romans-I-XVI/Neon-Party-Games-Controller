@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentFaceDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CurrentRokuDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EmptyEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\FullscreenControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerNetworkingControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\RokuIPButtonSpawner.cs" />
