@@ -18,8 +18,11 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>NeonPartyGamesController_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>
+    </PackageCertificateKeyFile>
     <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
+    <PackageCertificateThumbprint>03732CCFEE452EBDB771ACFC3BF4A369D403A4BB</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -118,6 +121,7 @@
     <EmbeddedResource Include="..\SharedContent\textures\spritesheet.json">
       <Link>Content\textures\spritesheet.json</Link>
     </EmbeddedResource>
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\AppIcon.scale-200.png" />
     <Content Include="Assets\AppIcon.targetsize-256_altform-unplated.png" />
