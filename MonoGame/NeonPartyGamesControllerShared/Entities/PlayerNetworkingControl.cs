@@ -26,7 +26,6 @@ namespace NeonPartyGamesController.Entities
 		private readonly IPEndPoint RemoteEndPoint;
 		private byte[] Data;
 		private readonly GameTimeSpan SendDelayTimer;
-		private ManualResetEvent SendWaitHandle = null;
 		private bool SentDestroyPacket = false;
 		private readonly IPAddress RokuIP;
 		private readonly int RokuPort;
@@ -62,7 +61,6 @@ namespace NeonPartyGamesController.Entities
 		public override void onUpdate(float dt) {
 			base.onUpdate(dt);
 			this.UpdateData(this.Player.GetRokuScreenPosition());
-			this.SendWaitHandle.Set();
 		}
 
 		public override void onDestroy() {
@@ -76,14 +74,10 @@ namespace NeonPartyGamesController.Entities
 		}
 
 		private void StartSendingPackets() {
-			this.SendWaitHandle = new ManualResetEvent(true);
 			byte[] send_buffer = new byte[PlayerNetworkingControl.SendDataSize];
 
 			Task.Run(() => {
 				while (!this.IsExpired && !this.SentDestroyPacket) {
-					this.SendWaitHandle.WaitOne();
-					this.SendWaitHandle.Reset();
-
 					float current_time = this.SendDelayTimer.TotalMilliseconds;
 					if (current_time < PlayerNetworkingControl.MinimumSendDelay) {
 						int time_to_sleep = (int)(PlayerNetworkingControl.MinimumSendDelay - current_time);
