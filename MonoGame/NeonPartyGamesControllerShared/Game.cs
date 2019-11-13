@@ -10,13 +10,16 @@ namespace NeonPartyGamesController
 	public class NeonPartyGamesControllerGame : EngineGame
 	{
 		public const int ScreenHeight = 720;
+		private static bool _hasFocus = true;
+		public delegate void dgFocusChangeEvent(bool has_focus);
+		public static event dgFocusChangeEvent FocusChangeEvent;
 
 #if ANDROID
 		public static Android.Content.Context AndroidContext;
 #endif
 		public static bool ExitGame = false;
 		public delegate void dgExitEvent();
-		public event dgExitEvent exitEvent;
+		public event dgExitEvent ExitEvent;
 
 		public NeonPartyGamesControllerGame() : base(1280, NeonPartyGamesControllerGame.ScreenHeight, 0, 0) {
 			this.CanvasWidth = NeonPartyGamesControllerGame.GetScreenWidth();
@@ -56,6 +59,14 @@ namespace NeonPartyGamesController
 			this.Window.AllowUserResizing = true;
 #endif
 			this.Window.AllowAltF4 = true;
+		}
+
+		public static bool HasFocus {
+			get => NeonPartyGamesControllerGame._hasFocus;
+			set {
+				NeonPartyGamesControllerGame._hasFocus = value;
+				NeonPartyGamesControllerGame.FocusChangeEvent?.Invoke(NeonPartyGamesControllerGame._hasFocus);
+			}
 		}
 
 		private static int GetScreenWidth()
@@ -109,7 +120,7 @@ namespace NeonPartyGamesController
 			base.Update(game_time);
 			if (NeonPartyGamesControllerGame.ExitGame) {
 				NeonPartyGamesControllerGame.ExitGame = false;
-				this.exitEvent?.Invoke();
+				this.ExitEvent?.Invoke();
 #if !ANDROID && !IOS
                 this.Exit();
 #endif

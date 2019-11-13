@@ -25,7 +25,7 @@ namespace NeonPartyGamesController
 			this.MakeFullScreen();
 			NeonPartyGamesControllerGame.AndroidContext = this;
 			var g = new NeonPartyGamesControllerGame();
-			g.exitEvent += () => MoveTaskToBack(true);
+			g.ExitEvent += () => MoveTaskToBack(true);
 			this.SetContentView((View)g.Services.GetService(typeof(View)));
 			g.Run();
 		}
@@ -33,6 +33,7 @@ namespace NeonPartyGamesController
 		public override void OnWindowFocusChanged(bool has_focus) {
 			if (has_focus)
 				this.MakeFullScreen();
+			NeonPartyGamesControllerGame.HasFocus = has_focus;
 			base.OnWindowFocusChanged(has_focus);
 		}
 

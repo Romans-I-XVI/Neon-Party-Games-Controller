@@ -52,6 +52,7 @@ namespace NeonPartyGamesController.Entities
 			this.InitializeData();
 			this.StartSendingPackets();
 			this.StartReceivingPackets();
+			NeonPartyGamesControllerGame.FocusChangeEvent += this.onFocusChange;
 		}
 
 		~PlayerNetworkingControl() {
@@ -73,11 +74,18 @@ namespace NeonPartyGamesController.Entities
 			this.Dispose();
 		}
 
+		public void onFocusChange(bool has_focus) {
+			if (!has_focus)
+				this.SendDestroyPacket();
+			else
+				this.SentDestroyPacket = false;
+		}
+
 		private void StartSendingPackets() {
 			byte[] send_buffer = new byte[PlayerNetworkingControl.SendDataSize];
 
 			Task.Run(() => {
-				while (!this.IsExpired && !this.SentDestroyPacket) {
+				while (!this.IsExpired) {
 					float current_time = this.SendDelayTimer.TotalMilliseconds;
 					if (current_time < PlayerNetworkingControl.MinimumSendDelay) {
 						int time_to_sleep = (int)(PlayerNetworkingControl.MinimumSendDelay - current_time);
@@ -109,7 +117,7 @@ namespace NeonPartyGamesController.Entities
 						received = this.ReceiveSocket.ReceiveFrom(receive_buffer, ref ep);
 					} catch {}
 
-					if (received > 0 && ((IPEndPoint)ep).Address.Equals(this.RokuIP) && ((IPEndPoint)ep).Port == this.RokuPort) {
+					if (received > 0 && ((IPEndPoint)ep).Address.Equals(this.RokuIP) && ((IPEndPoint)ep).Port == this.RokuPort && NeonPartyGamesControllerGame.HasFocus) {
 						if (received >= 3)
 							SoundPlayer.Play(receive_buffer[0], receive_buffer[1], receive_buffer[2]);
 						if (received >= 4)
@@ -237,6 +245,7 @@ namespace NeonPartyGamesController.Entities
 		}
 
 		private void Dispose() {
+			NeonPartyGamesControllerGame.FocusChangeEvent -= this.onFocusChange;
 			if (!this.SentDestroyPacket)
 				this.SendDestroyPacket();
 
