@@ -97,7 +97,6 @@ namespace NeonPartyGamesController.Entities
 						this.Data.CopyTo(send_buffer, 0);
 					}
 
-					// This extra check is for the rare scenario where the destroy packet gets sent between the while check and here.
 					if (!this.SentDestroyPacket) {
 						try {
 							this.SendSocket.SendTo(send_buffer, this.RemoteEndPoint);
