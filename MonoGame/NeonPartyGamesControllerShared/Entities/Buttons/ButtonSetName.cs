@@ -15,7 +15,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 		}
 
 		private static void SetName() {
-			PlatformFunctions.OpenInputDialog("Enter Name", result => Settings.PlayerName = result.Trim());
+			PlatformFunctions.OpenInputDialog("Enter Name", result => Settings.PlayerName = result.Trim(), Settings.MaxNameLength);
 		}
 	}
 }

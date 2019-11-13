@@ -33,7 +33,7 @@ namespace NeonPartyGamesController.Entities.Buttons
 #if ANDROID
 			args = new object[] {Android.Text.InputTypes.ClassPhone};
 #endif
-			PlatformFunctions.OpenInputDialog("Enter Roku IP Address", ButtonManuallyEnterIP.ParseIPText, args);
+			PlatformFunctions.OpenInputDialog("Enter Roku IP Address", ButtonManuallyEnterIP.ParseIPText, 0, args);
 		}
 
 		private static void ParseIPText(string ip_string) {

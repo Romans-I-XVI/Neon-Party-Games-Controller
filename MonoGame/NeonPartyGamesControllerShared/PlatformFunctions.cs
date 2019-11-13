@@ -7,7 +7,7 @@ namespace NeonPartyGamesController
 	{
 		public static bool IsDialogOpen { get; private set; }
 
-		public static async void OpenInputDialog(string title, Action<string> callback, object[] args = null) {
+		public static async void OpenInputDialog(string title, Action<string> callback, int max_length = 0, object[] args = null) {
 			if (PlatformFunctions.IsDialogOpen)
 				return;
 
@@ -25,7 +25,8 @@ namespace NeonPartyGamesController
 				input.InputType = (Android.Text.InputTypes)args[0];
 			else
 				input.InputType = Android.Text.InputTypes.ClassText;
-			input.SetFilters(new Android.Text.IInputFilter[]{ new Android.Text.InputFilterLengthFilter(Settings.MaxNameLength) });
+			if (max_length > 0)
+				input.SetFilters(new Android.Text.IInputFilter[]{ new Android.Text.InputFilterLengthFilter(max_length) });
 			builder.SetView(input);
 			builder.SetPositiveButton("OK", (sender_alert, sender_args) => {
 				VibrationHelper.Vibrate();
@@ -43,6 +44,8 @@ namespace NeonPartyGamesController
                     AcceptsReturn = false,
                     Height = 32
                 };
+				if (max_length > 0)
+					input_text_box.MaxLength = max_length;
                 var dialog = new Windows.UI.Xaml.Controls.ContentDialog
                 {
                     Content = input_text_box,
