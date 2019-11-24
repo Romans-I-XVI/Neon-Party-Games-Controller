@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeonPartyGamesController", "NeonPartyGamesController.iOS\NeonPartyGamesController.csproj", "{FF36B544-C953-42F2-849B-F4D7FC3DE764}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoEngine", "monoEngine\MonoEngine\MonoEngine.shproj", "{21B5F966-179F-4871-A25A-FE80FAE9AFCF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NeonPartyGamesControllerShared", "NeonPartyGamesControllerShared\NeonPartyGamesControllerShared.shproj", "{58535B3B-80F9-4F45-9865-D2457602BE1D}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		monoEngine\MonoEngine\MonoEngine.projitems*{21b5f966-179f-4871-a25a-fe80fae9afcf}*SharedItemsImports = 13
+		NeonPartyGamesControllerShared\NeonPartyGamesControllerShared.projitems*{58535b3b-80f9-4f45-9865-d2457602be1d}*SharedItemsImports = 13
+		monoEngine\MonoEngine\MonoEngine.projitems*{ff36b544-c953-42f2-849b-f4d7fc3de764}*SharedItemsImports = 4
+		NeonPartyGamesControllerShared\NeonPartyGamesControllerShared.projitems*{ff36b544-c953-42f2-849b-f4d7fc3de764}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Release|iPhone.Build.0 = Release|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9DEAEFD-911C-4314-8E1A-030E8D2AA1FC}
+	EndGlobalSection
+EndGlobal
