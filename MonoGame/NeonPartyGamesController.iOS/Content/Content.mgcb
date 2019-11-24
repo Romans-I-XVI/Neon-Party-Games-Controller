@@ -11,3 +11,161 @@
 
 
 #---------------------------------- Content ---------------------------------#
+
+#begin ../../SharedContent/fonts/blippo.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:../../SharedContent/fonts/blippo.spritefont;fonts/blippo.spritefont
+
+#begin ../../SharedContent/fonts/blippo_small.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:../../SharedContent/fonts/blippo_small.spritefont;fonts/blippo_small.spritefont
+
+#begin ../../SharedContent/sounds/cell_absorb_mini.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_absorb_mini.wav;sounds/cell_absorb_mini.wav
+
+#begin ../../SharedContent/sounds/cell_booster_grow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_booster_grow.wav;sounds/cell_booster_grow.wav
+
+#begin ../../SharedContent/sounds/cell_booster_magnet_down.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_booster_magnet_down.wav;sounds/cell_booster_magnet_down.wav
+
+#begin ../../SharedContent/sounds/cell_booster_magnet_up.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_booster_magnet_up.wav;sounds/cell_booster_magnet_up.wav
+
+#begin ../../SharedContent/sounds/cell_booster_shrink.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_booster_shrink.wav;sounds/cell_booster_shrink.wav
+
+#begin ../../SharedContent/sounds/cell_booster_shrink_attack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_booster_shrink_attack.wav;sounds/cell_booster_shrink_attack.wav
+
+#begin ../../SharedContent/sounds/cell_booster_speed_down.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_booster_speed_down.wav;sounds/cell_booster_speed_down.wav
+
+#begin ../../SharedContent/sounds/cell_booster_speed_up.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_booster_speed_up.wav;sounds/cell_booster_speed_up.wav
+
+#begin ../../SharedContent/sounds/cell_death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/cell_death.wav;sounds/cell_death.wav
+
+#begin ../../SharedContent/sounds/click.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/click.wav;sounds/click.wav
+
+#begin ../../SharedContent/sounds/geometry_negative_poof.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/geometry_negative_poof.wav;sounds/geometry_negative_poof.wav
+
+#begin ../../SharedContent/sounds/geometry_poof.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/geometry_poof.wav;sounds/geometry_poof.wav
+
+#begin ../../SharedContent/sounds/hit_custom.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/hit_custom.wav;sounds/hit_custom.wav
+
+#begin ../../SharedContent/sounds/lose.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/lose.wav;sounds/lose.wav
+
+#begin ../../SharedContent/sounds/puck_hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/puck_hit.wav;sounds/puck_hit.wav
+
+#begin ../../SharedContent/sounds/puck_other_team_score.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/puck_other_team_score.wav;sounds/puck_other_team_score.wav
+
+#begin ../../SharedContent/sounds/puck_team_score.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/puck_team_score.wav;sounds/puck_team_score.wav
+
+#begin ../../SharedContent/sounds/squared_death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/squared_death.wav;sounds/squared_death.wav
+
+#begin ../../SharedContent/sounds/sumo_out_of_arena.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/sumo_out_of_arena.wav;sounds/sumo_out_of_arena.wav
+
+#begin ../../SharedContent/sounds/tag_it.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/tag_it.wav;sounds/tag_it.wav
+
+#begin ../../SharedContent/sounds/tag_not_it.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/tag_not_it.wav;sounds/tag_not_it.wav
+
+#begin ../../SharedContent/sounds/win.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../SharedContent/sounds/win.wav;sounds/win.wav
+
+#begin ../../SharedContent/textures/spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../SharedContent/textures/spritesheet.png;textures/spritesheet.png

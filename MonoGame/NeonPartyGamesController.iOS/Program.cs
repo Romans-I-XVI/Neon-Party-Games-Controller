@@ -7,11 +7,11 @@ namespace NeonPartyGamesController
     [Register("AppDelegate")]
     class Program : UIApplicationDelegate
     {
-        private static Game1 game;
+        private static NeonPartyGamesControllerGame game;
 
         internal static void RunGame()
         {
-            game = new Game1();
+            game = new NeonPartyGamesControllerGame();
             game.Run();
         }
 
