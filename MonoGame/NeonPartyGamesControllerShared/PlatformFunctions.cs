@@ -36,6 +36,21 @@ namespace NeonPartyGamesController
 			builder.Show();
 			await tcs.Task;
 #elif IOS
+			var tcs = new System.Threading.Tasks.TaskCompletionSource<bool>();
+			UIKit.UIAlertView alert = new UIKit.UIAlertView();
+			alert.Title = title;
+			alert.AddButton("OK");
+			alert.AlertViewStyle = UIKit.UIAlertViewStyle.PlainTextInput;
+			alert.Clicked += (object s, UIKit.UIButtonEventArgs ev) => {
+				if (ev.ButtonIndex == 0) {
+					result = alert.GetTextField(0).Text;
+				}
+			};
+			alert.Dismissed += (object s, UIKit.UIButtonEventArgs ev) => {
+				tcs.TrySetResult(true);
+			};
+			alert.Show();
+			await tcs.Task;
 #elif NETFX_CORE
             await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(async () =>
             {
@@ -98,6 +113,17 @@ namespace NeonPartyGamesController
 			builder.Show();
 			await tcs.Task;
 #elif IOS
+			var tcs = new System.Threading.Tasks.TaskCompletionSource<bool>();
+			UIKit.UIAlertView alert = new UIKit.UIAlertView();
+			alert.Title = title;
+			alert.Message = message;
+			alert.AddButton("OK");
+			alert.AlertViewStyle = UIKit.UIAlertViewStyle.Default;
+			alert.Dismissed += (object s, UIKit.UIButtonEventArgs ev) => {
+				tcs.TrySetResult(true);
+			};
+			alert.Show();
+			await tcs.Task;
 #elif NETFX_CORE
 			await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(async () =>
 			{
