@@ -29,5 +29,7 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>XSAppIconAssets</key>
 	<string>Media.xcassets/AppIcons.appiconset</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch</string>
 </dict>
 </plist>

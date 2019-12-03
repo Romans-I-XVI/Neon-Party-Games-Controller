@@ -129,6 +129,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Launch.cs" />
+    <Compile Include="Launch.designer.cs">
+      <DependentUpon>Launch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -139,6 +143,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <InterfaceDefinition Include="Launch.storyboard" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
