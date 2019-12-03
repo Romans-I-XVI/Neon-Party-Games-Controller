@@ -15,7 +15,7 @@ namespace NeonPartyGamesController.Entities
 		public const float MinimumBuffer = 50;
 		public const float MinimumScale = 0.2f;
 		public const float MaximumScale = 1.4f;
-		public const float DefaultScale = 0.575f;
+		public const float DefaultScale = 0.75f;
 		public float Scale;
 		public InputDevices? MovingWithDevice = null;
 		public Point MoveModeStartOffset = Point.Zero;
