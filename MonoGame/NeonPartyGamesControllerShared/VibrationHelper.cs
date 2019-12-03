@@ -15,7 +15,7 @@ namespace NeonPartyGamesController
 
 		public static bool Vibrate(int milliseconds)
 		{
-#if ANDROID || IOS || NETFX_CORE
+#if ANDROID || NETFX_CORE
 			try {
 				Xamarin.Essentials.Vibration.Vibrate(milliseconds);
 				return true;
