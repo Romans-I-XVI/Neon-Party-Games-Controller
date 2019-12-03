@@ -25,7 +25,7 @@ namespace NeonPartyGamesController
 			this.CanvasWidth = NeonPartyGamesControllerGame.GetScreenWidth();
 			this.BackgroundColor = Settings.BackgroundColor;
 			this.Graphics.PreferredBackBufferWidth = this.CanvasWidth;
-			this.Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
+			this.Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 
 #if NETFX_CORE
             this.Graphics.SynchronizeWithVerticalRetrace = true;
