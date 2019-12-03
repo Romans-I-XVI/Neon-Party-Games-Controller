@@ -21,7 +21,7 @@
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
     <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
-    <PackageCertificateThumbprint>03732CCFEE452EBDB771ACFC3BF4A369D403A4BB</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>E144534F86902FBB36D32884507B570981C6A5A1</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
