@@ -27,5 +27,7 @@
 	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+	<key>XSAppIconAssets</key>
+	<string>Media.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>
