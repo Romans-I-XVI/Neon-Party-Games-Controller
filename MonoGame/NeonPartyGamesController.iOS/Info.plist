@@ -31,5 +31,10 @@
 	<string>Media.xcassets/AppIcons.appiconset</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
 </dict>
 </plist>
