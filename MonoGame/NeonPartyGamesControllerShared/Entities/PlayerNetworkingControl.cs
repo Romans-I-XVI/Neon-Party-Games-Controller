@@ -99,7 +99,10 @@ namespace NeonPartyGamesController.Entities
 
 					if (!this.SentDestroyPacket) {
 						try {
-							this.SendSocket.SendTo(send_buffer, this.RemoteEndPoint);
+							if (this.SendSocket.Connected)
+								this.SendSocket.Send(send_buffer);
+							else
+								this.SendSocket.SendTo(send_buffer, this.RemoteEndPoint);
 						} catch {}
 					}
 				}
