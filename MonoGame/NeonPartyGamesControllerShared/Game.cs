@@ -100,6 +100,14 @@ namespace NeonPartyGamesController
 			return screen_width;
 		}
 
+		protected override void Initialize()
+		{
+			base.Initialize();
+#if IOS
+			AVFoundation.AVAudioSession.SharedInstance().SetCategory(AVFoundation.AVAudioSession.CategoryPlayback);
+#endif
+		}
+
 		protected override void LoadContent() {
 			base.LoadContent();
 			ContentHolder.Init(this);
