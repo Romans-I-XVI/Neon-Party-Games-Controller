@@ -138,7 +138,10 @@ namespace NeonPartyGamesController.Entities
 				}
 
 				send_buffer[10] = Convert.ToByte(true);
-				this.SendSocket.SendTo(send_buffer, this.RemoteEndPoint);
+				if (this.SendSocket.Connected)
+					this.SendSocket.Send(send_buffer);
+				else
+					this.SendSocket.SendTo(send_buffer, this.RemoteEndPoint);
 			} catch {}
 		}
 
