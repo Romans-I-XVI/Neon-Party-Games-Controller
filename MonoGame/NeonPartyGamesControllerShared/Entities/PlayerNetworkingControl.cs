@@ -17,9 +17,7 @@ namespace NeonPartyGamesController.Entities
 	{
 		public const int SendDataSize = 50;
 		public const int ReceiveDataSize = 4;
-		// Packets will send up to 4 times per target Roku frame (60fps)
-		// This makes sure the Roku always has the latest data but without flooding the socket
-		private const float MinimumSendDelay = 16.66666666f / 4f;
+		private const float MinimumSendDelay = 16.66666666f;
 		public readonly Player Player;
 		private readonly Socket SendSocket;
 		private readonly Socket ReceiveSocket;
@@ -29,6 +27,7 @@ namespace NeonPartyGamesController.Entities
 		private bool SentDestroyPacket = false;
 		private readonly IPAddress RokuIP;
 		private readonly int RokuPort;
+		private readonly byte[] LastSentPositionData = new byte[4];
 
 		public PlayerNetworkingControl(Player player, IPAddress roku_ip, int roku_port) {
 			this.Depth = player.Depth - 1;
@@ -50,7 +49,6 @@ namespace NeonPartyGamesController.Entities
 			} catch {}
 			this.SendDelayTimer = new GameTimeSpan();
 			this.InitializeData();
-			this.StartSendingPackets();
 			this.StartReceivingPackets();
 			NeonPartyGamesControllerGame.FocusChangeEvent += this.onFocusChange;
 		}
@@ -61,7 +59,29 @@ namespace NeonPartyGamesController.Entities
 
 		public override void onUpdate(float dt) {
 			base.onUpdate(dt);
+
 			this.UpdateData(this.Player.GetRokuScreenPosition());
+			lock (this.Data) {
+				if (!this.SentDestroyPacket && (this.SendDelayTimer.TotalMilliseconds >= PlayerNetworkingControl.MinimumSendDelay || (
+					this.LastSentPositionData[0] != this.Data[6] ||
+					this.LastSentPositionData[1] != this.Data[7] ||
+					this.LastSentPositionData[2] != this.Data[8] ||
+					this.LastSentPositionData[3] != this.Data[9]
+				))) {
+					try {
+						if (this.SendSocket.Connected)
+							this.SendSocket.Send(this.Data);
+						else
+							this.SendSocket.SendTo(this.Data, this.RemoteEndPoint);
+					} catch {}
+
+					this.LastSentPositionData[0] = this.Data[6];
+					this.LastSentPositionData[1] = this.Data[7];
+					this.LastSentPositionData[2] = this.Data[8];
+					this.LastSentPositionData[3] = this.Data[9];
+					this.SendDelayTimer.Mark();
+				}
+			}
 		}
 
 		public override void onDestroy() {
@@ -79,34 +99,6 @@ namespace NeonPartyGamesController.Entities
 				this.SendDestroyPacket();
 			else
 				this.SentDestroyPacket = false;
-		}
-
-		private void StartSendingPackets() {
-			byte[] send_buffer = new byte[PlayerNetworkingControl.SendDataSize];
-
-			Task.Run(() => {
-				while (!this.IsExpired) {
-					float current_time = this.SendDelayTimer.TotalMilliseconds;
-					if (current_time < PlayerNetworkingControl.MinimumSendDelay) {
-						int time_to_sleep = (int)(PlayerNetworkingControl.MinimumSendDelay - current_time);
-						Thread.Sleep(time_to_sleep);
-					}
-					this.SendDelayTimer.Mark();
-
-					lock (this.Data) {
-						this.Data.CopyTo(send_buffer, 0);
-					}
-
-					if (!this.SentDestroyPacket) {
-						try {
-							if (this.SendSocket.Connected)
-								this.SendSocket.Send(send_buffer);
-							else
-								this.SendSocket.SendTo(send_buffer, this.RemoteEndPoint);
-						} catch {}
-					}
-				}
-			});
 		}
 
 		private void StartReceivingPackets() {
