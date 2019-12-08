@@ -9,7 +9,7 @@
   <Identity
     Name="RomansIXVIGamingLLC.NeonPartyGamesController"
     Publisher="CN=1460E382-1222-42D8-AC98-5E3FAF26828C"
-    Version="1.0.1.0" />
+    Version="1.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="750ff607-649a-47bd-9868-6f40e9949548" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
