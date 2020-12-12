@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeonPartyGamesController", "NeonPartyGamesController.iOS\NeonPartyGamesController.csproj", "{FF36B544-C953-42F2-849B-F4D7FC3DE764}"
 EndProject
@@ -37,6 +37,7 @@ Global
 		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
 		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhone.Deploy.0 = Debug|iPhone
 		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{FF36B544-C953-42F2-849B-F4D7FC3DE764}.Release|iPhone.ActiveCfg = Release|iPhone
