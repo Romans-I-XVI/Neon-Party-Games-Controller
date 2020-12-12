@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SelectedDevice>Austin’s iPhone</SelectedDevice>
-    <DefaultDevice>iPhone 6s iOS 12.1</DefaultDevice>
+    <DefaultDevice>iPhone 8 Plus iOS 14.2</DefaultDevice>
     <TargetiOSDevice>&lt;%3fxml version="1.0" encoding="UTF-8"%3f&gt;
 &lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
 &lt;plist version="1.0"&gt;
@@ -14,7 +14,7 @@
 		&lt;key&gt;model&lt;/key&gt;
 		&lt;string&gt;iPhone8,1&lt;/string&gt;
 		&lt;key&gt;os-version&lt;/key&gt;
-		&lt;string&gt;13.2.3&lt;/string&gt;
+		&lt;string&gt;14.2&lt;/string&gt;
 		&lt;key&gt;os&lt;/key&gt;
 		&lt;string&gt;iOS&lt;/string&gt;
 	&lt;/dict&gt;
