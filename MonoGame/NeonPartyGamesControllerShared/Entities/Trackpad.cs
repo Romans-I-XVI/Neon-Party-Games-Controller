@@ -125,7 +125,7 @@ namespace NeonPartyGamesController.Entities
 		}
 
 		public void IncreaseScale() {
-			this.Scale += 0.005f * 60 * Engine.Dt;
+			this.Scale += 0.005f * 60 * (float)Engine.Dt;
 			if (this.Scale > Trackpad.MaximumScale) {
 				this.Scale = Trackpad.MaximumScale;
 			}
@@ -133,7 +133,7 @@ namespace NeonPartyGamesController.Entities
 		}
 
 		public void ReduceScale() {
-			this.Scale -= 0.005f * 60 * Engine.Dt;
+			this.Scale -= 0.005f * 60 * (float)Engine.Dt;
 			if (this.Scale < Trackpad.MinimumScale) {
 				this.Scale = Trackpad.MinimumScale;
 			}
