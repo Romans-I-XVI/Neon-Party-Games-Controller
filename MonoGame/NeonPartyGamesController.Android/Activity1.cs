@@ -10,8 +10,8 @@ namespace NeonPartyGamesController
 {
 	[Activity(Label = "@string/ApplicationName"
 		, MainLauncher = true
-		, Icon = "@drawable/icon"
-		, RoundIcon = "@drawable/iconround"
+		, Icon = "@mipmap/icon"
+		, RoundIcon = "@mipmap/icon_round"
 		, Theme = "@style/Theme.Splash"
 		, AlwaysRetainTaskState = true
 		, Exported = true

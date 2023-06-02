@@ -396,49 +396,46 @@ namespace NeonPartyGamesController
 		{
 			
 			// aapt resource value: 0x7F040000
-			public const int Icon = 2130968576;
+			public const int Banner = 2130968576;
 			
 			// aapt resource value: 0x7F040001
-			public const int IconRound = 2130968577;
+			public const int notification_action_background = 2130968577;
 			
 			// aapt resource value: 0x7F040002
-			public const int notification_action_background = 2130968578;
+			public const int notification_bg = 2130968578;
 			
 			// aapt resource value: 0x7F040003
-			public const int notification_bg = 2130968579;
+			public const int notification_bg_low = 2130968579;
 			
 			// aapt resource value: 0x7F040004
-			public const int notification_bg_low = 2130968580;
+			public const int notification_bg_low_normal = 2130968580;
 			
 			// aapt resource value: 0x7F040005
-			public const int notification_bg_low_normal = 2130968581;
+			public const int notification_bg_low_pressed = 2130968581;
 			
 			// aapt resource value: 0x7F040006
-			public const int notification_bg_low_pressed = 2130968582;
+			public const int notification_bg_normal = 2130968582;
 			
 			// aapt resource value: 0x7F040007
-			public const int notification_bg_normal = 2130968583;
+			public const int notification_bg_normal_pressed = 2130968583;
 			
 			// aapt resource value: 0x7F040008
-			public const int notification_bg_normal_pressed = 2130968584;
+			public const int notification_icon_background = 2130968584;
 			
 			// aapt resource value: 0x7F040009
-			public const int notification_icon_background = 2130968585;
+			public const int notification_template_icon_bg = 2130968585;
 			
 			// aapt resource value: 0x7F04000A
-			public const int notification_template_icon_bg = 2130968586;
+			public const int notification_template_icon_low_bg = 2130968586;
 			
 			// aapt resource value: 0x7F04000B
-			public const int notification_template_icon_low_bg = 2130968587;
+			public const int notification_tile_bg = 2130968587;
 			
 			// aapt resource value: 0x7F04000C
-			public const int notification_tile_bg = 2130968588;
+			public const int notify_panel_notification_icon_bg = 2130968588;
 			
 			// aapt resource value: 0x7F04000D
-			public const int notify_panel_notification_icon_bg = 2130968589;
-			
-			// aapt resource value: 0x7F04000E
-			public const int Splash = 2130968590;
+			public const int Splash = 2130968589;
 			
 			static Drawable()
 			{
@@ -738,26 +735,48 @@ namespace NeonPartyGamesController
 			}
 		}
 		
-		public partial class String
+		public partial class Mipmap
 		{
 			
 			// aapt resource value: 0x7F080000
-			public const int ApplicationName = 2131230720;
+			public const int Icon = 2131230720;
 			
 			// aapt resource value: 0x7F080001
-			public const int copy_toast_msg = 2131230721;
+			public const int icon_round = 2131230721;
 			
 			// aapt resource value: 0x7F080002
-			public const int fallback_menu_item_copy_link = 2131230722;
+			public const int launcher_foreground = 2131230722;
 			
-			// aapt resource value: 0x7F080003
-			public const int fallback_menu_item_open_in_browser = 2131230723;
+			static Mipmap()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
-			// aapt resource value: 0x7F080004
-			public const int fallback_menu_item_share_link = 2131230724;
+			private Mipmap()
+			{
+			}
+		}
+		
+		public partial class String
+		{
 			
-			// aapt resource value: 0x7F080005
-			public const int status_bar_notification_info_overflow = 2131230725;
+			// aapt resource value: 0x7F090000
+			public const int ApplicationName = 2131296256;
+			
+			// aapt resource value: 0x7F090001
+			public const int copy_toast_msg = 2131296257;
+			
+			// aapt resource value: 0x7F090002
+			public const int fallback_menu_item_copy_link = 2131296258;
+			
+			// aapt resource value: 0x7F090003
+			public const int fallback_menu_item_open_in_browser = 2131296259;
+			
+			// aapt resource value: 0x7F090004
+			public const int fallback_menu_item_share_link = 2131296260;
+			
+			// aapt resource value: 0x7F090005
+			public const int status_bar_notification_info_overflow = 2131296261;
 			
 			static String()
 			{
@@ -772,29 +791,29 @@ namespace NeonPartyGamesController
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7F090000
-			public const int TextAppearance_Compat_Notification = 2131296256;
+			// aapt resource value: 0x7F0A0000
+			public const int TextAppearance_Compat_Notification = 2131361792;
 			
-			// aapt resource value: 0x7F090001
-			public const int TextAppearance_Compat_Notification_Info = 2131296257;
+			// aapt resource value: 0x7F0A0001
+			public const int TextAppearance_Compat_Notification_Info = 2131361793;
 			
-			// aapt resource value: 0x7F090002
-			public const int TextAppearance_Compat_Notification_Line2 = 2131296258;
+			// aapt resource value: 0x7F0A0002
+			public const int TextAppearance_Compat_Notification_Line2 = 2131361794;
 			
-			// aapt resource value: 0x7F090003
-			public const int TextAppearance_Compat_Notification_Time = 2131296259;
+			// aapt resource value: 0x7F0A0003
+			public const int TextAppearance_Compat_Notification_Time = 2131361795;
 			
-			// aapt resource value: 0x7F090004
-			public const int TextAppearance_Compat_Notification_Title = 2131296260;
+			// aapt resource value: 0x7F0A0004
+			public const int TextAppearance_Compat_Notification_Title = 2131361796;
 			
-			// aapt resource value: 0x7F090005
-			public const int Theme_Splash = 2131296261;
+			// aapt resource value: 0x7F0A0005
+			public const int Theme_Splash = 2131361797;
 			
-			// aapt resource value: 0x7F090006
-			public const int Widget_Compat_NotificationActionContainer = 2131296262;
+			// aapt resource value: 0x7F0A0006
+			public const int Widget_Compat_NotificationActionContainer = 2131361798;
 			
-			// aapt resource value: 0x7F090007
-			public const int Widget_Compat_NotificationActionText = 2131296263;
+			// aapt resource value: 0x7F0A0007
+			public const int Widget_Compat_NotificationActionText = 2131361799;
 			
 			static Style()
 			{
@@ -969,11 +988,11 @@ namespace NeonPartyGamesController
 		public partial class Xml
 		{
 			
-			// aapt resource value: 0x7F0B0000
-			public const int image_share_filepaths = 2131427328;
+			// aapt resource value: 0x7F0C0000
+			public const int image_share_filepaths = 2131492864;
 			
-			// aapt resource value: 0x7F0B0001
-			public const int xamarin_essentials_fileprovider_file_paths = 2131427329;
+			// aapt resource value: 0x7F0C0001
+			public const int xamarin_essentials_fileprovider_file_paths = 2131492865;
 			
 			static Xml()
 			{
