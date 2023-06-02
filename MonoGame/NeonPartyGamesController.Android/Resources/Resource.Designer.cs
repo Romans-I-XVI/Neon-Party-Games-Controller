@@ -289,10 +289,13 @@ namespace NeonPartyGamesController
 			public const int browser_actions_title_color = 2130837509;
 			
 			// aapt resource value: 0x7F020006
-			public const int notification_action_color_filter = 2130837510;
+			public const int launcher_background = 2130837510;
 			
 			// aapt resource value: 0x7F020007
-			public const int notification_icon_bg_color = 2130837511;
+			public const int notification_action_color_filter = 2130837511;
+			
+			// aapt resource value: 0x7F020008
+			public const int notification_icon_bg_color = 2130837512;
 			
 			static Color()
 			{
