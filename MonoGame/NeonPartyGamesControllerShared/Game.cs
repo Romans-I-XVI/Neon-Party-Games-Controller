@@ -75,10 +75,18 @@ namespace NeonPartyGamesController
 			float screen_pixel_height;
 
 #if ANDROID
-            Android.Util.DisplayMetrics displayMetrics = new Android.Util.DisplayMetrics();
-            Activity.WindowManager.DefaultDisplay.GetRealMetrics(displayMetrics);
-            screen_pixel_width = (float)displayMetrics.WidthPixels;
-            screen_pixel_height = (float)displayMetrics.HeightPixels;
+			if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.R) {
+				var windowMetrics = Activity.WindowManager.CurrentWindowMetrics;
+				screen_pixel_width = (float)windowMetrics.Bounds.Width();
+				screen_pixel_height = (float)windowMetrics.Bounds.Height();
+			} else {
+#pragma warning disable 618
+				Android.Util.DisplayMetrics displayMetrics = new Android.Util.DisplayMetrics();
+				Activity.WindowManager.DefaultDisplay.GetRealMetrics(displayMetrics);
+				screen_pixel_width = (float)displayMetrics.WidthPixels;
+				screen_pixel_height = (float)displayMetrics.HeightPixels;
+#pragma warning restore 618
+			}
 #else
 			screen_pixel_width = (float)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 			screen_pixel_height = (float)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
