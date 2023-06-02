@@ -22,7 +22,6 @@ namespace NeonPartyGamesController
 			base.OnCreate(bundle);
 			Xamarin.Essentials.Platform.Init(this, bundle);
 
-			this.MakeFullScreen();
 			NeonPartyGamesControllerGame.AndroidContext = this;
 			var g = new NeonPartyGamesControllerGame();
 			g.ExitEvent += () => MoveTaskToBack(true);
@@ -38,15 +37,23 @@ namespace NeonPartyGamesController
 		}
 
 		protected void MakeFullScreen() {
-			var ui_options =
-				SystemUiFlags.HideNavigation |
-				SystemUiFlags.LayoutFullscreen |
-				SystemUiFlags.LayoutHideNavigation |
-				SystemUiFlags.LayoutStable |
-				SystemUiFlags.Fullscreen |
-				SystemUiFlags.ImmersiveSticky;
+			if (Build.VERSION.SdkInt >= BuildVersionCodes.R) {
+				Window.SetDecorFitsSystemWindows(false);
+				Window.InsetsController.Hide(WindowInsets.Type.SystemBars());
+				Window.InsetsController.SystemBarsBehavior = (int)WindowInsetsControllerBehavior.ShowTransientBarsBySwipe;
+            } else {
+#pragma warning disable 618
+				var uiOptions =
+					SystemUiFlags.HideNavigation |
+					SystemUiFlags.LayoutFullscreen |
+					SystemUiFlags.LayoutHideNavigation |
+					SystemUiFlags.LayoutStable |
+					SystemUiFlags.Fullscreen |
+					SystemUiFlags.ImmersiveSticky;
 
-			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)ui_options;
+				Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+#pragma warning restore 618
+			}
 		}
 
 		public override void OnRequestPermissionsResult(int request_code, string[] permissions, [GeneratedEnum] Permission[] grant_results)
