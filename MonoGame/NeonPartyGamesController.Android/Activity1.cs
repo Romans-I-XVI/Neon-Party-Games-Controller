@@ -14,6 +14,7 @@ namespace NeonPartyGamesController
 		, RoundIcon = "@drawable/iconround"
 		, Theme = "@style/Theme.Splash"
 		, AlwaysRetainTaskState = true
+		, Exported = true
 		, LaunchMode = LaunchMode.SingleInstance
 		, ScreenOrientation = ScreenOrientation.UserLandscape
 		, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize | ConfigChanges.ScreenLayout)]
