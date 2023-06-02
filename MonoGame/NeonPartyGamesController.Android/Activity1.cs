@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Microsoft.Xna.Framework;
+using MonoEngine;
 
 namespace NeonPartyGamesController
 {
@@ -16,17 +17,42 @@ namespace NeonPartyGamesController
 		, LaunchMode = LaunchMode.SingleInstance
 		, ScreenOrientation = ScreenOrientation.UserLandscape
 		, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize | ConfigChanges.ScreenLayout)]
-	public class Activity1 : AndroidGameActivity
+	public class Activity1 : AndroidGameActivity, ViewTreeObserver.IOnPreDrawListener
 	{
+		private static Game Game = null;
+
 		protected override void OnCreate(Bundle bundle) {
 			base.OnCreate(bundle);
-			Xamarin.Essentials.Platform.Init(this, bundle);
-
 			NeonPartyGamesControllerGame.AndroidContext = this;
-			var g = new NeonPartyGamesControllerGame();
-			g.ExitEvent += () => MoveTaskToBack(true);
-			this.SetContentView((View)g.Services.GetService(typeof(View)));
-			g.Run();
+
+			View game_view;
+			if (Game == null) {
+				Xamarin.Essentials.Platform.Init(this, bundle);
+
+				Game = new NeonPartyGamesControllerGame();
+				game_view = (View)Game.Services.GetService(typeof(View));
+				((NeonPartyGamesControllerGame)Game).ExitEvent += () => MoveTaskToBack(true);
+
+				Game.Run();
+			} else {
+				game_view = (View)Game.Services.GetService(typeof(View));
+				ViewGroup parent = (ViewGroup)game_view.Parent;
+				if (parent != null) {
+					parent.RemoveView(game_view);
+				}
+			}
+
+			SetContentView(game_view);
+			FindViewById(Android.Resource.Id.Content)?.ViewTreeObserver?.AddOnPreDrawListener(this);
+		}
+
+		public bool OnPreDraw() {
+			if (Engine.Room != null) {
+				FindViewById(Android.Resource.Id.Content)?.ViewTreeObserver?.RemoveOnPreDrawListener(this);
+				return true;
+			}
+
+			return false;
 		}
 
 		public override void OnWindowFocusChanged(bool has_focus) {
