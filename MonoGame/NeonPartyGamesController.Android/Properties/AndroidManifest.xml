@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.romansixvi.npgcontroller" android:versionCode="1000005" android:versionName="1.0.5" android:installLocation="auto">
-	<uses-sdk android:targetSdkVersion="28" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.romansixvi.npgcontroller" android:versionCode="1000006" android:versionName="1.0.6" android:installLocation="auto">
+  <uses-sdk android:targetSdkVersion="33" android:minSdkVersion="21" />
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="Neon Party Games Controller"></application>
+	<application android:label="Neon Party Games Controller" android:icon="@mipmap/icon" android:banner="@drawable/Banner"></application>
 </manifest>

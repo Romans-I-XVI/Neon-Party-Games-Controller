@@ -4,30 +4,56 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Microsoft.Xna.Framework;
+using MonoEngine;
 
 namespace NeonPartyGamesController
 {
 	[Activity(Label = "@string/ApplicationName"
 		, MainLauncher = true
-		, Icon = "@drawable/icon"
-		, RoundIcon = "@drawable/iconround"
+		, Icon = "@mipmap/icon"
+		, RoundIcon = "@mipmap/icon_round"
 		, Theme = "@style/Theme.Splash"
 		, AlwaysRetainTaskState = true
+		, Exported = true
 		, LaunchMode = LaunchMode.SingleInstance
 		, ScreenOrientation = ScreenOrientation.UserLandscape
 		, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize | ConfigChanges.ScreenLayout)]
-	public class Activity1 : AndroidGameActivity
+	public class Activity1 : AndroidGameActivity, ViewTreeObserver.IOnPreDrawListener
 	{
+		private static Game Game = null;
+
 		protected override void OnCreate(Bundle bundle) {
 			base.OnCreate(bundle);
-			Xamarin.Essentials.Platform.Init(this, bundle);
-
-			this.MakeFullScreen();
 			NeonPartyGamesControllerGame.AndroidContext = this;
-			var g = new NeonPartyGamesControllerGame();
-			g.ExitEvent += () => MoveTaskToBack(true);
-			this.SetContentView((View)g.Services.GetService(typeof(View)));
-			g.Run();
+
+			View game_view;
+			if (Game == null) {
+				Xamarin.Essentials.Platform.Init(this, bundle);
+
+				Game = new NeonPartyGamesControllerGame();
+				game_view = (View)Game.Services.GetService(typeof(View));
+				((NeonPartyGamesControllerGame)Game).ExitEvent += () => MoveTaskToBack(true);
+
+				Game.Run();
+			} else {
+				game_view = (View)Game.Services.GetService(typeof(View));
+				ViewGroup parent = (ViewGroup)game_view.Parent;
+				if (parent != null) {
+					parent.RemoveView(game_view);
+				}
+			}
+
+			SetContentView(game_view);
+			FindViewById(Android.Resource.Id.Content)?.ViewTreeObserver?.AddOnPreDrawListener(this);
+		}
+
+		public bool OnPreDraw() {
+			if (Engine.Room != null) {
+				FindViewById(Android.Resource.Id.Content)?.ViewTreeObserver?.RemoveOnPreDrawListener(this);
+				return true;
+			}
+
+			return false;
 		}
 
 		public override void OnWindowFocusChanged(bool has_focus) {
@@ -38,15 +64,23 @@ namespace NeonPartyGamesController
 		}
 
 		protected void MakeFullScreen() {
-			var ui_options =
-				SystemUiFlags.HideNavigation |
-				SystemUiFlags.LayoutFullscreen |
-				SystemUiFlags.LayoutHideNavigation |
-				SystemUiFlags.LayoutStable |
-				SystemUiFlags.Fullscreen |
-				SystemUiFlags.ImmersiveSticky;
+			if (Build.VERSION.SdkInt >= BuildVersionCodes.R) {
+				Window.SetDecorFitsSystemWindows(false);
+				Window.InsetsController.Hide(WindowInsets.Type.SystemBars());
+				Window.InsetsController.SystemBarsBehavior = (int)WindowInsetsControllerBehavior.ShowTransientBarsBySwipe;
+            } else {
+#pragma warning disable 618
+				var uiOptions =
+					SystemUiFlags.HideNavigation |
+					SystemUiFlags.LayoutFullscreen |
+					SystemUiFlags.LayoutHideNavigation |
+					SystemUiFlags.LayoutStable |
+					SystemUiFlags.Fullscreen |
+					SystemUiFlags.ImmersiveSticky;
 
-			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)ui_options;
+				Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+#pragma warning restore 618
+			}
 		}
 
 		public override void OnRequestPermissionsResult(int request_code, string[] permissions, [GeneratedEnum] Permission[] grant_results)
